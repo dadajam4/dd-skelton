@@ -1,6 +1,7 @@
 import Vue    from 'vue';
 import Vuex   from 'vuex';
 import mq     from './modules/mq';
+import header from './modules/header';
 import drawer from './modules/drawer';
 
 
@@ -16,6 +17,7 @@ const store = new Vuex.Store({
 
       modules: {
         mq,
+        header,
         drawer,
       },
     },

@@ -37,10 +37,17 @@ export default {
     },
   },
 
+  watch: {
+    fixed() {
+      this.$store.dispatch(`${publicSettings.css.key}/header/setFixed`, this.fixed);
+    },
+  },
+
   methods: {
   },
 
   created() {
+    this.$store.dispatch(`${publicSettings.css.key}/header/setFixed`, this.fixed);
   },
 
   beforeDestroy() {

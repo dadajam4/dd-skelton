@@ -11,9 +11,6 @@ export default {
 
   data() {
     return {
-
-      hasHeader: false,
-      headerFixed: false,
     }
   },
 
@@ -29,10 +26,11 @@ export default {
       }
     },
 
+    headerFixed() { return this.$store.getters[`${publicSettings.css.key}/header/fixed`] },
     leftDrawerActive() { return this.$store.getters[`${publicSettings.css.key}/drawer/left`] },
-    leftDrawerStaticed() { return this.$store.getters[`${publicSettings.css.key}/drawer/leftstatic`] },
+    leftDrawerStaticed() { return this.leftDrawerActive && this.$store.getters[`${publicSettings.css.key}/drawer/leftstatic`] },
     rightDrawerActive() { return this.$store.getters[`${publicSettings.css.key}/drawer/right`] },
-    rightDrawerStaticed() { return this.$store.getters[`${publicSettings.css.key}/drawer/rightstatic`] },
+    rightDrawerStaticed() { return this.rightDrawerActive && this.$store.getters[`${publicSettings.css.key}/drawer/rightstatic`] },
   },
 
   methods: {
@@ -45,20 +43,12 @@ export default {
   },
 
   render(h) {
-    const children = this.$slots.default,
-          header   = children.find(child => child.componentOptions && child.componentOptions.tag === 'dd-app-header');
-
-    this.hasHeader = header !== undefined;
-    if (this.hasHeader) {
-      this.headerFixed = header.componentOptions.propsData.fixed !== undefined;
-    }
-
     return h('div', {
       'class': this.classes,
       attrs: {
         id: this.id,
         'data-app': '',
       },
-    }, children);
+    }, this.$slots.default);
   },
 }
