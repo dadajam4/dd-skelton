@@ -84,6 +84,9 @@ export default {
       this.$emit('input', val);
     },
 
+    $route() {
+      if (!this.isStatic) this.isActive = false;
+    },
   },
 
   methods: {

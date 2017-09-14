@@ -3,6 +3,9 @@
 
 <template>
   <dd-app-drawer left static="desktop" v-model="isActive">
+    <p>
+      <router-link :to="{name: 'index'}">トップ</router-link>
+    </p>
     <div v-for="parent, parentIndex in links" :key="parentIndex">
       <h3>{{parent.name}}</h3>
       <ul>
