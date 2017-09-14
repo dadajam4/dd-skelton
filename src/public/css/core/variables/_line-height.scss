@@ -1,0 +1,23 @@
+//
+// Line Height
+//
+
+@function get-line-height($key, $unit: null) {
+  $value: map-get($line-height, $key);
+  @if $unit != null {
+    @return #{nounit($value)}#{$unit};
+  } @else {
+    @return $value;
+  }
+}
+
+$line-height: ();
+$line-height: map-set($line-height, reset  , 1   );
+$line-height: map-set($line-height, icon   , 1   );
+$line-height: map-set($line-height, heading, 1.25);
+$line-height: map-set($line-height, xxs    , 1   );
+$line-height: map-set($line-height, xs     , 1.2 );
+$line-height: map-set($line-height, sm     , 1.45);
+$line-height: map-set($line-height, md     , 1.73);
+$line-height: map-set($line-height, lg     , 1.8 );
+$line-height: map-set($line-height, xl     , 2   );

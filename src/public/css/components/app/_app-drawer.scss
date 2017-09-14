@@ -1,0 +1,60 @@
+//
+// App Drawer
+//
+
+.#{$css-suffix}app-drawer {
+  $my-overflow-size: 64px;
+
+  &__overlay {
+    @include z-index(app-drawer);
+  }
+
+  &__base {
+    z-index: get-z-index(app-drawer) + 1;
+    position: fixed;
+    top: -$my-overflow-size;
+    bottom: -$my-overflow-size;
+    width: $navigation-drawer-width;
+    max-width: 100%;
+    background: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .4);
+    transition: get-duration(slowly) get-easing(drawer);
+  }
+
+  &--left &__base {
+    left: 0;
+  }
+
+  &--right &__base {
+    right: 0;
+  }
+
+  &__content {
+    position: absolute;
+    top: $my-overflow-size;
+    bottom: $my-overflow-size;
+    left: 0;
+    right: 0;
+    overflow: auto;
+  }
+
+  &--static {
+    .#{$css-suffix}app-drawer__overlay {
+      display: none!important;
+    }
+  }
+
+  &--close {
+    .#{$css-suffix}app-drawer__base {
+      box-shadow: 0 0 4px rgba(0, 0, 0, 0);
+    }
+
+    &.#{$css-suffix}app-drawer--left .#{$css-suffix}app-drawer__base {
+      left: -$navigation-drawer-width;
+    }
+
+    &.#{$css-suffix}app-drawer--right .#{$css-suffix}app-drawer__base {
+      left: -$navigation-drawer-width;
+    }
+  }
+}

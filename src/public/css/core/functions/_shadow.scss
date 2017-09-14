@@ -1,0 +1,7 @@
+//
+// Shadow
+//
+
+@mixin shadow($key) {
+  box-shadow: get-shadow($key);
+}

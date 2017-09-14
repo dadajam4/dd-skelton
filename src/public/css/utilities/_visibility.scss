@@ -1,0 +1,13 @@
+//
+// Visibility
+//
+
+@include mq-each() {
+  .#{$css-suffix}#{$mq-each-suffix}hide { display: none!important; }
+  .#{$css-suffix}#{$mq-each-suffix}show { display: block!important; }
+  .#{$css-suffix}#{$mq-each-suffix}show--inline { display: inline!important; }
+  .#{$css-suffix}#{$mq-each-suffix}show--inline-block { display: inline-block!important; }
+
+  .#{$css-suffix}#{$mq-each-suffix}hidden { visibility: hidden!important; }
+  .#{$css-suffix}#{$mq-each-suffix}visible { visibility: visible!important; }
+}

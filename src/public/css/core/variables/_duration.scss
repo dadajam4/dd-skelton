@@ -1,0 +1,18 @@
+//
+// Duration
+//
+
+@function get-duration($key) {
+  @return map-get($duration, $key);
+}
+
+$duration: ();
+$duration: map-set($duration, instantly   , 0s   );
+$duration: map-set($duration, immediately , 0.05s);
+$duration: map-set($duration, quickly     , 0.1s );
+$duration: map-set($duration, promptly    , 0.2s );
+$duration: map-set($duration, showup      , 0.3s );
+$duration: map-set($duration, slowly      , 0.4s );
+$duration: map-set($duration, paused      , 3.2s );
+$duration: map-set($duration, toast-short , 4.8s );
+$duration: map-set($duration, toast-medium, 9.6s );

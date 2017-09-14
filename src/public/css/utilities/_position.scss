@@ -1,0 +1,17 @@
+//
+// Position
+//
+
+@include mq-each() {
+  .#{$css-suffix}#{$mq-each-suffix}is-static {
+    position: static!important;
+  }
+
+  .#{$css-suffix}#{$mq-each-suffix}is-relative {
+    position: relative!important;
+  }
+
+  .#{$css-suffix}#{$mq-each-suffix}is-absolute {
+    position: absolute!important;
+  }
+}

@@ -1,0 +1,18 @@
+//
+// Space
+//
+
+@function get-space($key) {
+  @return map-get($space, $key);
+}
+
+$space: ();
+$space: map-set($space, none, 0      );
+$space: map-set($space, xxxs, .125rem);
+$space: map-set($space, xxs , .25rem );
+$space: map-set($space, xs  , .5rem  );
+$space: map-set($space, sm  , .75rem );
+$space: map-set($space, md  , 1rem   );
+$space: map-set($space, lg  , 1.5rem );
+$space: map-set($space, xl  , 2rem   );
+$space: map-set($space, xxl , 3rem   );

@@ -1,0 +1,33 @@
+//
+// Button
+//
+
+
+@mixin btn-action-reset() {
+  @include user-drag(none);
+  user-select: none;
+  -webkit-touch-callout: none;
+  @include remove-tap-highlight;
+}
+
+// Button Base
+@mixin btn-base($display: inline-block) {
+  @include btn-action-reset;
+  appearance: none;
+  position: relative;
+  border: 0;
+  display: $display;
+  vertical-align: middle;
+  cursor: pointer;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+
+  &,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+    outline: none;
+  }
+}

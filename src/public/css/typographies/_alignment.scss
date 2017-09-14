@@ -1,0 +1,11 @@
+//
+// Alignment
+//
+
+.#{$css-suffix}text--left   { text-align: left; }
+.#{$css-suffix}text--center { text-align: center; }
+.#{$css-suffix}text--right  { text-align: right; }
+
+.#{$css-suffix}align--top    { vertical-align: top; align-self: flex-start; }
+.#{$css-suffix}align--middle { vertical-align: middle; align-self: center; }
+.#{$css-suffix}align--bottom { vertical-align: bottom; align-self: flex-end; }

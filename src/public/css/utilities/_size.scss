@@ -1,0 +1,18 @@
+//
+// Size
+//
+
+@include mq-each() {
+  @for $i from 1 through 12 {
+    .#{$css-suffix}#{$mq-each-suffix}col--#{$i} {
+      width: ($i / 12 * 100) * 1%;
+    }
+  }
+
+  @each $key in $size {
+    .#{$css-suffix}#{$mq-each-suffix}width--#{$key} {
+      width: get-size($key);
+      max-width: 100%;
+    }
+  }
+}

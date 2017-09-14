@@ -1,0 +1,16 @@
+//
+// Size
+//
+
+@function get-size($key) {
+  @return map-get($size, $key);
+}
+
+$size: ();
+$size: map-set($size, xxs, 2rem );
+$size: map-set($size, xs , 4rem );
+$size: map-set($size, sm , 8rem );
+$size: map-set($size, md , 14rem);
+$size: map-set($size, lg , 20rem);
+$size: map-set($size, xl , 30rem);
+$size: map-set($size, xxl, 60rem);

@@ -1,0 +1,26 @@
+//
+// Base
+//
+
+// Set Root Font Size
+html {
+  font-size: $html-base-font-size-per;
+}
+
+// @fix
+//   for chrome bug
+body {
+  @include font-size(md, em);
+  @include line-height(md);
+  @include color(text-base);
+  overflow-wrap: break-word;
+}
+
+// Set Base Font Style
+body, input, textarea, select, button {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}

@@ -1,0 +1,22 @@
+//
+// Overlay
+//
+
+.#{$css-suffix}overlay {
+  $my-overflow-size: 64px;
+
+  position: fixed;
+  top: -$my-overflow-size;
+  left: -$my-overflow-size;
+  right: -$my-overflow-size;
+  bottom: -$my-overflow-size;
+
+  @include background-color(overlay);
+  opacity: 0;
+  pointer-events: none;
+
+  &--active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}

@@ -1,0 +1,13 @@
+//
+// Alignment
+//
+
+@include mq-each() {
+  .#{$css-suffix}#{$mq-each-suffix}align--absolute-center {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    margin: auto;
+  }
+}

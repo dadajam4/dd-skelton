@@ -1,0 +1,176 @@
+//
+// Utilitiy
+//
+
+@function nounit($value) {
+  $_nounit_divisor: (floor($value) * 2) % 2 + 1;
+  @return ($value / $_nounit_divisor);
+}
+
+@function rem2px($rem) {
+  @return nounit($rem) * $html-base-font-size;
+}
+
+@function to-string($list, $glue: '', $is-nested: false) {
+  $result: null;
+
+  @for $i from 1 through length($list) {
+    $e: nth($list, $i);
+
+    @if type-of($e) == list {
+      $result: $result#{to-string($e, $glue, true)};
+    }
+
+    @else {
+      $result: if($i != length($list) or $is-nested, $result#{$e}#{$glue}, $result#{$e});
+    }
+  }
+
+  @return $result;
+}
+
+// a map-set function (not included with Sass)
+@function map-set($map, $key, $value) {
+  $new: ($key: $value);
+  @return map-merge($map, $new);
+}
+
+// str-replace() - Replace in a string
+//
+// @param {string}  $string    String that you want to replace
+// @param {string}  $substr    String that is to be replaced by `$newsubstr`
+// @param {string}  $newsubstr String that replaces `$substr`
+// @param {number*} $all       Flag for replaceing all (1+) or not (0)
+// @return {string}
+@function str-replace($string, $substr, $newsubstr, $all: 0) {
+  $position-found: str-index($string, $substr);
+
+  @while ($position-found > 0) {
+    $length-substr: str-length($substr);
+    $string-pre: str-slice($string, 0, $position-found - 1);
+    $string-post: str-slice($string, $position-found + $length-substr);
+    $string: $string-pre + $newsubstr + $string-post;
+
+    $position-found: 0;
+
+    @if ($all > 0) {
+      $position-found: str-index($string, $substr);
+    }
+  }
+
+  @return $string;
+}
+
+@function get-maps-by-search-key($search-key, $map) {
+  $result: ();
+  @each $key, $val in $map {
+    @if str-index($key, $search-key + "-") == 1 {
+      $_key: str-replace($key, $search-key + "-", "");
+      $data: (
+        key: $key,
+        value: $val,
+      );
+      $result: map-set($result, $_key, $data);
+    }
+  }
+  @return $result;
+}
+
+// @function get-map-fields-by-search-key($search-key, $map) {
+//   $result: null;
+//   @each $key, $val in $map {
+//     @if str-index($key, $search-key + "-") == 1 {
+//       @if $result == null {
+//         $result: $key;
+//       } @else {
+//         $result: append($result, $key);
+//       }
+//     }
+//   }
+//   @return $result;
+// }
+
+
+// $lists: ();
+// append($lists, aaa);
+
+// $_key: null !global;
+// $_val: null !global;
+// @mixin each-maps-by-search-key($search-key, $map) {
+// }
+
+// @mixin class-start($classname) {
+//   [class^="#{$classname}"], [class*=" #{$classname}"] {
+//     @content;
+//   }
+// }
+
+// @mixin class-links() {
+//   $all: ();
+
+//   @each $one in selector-parse(&) {
+//     $lastValue: nth($one, -1);
+//     $lastIndex: length($one);
+
+//     $all: append($all, set-nth($one, $lastIndex, a#{$lastValue}), comma);
+//     $all: append($all, set-nth($one, $lastIndex, button#{$lastValue}), comma);
+//   }
+
+//   @at-root #{$all} {
+//     @content;
+//   }
+// }
+
+// Clearfix
+@mixin clearfix() {
+  &:after {
+    display: block;
+    content: "";
+    height: 0;
+    overflow: hidden;
+    clear: both;
+  }
+}
+
+// // Effect Fading
+// @mixin effect-fade($targets: ":hover", $prop: opacity, $value: 0.75, $duration: $duration-promptly) {
+//   transition: $prop $duration;
+
+//   @each $target in $targets {
+//     &#{$target} {
+//       #{$prop}: $value;
+//     }
+//   }
+// }
+
+// Set User Drag
+@mixin user-drag($drag) {
+  -webkit-user-drag: $drag;
+  -khtml-user-drag: $drag;
+  user-drag: $drag;
+}
+
+// Truncate
+@mixin truncate($max-width: 100%, $text: ellipsis) {
+  max-width: $max-width;
+  overflow: hidden;
+  text-overflow: $text;
+  white-space: nowrap;
+}
+
+// Square Sizing
+@mixin square($size) {
+  width: $size;
+  height: $size;
+}
+
+// Brightness
+@function brightness($color) {
+  $sum: red($color) + green($color) + blue($color);
+  @return percentage($sum / (255*3));
+}
+
+// Remove Tap Highlight
+@mixin remove-tap-highlight() {
+  -webkit-tap-highlight-color: rgba(0 ,0 , 0, 0);
+}

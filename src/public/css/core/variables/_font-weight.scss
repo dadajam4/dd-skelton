@@ -1,0 +1,12 @@
+//
+// Font Weight
+//
+
+@function get-font-weight($key) {
+  @return map-get($font-weight, $key);
+}
+
+$font-weight: ();
+$font-weight: map-set($font-weight, light  , 300);
+$font-weight: map-set($font-weight, regular, 400);
+$font-weight: map-set($font-weight, bold   , 700);

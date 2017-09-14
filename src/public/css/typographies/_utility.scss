@@ -1,0 +1,37 @@
+//
+// Utilities
+//
+
+
+
+//
+// truncation
+//
+.#{$css-suffix}truncate {
+  @include truncate;
+}
+
+
+
+// //
+// // assistive text
+// //
+// .#{$css-suffix}assistive-text {
+//   position: absolute!important;
+//   margin: -1px!important;
+//   border: 0!important;
+//   padding: 0!important;
+//   width: 1px!important;
+//   height: 1px!important;
+//   overflow: hidden!important;
+//   clip: rect(0 0 0 0)!important;
+// }
+
+
+
+//
+// text link reset
+//
+.#{$css-suffix}text-link--reset {
+  @include text-link--reset;
+}

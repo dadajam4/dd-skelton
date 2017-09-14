@@ -1,0 +1,54 @@
+//
+// Navigation Drawer
+//
+
+.#{$css-suffix}navigation-drawer {
+  $my-overflow-size: 64px;
+
+  &__overlay {
+    @include z-index(app-drawer);
+  }
+
+  // position: fixed;
+
+  // @include z-index(app-drawer);
+  // top: -$my-overflow-size;
+  // left: -$my-overflow-size;
+  // right: -$my-overflow-size;
+  // bottom: -$my-overflow-size;
+  // background: rgba(0, 0, 0, .4);
+  // pointer-events: none;
+
+  &__base {
+    z-index: get-z-index(app-drawer) + 1;
+    position: fixed;
+    top: -$my-overflow-size;
+    bottom: -$my-overflow-size;
+    left: 0;
+    width: $navigation-drawer-width;
+    max-width: 100%;
+    background: #fff;
+    box-shadow: 0 0 4px rgba(0, 0, 0, .4);
+    transition: get-duration(slowly) get-easing(drawer);
+  }
+
+  &__content {
+    position: absolute;
+    top: $my-overflow-size;
+    bottom: $my-overflow-size;
+    left: 0;
+    right: 0;
+    overflow: auto;
+  }
+
+  // @include mq-min(lg) {
+  //   &__overlay {
+  //     display: none!important;
+  //   }
+  // }
+
+  &--close &__base {
+    left: -$navigation-drawer-width;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0);
+  }
+}

@@ -1,0 +1,9 @@
+//
+// Float
+//
+
+@include mq-each() {
+  .#{$css-suffix}#{$mq-each-suffix}clearfix { @include clearfix; }
+  .#{$css-suffix}#{$mq-each-suffix}float--left { float: left; }
+  .#{$css-suffix}#{$mq-each-suffix}float--right { float: right; }
+}

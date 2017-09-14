@@ -1,0 +1,9 @@
+//
+// Hyphenation
+//
+
+@include mq-each() {
+  .#{$css-suffix}#{$mq-each-suffix}hyphenate {
+    @include hyphenate;
+  }
+}

@@ -1,0 +1,22 @@
+//
+// App Header
+//
+
+.#{$css-suffix}app-header {
+  &--fixed {
+    position: fixed;
+    @include z-index(app-header);
+    top: 0;
+    left: 0;
+    width: 100%;
+    @include shadow(floating);
+  }
+
+  &--drawer-left-active {
+    padding-left: $navigation-drawer-width;
+  }
+
+  &--drawer-right-active {
+    padding-right: $navigation-drawer-width;
+  }
+}

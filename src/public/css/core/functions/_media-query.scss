@@ -1,0 +1,90 @@
+//
+// Media Query
+//
+
+$mq-each-target: null !global;
+$mq-each-suffix: null !global;
+
+// 複数指定可能
+@mixin mq($targets...) {
+  $conditions: ();
+  $len: length($targets);
+  @for $i from 1 through $len {
+    $target: nth($targets, $i);
+
+    $define: map-get($media-query-groups, $target);
+
+    @if $define != null {
+      $conditions: append($conditions, $define);
+    } @else {
+      $define: map-get($media-query-breakpoints, $target);
+
+      @if $define == null {
+        @warn #{"メディアクエリキー `" + $target + "` は未定義です。"}
+      } @else {
+        $condition: map-get($define, conditions);
+        $conditions: append($conditions, $condition);
+      }
+    }
+  }
+
+  $conditionsStr: to-string($conditions, ", ");
+  @media #{$media-query-target} and #{$conditionsStr} { @content; }
+}
+
+// Max
+@mixin mq-max($target) {
+  $define: map-get($media-query-breakpoints, $target);
+  @if $define == null {
+    @warn #{"メディアクエリキー `" + $target + "` は未定義です。"}
+  } @else {
+    $max: map-get($define, max);
+    @if $max == null {
+      @warn #{"メディアクエリキー `" + $target + "` は最大値のため `mq-max` を利用できません。"}
+    } @else {
+      @media #{$media-query-target} and (max-width: #{$max}px) {
+        @content;
+      }
+    }
+  }
+}
+
+// Min
+@mixin mq-min($target) {
+  $define: map-get($media-query-breakpoints, $target);
+  @if $define == null {
+    @warn #{"メディアクエリキー `" + $target + "` は未定義です。"}
+  } @else {
+    $min: map-get($define, min);
+    @if $min == null {
+      @warn #{"メディアクエリキー `" + $target + "` は最小値のため `mq-min` を利用できません。"}
+    } @else {
+      @media #{$media-query-target} and (min-width: #{$min}px) {
+        @content;
+      }
+    }
+  }
+}
+
+// each targets
+// default: group only
+@mixin mq-each($type: group) {
+  $mq-each-target: null !global;
+  $mq-each-suffix: null !global;
+
+  @if $type == all or $type == group {
+    @each $target, $define in $media-query-groups {
+      $mq-each-target: $target !global;
+      $mq-each-suffix: #{$target + "-"} !global;
+      @include mq($target) { @content; }
+    }
+  }
+
+  @if $type == all or $type == key {
+    @each $target, $define in $media-query-breakpoints {
+      $mq-each-target: $target !global;
+      $mq-each-suffix: #{$target + "-"} !global;
+      @include mq($target) { @content; }
+    }
+  }
+}

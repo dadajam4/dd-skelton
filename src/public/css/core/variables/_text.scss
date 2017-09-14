@@ -1,0 +1,13 @@
+//
+// Text
+//
+
+@function get-heading($key) {
+  @return map-get($heading, $key);
+}
+
+$heading: ();
+$heading: map-set($heading, lg, (weight: light, size: xxl, height: heading));
+$heading: map-set($heading, md, (weight: light, size: xl , height: heading));
+$heading: map-set($heading, sm, (weight: null , size: lg , height: heading));
+$heading: map-set($heading, xs, (weight: null , size: md , height: null   ));

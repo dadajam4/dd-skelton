@@ -1,0 +1,147 @@
+//
+// Button
+//
+
+.#{$css-suffix}btn {
+  $my-border-width: get-button(border-width);
+
+  @mixin my-size($size) {
+    min-width: get-button(min-width- + $size);
+    @include font-size(get-button(font-size- + $size));
+    $my-height: get-button(height- + $size);
+    height: $my-height;
+    line-height: $my-height - $my-border-width * 2;
+  }
+
+  @mixin my-icon-size($size) {
+    $my-size: get-button(height- + $size);
+    width: $my-size;
+    height: $my-size;
+    line-height: $my-size - $my-border-width * 2;
+    @include font-size(get-button(font-size- + $my-size));
+  }
+
+  @include btn-base($display: inline-flex);
+  align-items: center;
+  justify-content: center;
+  flex: 0 1 auto;
+  @include font-weight(regular);
+  margin: get-button(margin-vertical) get-button(margin-horizontal);
+  // transition: .3s cubic-bezier(.25,.8,.5,1),color 1ms;
+  border-radius: get-button(radius);
+  border: $my-border-width solid transparent;
+  position: relative;
+  text-transform: uppercase;
+
+  &__content {
+    border-radius: inherit;
+    padding: 0 get-button(padding-horizontal);
+
+    &:before,
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      border-radius: inherit;
+      color: inherit;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: .12;
+      transition: get-duration(promptly);
+    }
+  }
+
+  &:hover,
+  // &:active,
+  &:focus {
+    .#{$css-suffix}btn__content {
+      &:before {
+        background-color: currentColor;
+      }
+    }
+  }
+
+  &:active {
+    .#{$css-suffix}btn__content {
+      &:after {
+        background-color: rgba(0, 0, 0, .5);
+      }
+    }
+  }
+
+  // size
+  @include my-size(md);
+  @each $size in sm, lg {
+    &--#{$size} {
+      @include my-size($size);
+    }
+  }
+
+  &--block {
+    display: flex;
+    width: 100%;
+  }
+
+  // context color
+  background: transparent;
+  @each $key, $define in $context-colors {
+    &--#{$key} {
+      $bg-color: map-get($define, value);
+      background: $bg-color;
+      border-color: $bg-color;
+      @include suitable-text-color($bg-color);
+    }
+  }
+
+  &--outline {
+    border-color: currentColor;
+  }
+
+  &--icon {
+    // background: transparent;
+    // box-shadow: none!important;
+    border-radius: 50%;
+    justify-content: center;
+    min-width: 0;
+
+    .#{$css-suffix}btn__content {
+      padding: 0;
+    }
+
+    @include my-icon-size(md);
+    @each $size in sm, lg {
+      &.#{$css-suffix}btn--#{$size} {
+        @include my-icon-size($size);
+      }
+    }
+  }
+
+  // includes icon
+  &__content .#{$css-suffix}icon {
+    color: inherit;
+    line-height: inherit;
+    vertical-align: middle;
+
+    &--left {
+      margin-right: get-button(padding-horizontal);
+    }
+
+    &--right {
+      margin-left: get-button(padding-horizontal);
+    }
+  }
+
+  &--disabled {
+    @include color(text-muted);
+    pointer-events: none;
+
+    $my-bg-color: get-color(bg-muted);
+
+    &:not(.#{$css-suffix}btn--icon) {
+      background-color: $my-bg-color!important;
+      border-color: $my-bg-color!important;
+    }
+  }
+}

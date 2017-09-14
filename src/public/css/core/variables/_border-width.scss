@@ -1,0 +1,13 @@
+//
+// Border Width
+//
+
+@function get-border-width($key) {
+  @return map-get($border-width, $key);
+}
+
+$border-width: ();
+$border-width: map-set($border-width, thin  , 1px);
+$border-width: map-set($border-width, thick , 2px);
+$border-width: map-set($border-width, field , get-border-width(thin));
+$border-width: map-set($border-width, navbar, get-border-width(thin));

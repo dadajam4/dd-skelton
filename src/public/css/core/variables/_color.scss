@@ -1,0 +1,38 @@
+//
+// Color
+//
+
+@function get-color($key) {
+  @return map-get($color, $key);
+}
+
+$color: ();
+$color: map-set($color, bg-base, #fff);
+$color: map-set($color, bg-light, #f8f8f8);
+$color: map-set($color, bg-muted, lighten(#7f8c8d, 20%));
+$color: map-set($color, overlay, rgba(0, 0, 0, .4));
+
+$color: map-set($color, context-primary, #42b983);
+$color: map-set($color, context-secondary, #2c3e50);
+$color: map-set($color, context-success, #34495e);
+$color: map-set($color, context-info, #2973b7);
+$color: map-set($color, context-warning, #e96900);
+$color: map-set($color, context-danger, #f66);
+
+$color: map-set($color, text-base, #34495e);
+$color: map-set($color, text-rev, #fff);
+$color: map-set($color, text-sub, #e5e5e5);
+$color: map-set($color, text-muted, #7f8c8d);
+$color: map-set($color, text-link, get-color(context-primary));
+$color: map-set($color, text-primary, get-color(context-primary));
+$color: map-set($color, text-secondary, get-color(context-secondary));
+$color: map-set($color, text-success, get-color(context-success));
+$color: map-set($color, text-info, get-color(context-info));
+$color: map-set($color, text-warning, get-color(context-warning));
+$color: map-set($color, text-danger, get-color(context-danger));
+
+
+$color: map-set($color, divider, #ddd);
+
+$context-colors: get-maps-by-search-key(context, $color);
+$text-colors: get-maps-by-search-key(text, $color);

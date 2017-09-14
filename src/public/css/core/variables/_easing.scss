@@ -1,0 +1,10 @@
+//
+// Easing
+//
+
+@function get-easing($key) {
+  @return map-get($easing, $key);
+}
+
+$easing: ();
+$easing: map-set($easing, drawer, cubic-bezier(.25, .8, .5, 1));

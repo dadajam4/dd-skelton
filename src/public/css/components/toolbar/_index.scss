@@ -1,0 +1,49 @@
+//
+// Toolbar
+//
+
+.#{$css-suffix}toolbar {
+  @include background-color(bg-base);
+  transition: padding get-duration(slowly) get-easing(drawer);
+
+  &__side-icon {
+    flex-shrink: 0;
+  }
+
+  &__title {
+    margin-left: $container-padding;
+    @include font-weight(regular);
+    @include font-size(lg);
+    @include ellipsis;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    height: $toolbar-row-height;
+
+    & > * {
+      &:first-child {
+        margin-left: $container-padding / 2;
+      }
+
+      &:last-child {
+        margin-right: $container-padding / 2;
+      }
+    }
+  }
+
+  &__trigger {
+    display: inline-block;
+    vertical-align: middle;
+    color: inherit;
+    padding: 0 .6em;
+    border-bottom: solid 2px transparent;
+    // margin: $container-padding;
+    &--active,
+    &:hover,
+    &:focus {
+      border-color: get-color(context-primary);
+    }
+  }
+}

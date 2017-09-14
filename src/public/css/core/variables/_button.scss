@@ -1,0 +1,41 @@
+//
+// Button
+//
+
+
+@function get-button($key) {
+  @return map-get($button, $key);
+}
+
+$button: ();
+$button: map-set($button, radius, get-border-radius(field));
+$button: map-set($button, border-width, 1px);
+$button: map-set($button, margin-vertical, 6px);
+$button: map-set($button, margin-horizontal, 8px);
+$button: map-set($button, padding-horizontal, $container-padding);
+
+$button: map-set($button, height-sm, 28px);
+$button: map-set($button, height-md, 36px);
+$button: map-set($button, height-lg, 44px);
+$button: map-set($button, min-width-sm, 60px);
+$button: map-set($button, min-width-md, 88px);
+$button: map-set($button, min-width-lg, 160px);
+$button: map-set($button, font-size-sm, sm);
+$button: map-set($button, font-size-md, md);
+$button: map-set($button, font-size-lg, lg);
+
+// $color: map-set($color, bg-light, #f8f8f8);
+// $color: map-set($color, overlay, rgba(0, 0, 0, .4));
+// $color: map-set($color, text-base, #34495e);
+// $color: map-set($color, text-sub, #e5e5e5);
+// $color: map-set($color, text-muted, #7f8c8d);
+// $color: map-set($color, context-primary, #42b983);
+// $color: map-set($color, context-secondary, #2c3e50);
+// $color: map-set($color, context-success, #34495e);
+// $color: map-set($color, context-info, #2973b7);
+// $color: map-set($color, context-warning, #e96900);
+// $color: map-set($color, context-danger, #f66);
+// $color: map-set($color, divider, #ddd);
+
+$button-heights: get-maps-by-search-key(height, $button);
+
