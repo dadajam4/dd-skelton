@@ -4,7 +4,7 @@ import Icon from '../Icon/Icon';
 
 
 export default {
-  name: publicSettings.css.prefix + 'toolbar-side-icon',
+  name: 'vn@-toolbar-side-icon',
 
   functional: true,
 

@@ -5,7 +5,7 @@ import GenerateRouteLink from '../../mixins/route-link';
 
 
 export default {
-  name: publicSettings.css.prefix + 'btn',
+  name: 'vn@-btn',
 
   mixins: [
     Contextualable,

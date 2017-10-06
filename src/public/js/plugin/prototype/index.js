@@ -15,10 +15,6 @@ export default function PrototypePlugin(Vue, {protoTypeGlobal = false}) {
 
     __nameSpace__: publicSettings.vue.nameSpace,
     cssPrefix: publicSettings.css.prefix,
-    // $delay: delay,
-    // $nextTickSync: nextTickSync,
-    // $nextAnimationFreame: nextAnimationFreame,
-    // $findParentByName: findParentByName,
   };
 
   Vue.prototype.$delay = delay;

@@ -3,7 +3,7 @@
 
 
 export default {
-  name: publicSettings.css.prefix + 'icon',
+  name: 'vn@-icon',
 
   functional: true,
 

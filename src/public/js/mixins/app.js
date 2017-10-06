@@ -1,4 +1,4 @@
-const APP_COMPONENT_NAME = publicSettings.css.prefix + 'app';
+const APP_COMPONENT_NAME = 'vn@-app';
 
 
 

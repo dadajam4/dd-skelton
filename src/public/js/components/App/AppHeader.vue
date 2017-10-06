@@ -1,7 +1,7 @@
 <template>
-  <dd-toolbar :class="classes">
+  <vn@-toolbar :class="classes">
     <slot />
-  </dd-toolbar>
+  </vn@-toolbar>
 </template>
 
 
@@ -12,7 +12,7 @@ import appMixin from '../../mixins/app';
 
 
 export default {
-  name: publicSettings.css.prefix + 'app-header',
+  name: 'vn@-app-header',
 
   mixins: [appMixin],
 

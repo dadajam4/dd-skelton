@@ -1,6 +1,6 @@
 <template>
   <nav :class="classes">
-    <dd-overlay :class="`${this.$options.name}__overlay`" v-model="isActive" />
+    <vn@-overlay :class="`${this.$options.name}__overlay`" v-model="isActive" />
     <div
       :class="`${this.$options.name}__base`"
       v-click-outside="closeConditional"
@@ -22,7 +22,7 @@ import ClickOutside from '../../directives/click-outside';
 
 
 export default {
-  name: publicSettings.css.prefix + 'app-drawer',
+  name: 'vn@-app-drawer',
 
   mixins: [appMixin, Mq],
 
@@ -87,7 +87,6 @@ export default {
 
     isStatic(isStatic) {
       if (this.isStatic) {
-        console.warn(this.lastRequested);
         if (this.lastRequested || this.lastRequested === null) {
           this.isActive = true;
         }

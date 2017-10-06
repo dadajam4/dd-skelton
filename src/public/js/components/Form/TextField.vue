@@ -1,7 +1,7 @@
 <script>
 
 export default {
-  name: publicSettings.css.prefix + 'text-field',
+  name: 'vn@-text-field',
 
   props: {
     value: {

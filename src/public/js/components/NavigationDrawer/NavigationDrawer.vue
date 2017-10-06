@@ -1,6 +1,6 @@
 <template>
   <nav :class="classes">
-    <dd-overlay :class="`${this.$options.name}__overlay`" v-model="isActive" />
+    <vn@-overlay :class="`${this.$options.name}__overlay`" v-model="isActive" />
     <div
       :class="`${this.$options.name}__base`"
       v-click-outside="closeConditional"
@@ -23,7 +23,7 @@ import Mq from '../../mixins/mq';
 
 
 export default {
-  name: publicSettings.css.prefix + 'navigation-drawer',
+  name: 'vn@-navigation-drawer',
 
   directives: {
     ClickOutside,

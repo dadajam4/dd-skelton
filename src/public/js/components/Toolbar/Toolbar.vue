@@ -13,7 +13,7 @@
 
 
 export default {
-  name: publicSettings.css.prefix + 'toolbar',
+  name: 'vn@-toolbar',
 
   props: {
   },

@@ -21,7 +21,7 @@
 
 
 export default {
-  name: publicSettings.css.prefix + 'overlay',
+  name: 'vn@-overlay',
 
 
   props: {

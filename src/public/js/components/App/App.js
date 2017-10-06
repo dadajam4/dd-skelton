@@ -3,7 +3,7 @@ import appMixin from '../../mixins/app';
 
 
 export default {
-  name: publicSettings.css.prefix + 'app',
+  name: 'vn@-app',
 
   mixins: [appMixin],
 

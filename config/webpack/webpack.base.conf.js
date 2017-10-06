@@ -26,6 +26,10 @@ module.exports = {
     }
   },
 
+  resolveLoader: {
+    modules: ['node_modules', 'lib'],
+  },
+
   plugins: [
     new webpack.DefinePlugin({
       'process.env.NODE_ENV'        : `'${config.env}'`,
@@ -40,6 +44,15 @@ module.exports = {
 
   module: {
     rules: [
+
+      {
+        test: /\.(vue|js)$/,
+        enforce: 'pre',
+        loader: 'dd-vue-loader',
+        exclude: /node_modules/,
+        options: publicSettings,
+      },
+
       {
         test: /\.vue$/,
         loader: 'vue-loader',

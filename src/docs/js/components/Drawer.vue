@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <dd-app-drawer left static="desktop" v-model="isActive" ref="drawer">
+  <vn@-app-drawer left static="desktop" v-model="isActive" ref="drawer">
     <p>
       <router-link :to="{name: 'index'}">トップ</router-link>
     </p>
@@ -14,7 +14,7 @@
         </li>
       </ul>
     </div>
-  </dd-app-drawer>
+  </vn@-app-drawer>
 
 </template>
 

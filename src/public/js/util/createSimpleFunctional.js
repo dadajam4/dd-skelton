@@ -2,7 +2,7 @@ export default function createSimpleFunctional(c, el = 'div') {
   const name = c.replace(/__/g, '-');
 
   return {
-    name: `${publicSettings.css.prefix}${name}`,
+    name: `vn@-${name}`,
     functional: true,
 
     render: (h, { data, children }) => {
