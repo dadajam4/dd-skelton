@@ -26,7 +26,7 @@
 </style>
 
 <template>
-  <dd-app>
+  <vn@-app>
     <app-header @click-toggle-drawer="requestToggleDrawer" />
 
     <transition :name="routerTransitionName">
@@ -35,7 +35,7 @@
 
     <app-drawer v-model="drawer.left" ref="drawerLeft" />
 
-  </dd-app>
+  </vn@-app>
 </template>
 
 <script>

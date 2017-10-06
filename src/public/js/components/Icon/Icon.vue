@@ -39,7 +39,7 @@ export default {
       delete data.domProps.innerHTML;
     }
 
-    const myClassName = `${publicSettings.css.prefix}icon`;
+    const myClassName = 'vc@icon';
 
     const classes = {
       [myClassName]                 : true,

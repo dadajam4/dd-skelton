@@ -121,7 +121,7 @@ export default {
         },
         props: {
           tag: 'div',
-          name: `${publicSettings.css.prefix}transition-slide-y`,
+          name: 'vc@transition-slide-y',
         }
       }, messages);
     },

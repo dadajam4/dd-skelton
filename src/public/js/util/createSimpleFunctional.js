@@ -6,7 +6,7 @@ export default function createSimpleFunctional(c, el = 'div') {
     functional: true,
 
     render: (h, { data, children }) => {
-      data.staticClass = (`${publicSettings.css.prefix}${c} ${data.staticClass || ''}`).trim();
+      data.staticClass = (`vc@${c} ${data.staticClass || ''}`).trim();
       return h(el, data, children);
     },
   }

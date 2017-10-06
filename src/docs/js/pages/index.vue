@@ -3,107 +3,107 @@
 
 <template>
   <div>
-    <main class="dd-container">
+    <main class="vc@container">
       <h1>dd-skelton</h1>
-      <p class="dd-text-caption">
+      <p class="vc@text-caption">
         Webコンテンツ制作の際の雛形です。基本的なエレメントのcssマークアップと、vueコンポーネントを実装済みです。
       </p>
 
       <div>
         <h2>Flat</h2>
-        <dd-btn
+        <vn@-btn
           v-for="type in CONTEXT_TYPES"
           :key="type"
           v-bind="{[type]: true}"
           flat
-        >{{type}}</dd-btn>
+        >{{type}}</vn@-btn>
 
         <h2>Fill</h2>
-        <dd-btn
+        <vn@-btn
           v-for="type in CONTEXT_TYPES"
           :key="type"
           v-bind="{[type]: true}"
-        >{{type}}</dd-btn>
+        >{{type}}</vn@-btn>
 
         <h2>Outline</h2>
-        <dd-btn
+        <vn@-btn
           v-for="type in CONTEXT_TYPES"
           :key="type"
           v-bind="{[type]: true}"
           outline
-        >{{type}}</dd-btn>
+        >{{type}}</vn@-btn>
 
         <h2>Block</h2>
-        <dd-btn primary block>Block</dd-btn>
+        <vn@-btn primary block>Block</vn@-btn>
 
         <h2>Size</h2>
-        <dd-btn
+        <vn@-btn
           v-for="size in ['sm', 'default', 'lg']"
           :key="size"
           v-bind="{[size]: true}"
           info
-        >{{size}}</dd-btn>
+        >{{size}}</vn@-btn>
 
         <h2>Icon</h2>
-        <dd-btn
+        <vn@-btn
           v-for="size in ['sm', 'default', 'lg']"
           :key="size"
           v-bind="{[size]: true}"
           icon
-        ><dd-icon>bars</dd-icon></dd-btn>
+        ><vn@-icon>bars</vn@-icon></vn@-btn>
 
-        <dd-btn
+        <vn@-btn
           v-for="size in ['sm', 'default', 'lg']"
           :key="size"
           v-bind="{[size]: true}"
           icon
           primary
-        ><dd-icon>bars</dd-icon></dd-btn>
+        ><vn@-icon>bars</vn@-icon></vn@-btn>
 
-        <dd-btn
+        <vn@-btn
           v-for="size in ['sm', 'default', 'lg']"
           :key="size"
           v-bind="{[size]: true}"
           icon
           outline
           info
-        ><dd-icon>bars</dd-icon></dd-btn>
+        ><vn@-icon>bars</vn@-icon></vn@-btn>
 
         <h2>Includes icon</h2>
-        <dd-btn
+        <vn@-btn
           primary
         >
-          <dd-icon left>address-book</dd-icon>
+          <vn@-icon left>address-book</vn@-icon>
           left
-        </dd-btn>
+        </vn@-btn>
 
-        <dd-btn
+        <vn@-btn
           info
         >
           right
-          <dd-icon right>cloud-upload</dd-icon>
-        </dd-btn>
+          <vn@-icon right>cloud-upload</vn@-icon>
+        </vn@-btn>
 
-        <dd-btn
+        <vn@-btn
           info
         >
-          <dd-icon left>code</dd-icon>
+          <vn@-icon left>code</vn@-icon>
           both
-          <dd-icon right>comments</dd-icon>
-        </dd-btn>
+          <vn@-icon right>comments</vn@-icon>
+        </vn@-btn>
 
         <h2>Disabled</h2>
-        <dd-btn
+        <vn@-btn
           v-for="type in ['flat', 'default', 'outline']"
           :key="type"
           v-bind="{[type]: true}"
           info
           disabled
-        >{{type}}</dd-btn>
-        <dd-btn
+        >{{type}}</vn@-btn>
+        <vn@-btn
           icon
           disabled
-        ><dd-icon>bars</dd-icon></dd-btn>
+        ><vn@-icon>bars</vn@-icon></vn@-btn>
 
       </div>
     </main>

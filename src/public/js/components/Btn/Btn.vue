@@ -65,7 +65,7 @@ export default {
 
       for (let key in Contextualable.props) {
         classes[`${this.$options.name}--${key}`] = this[key] && !this.colorForText;
-        classes[`${publicSettings.css.prefix}text--${key}`] = !this.disabled && this.colorForText && this[key];
+        classes[`vc@text--${key}`] = !this.disabled && this.colorForText && this[key];
       }
 
       return classes;
@@ -86,7 +86,7 @@ export default {
     genContent() {
       return this.$createElement(
         'div',
-        { 'class': publicSettings.css.prefix + 'btn__content' },
+        { 'class': 'vc@btn__content' },
         [this.$slots.default]
       )
     },

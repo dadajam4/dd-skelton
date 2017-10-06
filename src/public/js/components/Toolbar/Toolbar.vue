@@ -28,7 +28,7 @@ export default {
     },
     contentClasses() {
       return {
-        [`${publicSettings.css.prefix}toolbar__content`]: true,
+        'vc@toolbar__content': true,
       }
     },
   },

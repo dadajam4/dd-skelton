@@ -58,7 +58,6 @@ export default {
   watch: {
     isActive(val) {
       this.$emit('input', val);
-      // this.$el.scrollTop = 0;
     },
 
     value(val) {
@@ -78,11 +77,11 @@ export default {
     },
   },
 
-  watch: {
-    'mq.desktop'(val) {
-      // this.isActive = val;
-      // this.$emit('input', val);
-    },
-  },
+  // watch: {
+  //   'mq.desktop'(val) {
+  //     // this.isActive = val;
+  //     // this.$emit('input', val);
+  //   },
+  // },
 }
 </script>
