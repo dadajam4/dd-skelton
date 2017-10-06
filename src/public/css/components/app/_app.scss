@@ -2,18 +2,18 @@
 // App
 //
 
-.#{$css-suffix}app {
+.#{$css-prefix}app {
   transition: padding get-duration(slowly) get-easing(drawer);
 
   &--header-fixed {
     padding-top: $toolbar-row-height;
   }
 
-  &--drawer-left-staticed {
+  &--drawer-left-static {
     padding-left: $navigation-drawer-width;
   }
 
-  &--drawer-right-staticed {
+  &--drawer-right-static {
     padding-right: $navigation-drawer-width;
   }
 }

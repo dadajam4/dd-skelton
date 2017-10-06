@@ -27,13 +27,13 @@
 
 <template>
   <dd-app>
-    <app-header />
+    <app-header @click-toggle-drawer="requestToggleDrawer" />
 
     <transition :name="routerTransitionName">
       <router-view class="my-router-view"></router-view>
     </transition>
 
-    <app-drawer v-model="drawer.left" />
+    <app-drawer v-model="drawer.left" ref="drawerLeft" />
 
   </dd-app>
 </template>
@@ -60,6 +60,13 @@ export default {
   },
 
 
+
+  methods: {
+    requestToggleDrawer() {
+      this.drawer.left = !this.drawer.left;
+      this.$refs.drawerLeft.lastRequested = this.drawer.left;
+    },
+  },
 
   created() {
   },

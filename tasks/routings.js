@@ -19,7 +19,19 @@ function routingsTask(task, params = {}) {
       };
 
       const routings = [];
+      const errorRoutings = [];
+      let hasNotFoundPage = false;
+      let hasErrorPage    = false;
+
       pathList.forEach(define => {
+        if (define.filename.indexOf('_') === 0) return;
+        if (define.dir.replace(params.src, '').replace(/^\//, '') === 'error') {
+          define.componentName = define.filename.replace(/\.vue$/, '');
+          if (define.componentName === 'NotFound') hasNotFoundPage = true;
+          if (define.componentName === 'Error'   ) hasErrorPage    = true;
+          errorRoutings.push(define);
+          return;
+        }
         const filename      = define.filename.replace(/\.vue$/, '');
         const dirName       = filename === 'index' ? define.dir : path.join(define.dir, filename);
         const relativeBase  = dirName.replace(new RegExp('^' + params.src.replace(/\//g, '\/') + '\/?'), '');
@@ -42,6 +54,14 @@ function routingsTask(task, params = {}) {
         routings.push(routing);
       });
 
+      const importErrorComponentString = errorRoutings.map(define => {
+        return `import ${define.componentName}Page from 'pages/error/${define.componentName}';`
+      }).join('\n');
+
+      const notFoundRouteString = hasNotFoundPage ? `
+        ,{name: 'not-found', path: '*', component: NotFoundPage}
+      ` : '';
+
       routings.sort((a, b) => {
         if (b._filename === 'index') return 1;
         return b._filename < a._filename;
@@ -49,14 +69,39 @@ function routingsTask(task, params = {}) {
       routings.sort((a, b) => a._level > b._level);
 
       const createComponentSettingString = `
-        const createComponentSetting = (component) => {
-          return {
-            component: component,
-            // loading: LoadingComponent,
-            // error: ErrorComponent,
-            delay: 200,
-            timeout: 3000,
+        const globalWindow = new Function('return this')();
+
+        const dispatchEventForWindow = (name, detail = {}) => {
+          if (typeof globalWindow !== 'object' || !globalWindow.dispatchEvent) return;
+
+          let event;
+
+          try {
+            event = new CustomEvent(name, {detail: detail});
+          } catch (e) {
+            event = document.createEvent('CustomEvent');
+            event.initCustomEvent(name, false, false, detail);
           }
+
+          globalWindow.dispatchEvent(event);
+        }
+
+        const loadedCaches = {};
+
+        const getAsyncComponent = (resolve, reject, webpackChunkName, importer) => {
+          if (loadedCaches[webpackChunkName]) {
+            return resolve(loadedCaches[webpackChunkName]);
+          }
+
+          dispatchEventForWindow('vue-router-request-component');
+          importer.then(result => {
+            loadedCaches[webpackChunkName] = result.default;
+            return resolve(result.default);
+          }).catch(e => {
+            ${hasErrorPage ? 'console.error(e); return resolve(ErrorPage);' : 'return reject(e);'}
+          }).finally(() => {
+            dispatchEventForWindow('vue-router-loaded-component');
+          });
         }
       `;
 
@@ -69,6 +114,7 @@ function routingsTask(task, params = {}) {
 
       routings.forEach(routing => {
         const createComponentString = `() => (Object.assign(, {component: }))`
+        const webpackChunkName = ('pages/' + routing.path + '/index').replace(/\/+/, '/');
         const rowString = `{
           _level: ${routing._level},
           _filename: '${routing._filename}',
@@ -76,7 +122,7 @@ function routingsTask(task, params = {}) {
           _parent: ${routing._parent ? '\'' + routing._parent + '\'' : 'null' },
           name: '${routing.name}',
           path: '${routing.path}',
-          component: () => createComponentSetting(import(/* webpackChunkName: "${('pages/' + routing.path + '/index').replace(/\/+/, '/')}" */ '${routing._component}'))
+          component: (resolve, reject) => getAsyncComponent(resolve, reject, '${webpackChunkName}', import(/* webpackChunkName: "${webpackChunkName}" */ '${routing._component}'))
         }`;
         rowStrings.push(rowString);
 
@@ -96,6 +142,7 @@ function routingsTask(task, params = {}) {
       });
 
       const jsString = beautify(`
+        ${importErrorComponentString}
         ${createComponentSettingString}
 
         const router = {
@@ -103,6 +150,7 @@ function routingsTask(task, params = {}) {
           fallback: false,
           routes: [
             ${rowStrings.join(',\n')}
+            ${notFoundRouteString}
           ],
         };
 

@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import Contextualable from 'public/js/ui/mixins/contextualable';
+import Contextualable from 'public/js/mixins/contextualable';
 
 
 

@@ -1,0 +1,11 @@
+//
+// Easing
+//
+
+@function get-transition($key) {
+  @return map-get($transition, $key);
+}
+
+$transition: ();
+$transition: map-set($transition, primary, get-duration(showup) get-easing(swing));
+$transition: map-set($transition, secondary, get-duration(promptly) get-easing(ease-in-out));

@@ -17,7 +17,7 @@ $directions: (
   @each $property-cel, $property-name in $properties {
     @each $direction-cel, $direction-targets in $directions {
       @each $size-cel, $size-val in $space {
-        .#{$css-suffix}#{$mq-each-suffix}#{$property-cel}-#{$direction-cel}--#{$size-cel} {
+        .#{$css-prefix}#{$mq-each-prefix}#{$property-cel}-#{$direction-cel}--#{$size-cel} {
           @each $direction-name in $direction-targets {
             #{$property-name}-#{$direction-name}: $size-val!important;
           }

@@ -3,7 +3,7 @@ import Vue       from 'vue';
 import Vuex      from 'vuex';
 import VueRouter from 'vue-router';
 import VueHead   from 'vue-head';
-import Ui        from 'public/js/ui';
+import Ui        from 'public/js/plugin';
 import docs      from './docs';
 
 

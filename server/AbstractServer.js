@@ -71,7 +71,7 @@ class AbstractServer {
   setRoutes(rootPath) {
     const pathList = FileUtil.getPathList(rootPath);
     pathList.forEach(pathInfo => {
-      const location = pathInfo.dir.replace(new RegExp('^' + rootPath), '');
+      const location = pathInfo.dir.replace(new RegExp('^' + rootPath), '').replace(/\[(.*?)\]/g, ':$1');
       const data     = require(pathInfo.filepath);
       delete require.cache[pathInfo.filepath];
 

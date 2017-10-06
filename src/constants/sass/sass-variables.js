@@ -5,8 +5,8 @@ const sassVariables  = {};
 
 
 
-// Suffix
-sassVariables['css-suffix'] = publicSettings.css.suffix;
+// Css Prefix
+sassVariables['css-prefix'] = publicSettings.css.prefix;
 
 
 

@@ -3,7 +3,7 @@
 //
 
 @include mq-each() {
-  .#{$css-suffix}#{$mq-each-suffix}hyphenate {
+  .#{$css-prefix}#{$mq-each-prefix}hyphenate {
     @include hyphenate;
   }
 }

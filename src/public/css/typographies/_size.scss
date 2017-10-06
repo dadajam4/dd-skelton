@@ -4,14 +4,14 @@
 
 // size
 @each $key, $map in $font-size {
-  .#{$css-suffix}text--#{$key} {
+  .#{$css-prefix}text--#{$key} {
     @include font-size($key);
   }
 }
 
 // line heights
 @each $key, $height in $line-height {
-  .#{$css-suffix}line-height--#{$key} {
+  .#{$css-prefix}line-height--#{$key} {
     line-height: $height;
   }
 }

@@ -3,15 +3,15 @@
 //
 
 @include mq-each() {
-  .#{$css-suffix}#{$mq-each-suffix}scrollable {
+  .#{$css-prefix}#{$mq-each-prefix}scrollable {
     @include scrollable;
   }
 
-  .#{$css-suffix}#{$mq-each-suffix}scrollable--x {
+  .#{$css-prefix}#{$mq-each-prefix}scrollable--x {
     @include scrollable--x;
   }
 
-  .#{$css-suffix}#{$mq-each-suffix}scrollable--y {
+  .#{$css-prefix}#{$mq-each-prefix}scrollable--y {
     @include scrollable--y;
   }
 }

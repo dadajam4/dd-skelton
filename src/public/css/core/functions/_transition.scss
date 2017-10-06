@@ -1,0 +1,15 @@
+//
+// Transition
+//
+
+// slide-y
+@mixin transition-slide-y {
+  &-enter-active, &-leave-active {
+    transition: get-transition(primary);
+  }
+
+  &-enter, &-leave-to {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+}

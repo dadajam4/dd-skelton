@@ -3,7 +3,7 @@
 //
 
 $mq-each-target: null !global;
-$mq-each-suffix: null !global;
+$mq-each-prefix: null !global;
 
 // 複数指定可能
 @mixin mq($targets...) {
@@ -70,12 +70,12 @@ $mq-each-suffix: null !global;
 // default: group only
 @mixin mq-each($type: group) {
   $mq-each-target: null !global;
-  $mq-each-suffix: null !global;
+  $mq-each-prefix: null !global;
 
   @if $type == all or $type == group {
     @each $target, $define in $media-query-groups {
       $mq-each-target: $target !global;
-      $mq-each-suffix: #{$target + "-"} !global;
+      $mq-each-prefix: #{$target + "-"} !global;
       @include mq($target) { @content; }
     }
   }
@@ -83,7 +83,7 @@ $mq-each-suffix: null !global;
   @if $type == all or $type == key {
     @each $target, $define in $media-query-breakpoints {
       $mq-each-target: $target !global;
-      $mq-each-suffix: #{$target + "-"} !global;
+      $mq-each-prefix: #{$target + "-"} !global;
       @include mq($target) { @content; }
     }
   }

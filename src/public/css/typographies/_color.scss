@@ -2,9 +2,9 @@
 // Color
 //
 
-// .#{$css-suffix}text
+// .#{$css-prefix}text
 @each $key, $define in $text-colors {
-  .#{$css-suffix}text--#{$key} {
+  .#{$css-prefix}text--#{$key} {
     color: map-get($define, value);
   }
 }

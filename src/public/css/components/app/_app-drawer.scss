@@ -2,7 +2,7 @@
 // App Drawer
 //
 
-.#{$css-suffix}app-drawer {
+.#{$css-prefix}app-drawer {
   $my-overflow-size: 64px;
 
   &__overlay {
@@ -39,21 +39,21 @@
   }
 
   &--static {
-    .#{$css-suffix}app-drawer__overlay {
+    .#{$css-prefix}app-drawer__overlay {
       display: none!important;
     }
   }
 
   &--close {
-    .#{$css-suffix}app-drawer__base {
+    .#{$css-prefix}app-drawer__base {
       box-shadow: 0 0 4px rgba(0, 0, 0, 0);
     }
 
-    &.#{$css-suffix}app-drawer--left .#{$css-suffix}app-drawer__base {
+    &.#{$css-prefix}app-drawer--left .#{$css-prefix}app-drawer__base {
       left: -$navigation-drawer-width;
     }
 
-    &.#{$css-suffix}app-drawer--right .#{$css-suffix}app-drawer__base {
+    &.#{$css-prefix}app-drawer--right .#{$css-prefix}app-drawer__base {
       left: -$navigation-drawer-width;
     }
   }

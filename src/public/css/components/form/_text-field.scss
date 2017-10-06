@@ -1,0 +1,36 @@
+//
+// Text Field
+//
+
+.#{$css-prefix}text-field {
+  display: block;
+
+  &__label {
+    display: inline-block;
+    vertical-align: bottom;
+  }
+
+  &__body {
+    display: block;
+  }
+
+  &__input {
+    @include text-field-input-base;
+  }
+
+  &--focused &__input {
+    @include text-field-input-focused;
+  }
+
+  &__detail {
+    display: block;
+  }
+
+  &__node {
+    @include text-field-node-base;
+  }
+
+  &--focused &__node {
+    @include text-field-node-focus;
+  }
+}

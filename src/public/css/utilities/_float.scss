@@ -3,7 +3,7 @@
 //
 
 @include mq-each() {
-  .#{$css-suffix}#{$mq-each-suffix}clearfix { @include clearfix; }
-  .#{$css-suffix}#{$mq-each-suffix}float--left { float: left; }
-  .#{$css-suffix}#{$mq-each-suffix}float--right { float: right; }
+  .#{$css-prefix}#{$mq-each-prefix}clearfix { @include clearfix; }
+  .#{$css-prefix}#{$mq-each-prefix}float--left { float: left; }
+  .#{$css-prefix}#{$mq-each-prefix}float--right { float: right; }
 }

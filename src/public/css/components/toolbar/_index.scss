@@ -2,7 +2,7 @@
 // Toolbar
 //
 
-.#{$css-suffix}toolbar {
+.#{$css-prefix}toolbar {
   @include background-color(bg-base);
   transition: padding get-duration(slowly) get-easing(drawer);
 

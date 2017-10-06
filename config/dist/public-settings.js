@@ -3,6 +3,10 @@ const path   = require('path');
 
 
 
+const myName = 'dd';
+
+
+
 const publicSettings = {
   js: {
     entry: {
@@ -14,10 +18,13 @@ const publicSettings = {
       config.path.src.root,
     ],
   },
+  vue: {
+    nameSpace: myName,
+  },
   css: {
-    name: 'dd',
-    key: 'dd',
-    suffix: 'dd-',
+    name: myName,
+    key: myName,
+    prefix: myName + '-',
   },
 };
 

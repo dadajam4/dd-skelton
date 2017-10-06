@@ -7,7 +7,7 @@
 //
 // truncation
 //
-.#{$css-suffix}truncate {
+.#{$css-prefix}truncate {
   @include truncate;
 }
 
@@ -16,7 +16,7 @@
 // //
 // // assistive text
 // //
-// .#{$css-suffix}assistive-text {
+// .#{$css-prefix}assistive-text {
 //   position: absolute!important;
 //   margin: -1px!important;
 //   border: 0!important;
@@ -32,6 +32,6 @@
 //
 // text link reset
 //
-.#{$css-suffix}text-link--reset {
+.#{$css-prefix}text-link--reset {
   @include text-link--reset;
 }

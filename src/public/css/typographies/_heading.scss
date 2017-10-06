@@ -2,15 +2,15 @@
 // Heading
 //
 
-.#{$css-suffix}text-heading--lg {
+.#{$css-prefix}text-heading--lg {
   @include text-heading(lg);
 }
 
-.#{$css-suffix}text-heading--md {
+.#{$css-prefix}text-heading--md {
   @include text-heading(md);
 }
 
-.#{$css-suffix}text-heading--sm {
+.#{$css-prefix}text-heading--sm {
   @include text-heading(sm);
 }
 
@@ -24,24 +24,24 @@
 // }
 
 // @mixin sel-h {
-//   h1, .#{$css-suffix}h1,
-//   h2, .#{$css-suffix}h2,
-//   h3, .#{$css-suffix}h3,
-//   h4, .#{$css-suffix}h4,
-//   h5, .#{$css-suffix}h5,
-//   h6, .#{$css-suffix}h6 { @content; }
+//   h1, .#{$css-prefix}h1,
+//   h2, .#{$css-prefix}h2,
+//   h3, .#{$css-prefix}h3,
+//   h4, .#{$css-prefix}h4,
+//   h5, .#{$css-prefix}h5,
+//   h6, .#{$css-prefix}h6 { @content; }
 // }
 
 // // @mixin sel-h-lg {
-// //   h1, .#{$css-suffix}h1,
-// //   h2, .#{$css-suffix}h2,
-// //   h3, .#{$css-suffix}h3 { @content; }
+// //   h1, .#{$css-prefix}h1,
+// //   h2, .#{$css-prefix}h2,
+// //   h3, .#{$css-prefix}h3 { @content; }
 // // }
 
 // // @mixin sel-h-sm {
-// //   h4, .#{$css-suffix}h4,
-// //   h5, .#{$css-suffix}h5,
-// //   h6, .#{$css-suffix}h6 { @content; }
+// //   h4, .#{$css-prefix}h4,
+// //   h5, .#{$css-prefix}h5,
+// //   h6, .#{$css-prefix}h6 { @content; }
 // // }
 
 // // @include sel-h {
@@ -73,27 +73,27 @@
 // //   }
 // // }
 
-// h1, .#{$css-suffix}h1 {
+// h1, .#{$css-prefix}h1 {
 //   font-size: $fs-base * 2.26666666666667;
 // }
 
-// h2, .#{$css-suffix}h2 {
+// h2, .#{$css-prefix}h2 {
 //   font-size: $fs-xxl;
 // }
 
-// h3, .#{$css-suffix}h3 {
+// h3, .#{$css-prefix}h3 {
 //   font-size: $fs-base * 1.46666666666667;
 // }
 
-// h4, .#{$css-suffix}h4 {
+// h4, .#{$css-prefix}h4 {
 //   font-size: $fs-base * 1.2;
 // }
 
-// h5, .#{$css-suffix}h5 {
+// h5, .#{$css-prefix}h5 {
 //   font-size: $fs-base * 0.93333333333333;
 // }
 
-// h6, .#{$css-suffix}h6 {
+// h6, .#{$css-prefix}h6 {
 //   font-size: $fs-sm;
 // }
 
@@ -102,7 +102,7 @@
 // //
 // // section heading
 // //
-// .#{$css-suffix}h-section {
+// .#{$css-prefix}h-section {
 //   // padding: 1.3rem 3.2rem 1.3rem 5.9rem;
 //   // padding: 1.3rem 0 0;
 //   margin-top: 4rem;
@@ -122,7 +122,7 @@
 
 
 
-//   .#{$css-suffix}section > &:first-child {
+//   .#{$css-prefix}section > &:first-child {
 //     @each $key, $val in $container-margins {
 //       @include mq($key) {
 //         margin-top: -$val * .5;
@@ -130,7 +130,7 @@
 //     }
 //   }
 
-//   .#{$css-suffix}inner {
+//   .#{$css-prefix}inner {
 //     display: inline-block;
 //     font-size: $fs-lg;
 //     font-weight: bold;
@@ -151,7 +151,7 @@
 
 
 // // lead
-// .#{$css-suffix}lead {
+// .#{$css-prefix}lead {
 //   @include font-size(xl);
 //   @include line-height(sm);
 //   color: $color-typo-lead;
@@ -160,7 +160,7 @@
 
 
 // // caption
-// .#{$css-suffix}text-title--caps {
+// .#{$css-prefix}text-title--caps {
 //   @include font-size(sm);
 //   @include line-height(xs);
 //   color: $color-typo-lead;

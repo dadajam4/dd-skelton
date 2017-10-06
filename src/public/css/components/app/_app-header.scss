@@ -2,7 +2,7 @@
 // App Header
 //
 
-.#{$css-suffix}app-header {
+.#{$css-prefix}app-header {
   &--fixed {
     position: fixed;
     @include z-index(app-header);

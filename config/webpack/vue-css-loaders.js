@@ -22,13 +22,13 @@ module.exports = function vueCssLoaders(options = {}) {
       const setOptions = loader === 'sass' ? Object.assign({}, baseOptions, sassSettings) : baseOptions;
 
       loaders.push({
-        loader : `${loader}-loader`,
-        options: setOptions,
+        loader: 'postcss-loader',
+        options: baseOptions,
       });
 
       loaders.push({
-        loader: 'postcss-loader',
-        options: baseOptions,
+        loader : `${loader}-loader`,
+        options: setOptions,
       });
     }
 
@@ -57,7 +57,7 @@ module.exports = function vueCssLoaders(options = {}) {
   // http://vuejs.github.io/vue-loader/en/configurations/extract-css.html
   return {
     css    : generateLoaders(),
-    postcss: generateLoaders(),
+    // postcss: generateLoaders(),
     less   : generateLoaders('less'),
     sass   : generateLoaders('sass', {indentedSyntax: true}),
     scss   : generateLoaders('sass'),

@@ -28,12 +28,13 @@ module.exports = {
 
   plugins: [
     new webpack.DefinePlugin({
-      'process.env.NODE_ENV'     : `'${config.env}'`,
-      'IS_PRODUCTION'            : config.isProduction,
-      'IS_DEVELOP'               : config.isDevelop,
-      'publicSettings.css.key'   : `'${publicSettings.css.key}'`,
-      'publicSettings.css.suffix': `'${publicSettings.css.suffix}'`,
-      'docsSettings.svgIcon.list': JSON.stringify(docsSettings.svgIcon.list),
+      'process.env.NODE_ENV'        : `'${config.env}'`,
+      'IS_PRODUCTION'               : config.isProduction,
+      'IS_DEVELOP'                  : config.isDevelop,
+      'publicSettings.vue.nameSpace': `'${publicSettings.vue.nameSpace}'`,
+      'publicSettings.css.key'      : `'${publicSettings.css.key}'`,
+      'publicSettings.css.prefix'   : `'${publicSettings.css.prefix}'`,
+      'docsSettings.svgIcon.list'   : JSON.stringify(docsSettings.svgIcon.list),
     }),
   ],
 

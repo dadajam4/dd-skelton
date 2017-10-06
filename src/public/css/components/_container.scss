@@ -2,7 +2,7 @@
 // Container
 //
 
-.#{$css-suffix}container {
+.#{$css-prefix}container {
   $lastKey: null;
 
   @include container-base;

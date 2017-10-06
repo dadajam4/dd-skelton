@@ -1,0 +1,73 @@
+//
+// Form
+//
+
+@mixin text-field-node-base {
+  appearance: none;
+  box-shadow: none;
+  border: 0;
+  outline: 0;
+  width: 100%;
+  display: block;
+  // display: inline-block;
+  // vertical-align: bottom;
+  @include font-size(md);
+  // @include line-height(lg);
+  background: transparent;
+  border-radius: 0;
+  margin: 0;
+  padding: 0 get-text-field(padding-horizontal);
+  min-height: get-text-field(height);
+  caret-color: get-color(context-primary);
+  @include ellipsis;
+  transition: get-duration(promptly);
+
+  &[type="password"] {
+    font-family: Verdana, sans-serif;
+    letter-spacing: .25em;
+  }
+
+  &:-webkit-autofill {
+    // box-shadow: none;
+    // background: transparent;
+    // background-image: none;
+    // box-shadow: 0 0 0px 1000px white inset;
+  }
+
+  // placeholder
+  &::placeholder {
+    color: inherit;
+    opacity: .5;
+    transition: get-duration(promptly);
+    letter-spacing: normal;
+    // font-size: 90%;
+  }
+}
+
+@mixin text-field-node-focus {
+
+  // placeholder
+  &::placeholder {
+    opacity: .3;
+  }
+}
+
+@mixin text-field-input-base {
+  display: inline-block;
+  width: 100%;
+  max-width: calc(100% - #{get-text-field(margin-horizontal) * 2});
+  border-radius: get-text-field(radius);
+  border-color: get-color(form-divider);
+  border-width: get-text-field(border-width);
+  border-style: solid;
+  // background: get-color(bg-base);
+  background: transparent;
+  outline: none;
+  overflow: hidden;
+  margin: get-text-field(margin-vertical) get-text-field(margin-horizontal);
+  transition: get-duration(promptly);
+}
+
+@mixin text-field-input-focused {
+  border-color: get-color(context-primary);
+}

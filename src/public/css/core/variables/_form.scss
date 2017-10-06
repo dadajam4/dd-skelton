@@ -1,0 +1,16 @@
+//
+// Form
+//
+
+
+@function get-text-field($key) {
+  @return map-get($text-field, $key);
+}
+
+$text-field: ();
+$text-field: map-set($text-field, radius, get-border-radius(field));
+$text-field: map-set($text-field, border-width, 1px);
+$text-field: map-set($text-field, height, get-button(height-md));
+$text-field: map-set($text-field, padding-horizontal, get-space(xs));
+$text-field: map-set($text-field, margin-vertical, get-button(margin-vertical));
+$text-field: map-set($text-field, margin-horizontal, get-button(margin-horizontal));

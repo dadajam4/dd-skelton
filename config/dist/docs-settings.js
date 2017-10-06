@@ -17,7 +17,7 @@ const docsSettings = {
   },
   css: {
     name: 'docs',
-    suffix: 'doc-',
+    prefix: 'doc-',
   },
   svgIcon: {
     list: svgIconList,

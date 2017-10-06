@@ -3,7 +3,7 @@
 //
 
 @include mq-each() {
-  .#{$css-suffix}#{$mq-each-suffix}align--absolute-center {
+  .#{$css-prefix}#{$mq-each-prefix}align--absolute-center {
     display: flex;
     justify-content: center;
     align-content: center;

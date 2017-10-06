@@ -30,7 +30,7 @@ function spriteTask(task, params = {}) {
         // cssFormat      : 'scss', // ※これ指定するとretina用のmixinが生成されない
 
         cssVarMap: sprite => {
-          sprite.name = `${params.suffix}-${sprite.name}`;
+          sprite.name = `${params.prefix}-${sprite.name}`;
         },
       }));
 

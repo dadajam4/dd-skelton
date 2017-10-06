@@ -33,6 +33,7 @@ $color: map-set($color, text-danger, get-color(context-danger));
 
 
 $color: map-set($color, divider, #ddd);
+$color: map-set($color, form-divider, #e3e3e3);
 
 $context-colors: get-maps-by-search-key(context, $color);
 $text-colors: get-maps-by-search-key(text, $color);

@@ -2,10 +2,10 @@
 // Alignment
 //
 
-.#{$css-suffix}text--left   { text-align: left; }
-.#{$css-suffix}text--center { text-align: center; }
-.#{$css-suffix}text--right  { text-align: right; }
+.#{$css-prefix}text--left   { text-align: left; }
+.#{$css-prefix}text--center { text-align: center; }
+.#{$css-prefix}text--right  { text-align: right; }
 
-.#{$css-suffix}align--top    { vertical-align: top; align-self: flex-start; }
-.#{$css-suffix}align--middle { vertical-align: middle; align-self: center; }
-.#{$css-suffix}align--bottom { vertical-align: bottom; align-self: flex-end; }
+.#{$css-prefix}align--top    { vertical-align: top; align-self: flex-start; }
+.#{$css-prefix}align--middle { vertical-align: middle; align-self: center; }
+.#{$css-prefix}align--bottom { vertical-align: bottom; align-self: flex-end; }

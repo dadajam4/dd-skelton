@@ -2,8 +2,8 @@
 </style>
 
 <template>
-  <dd-app-header fixed>
-    <dd-toolbar-side-icon @click.stop="toggleDrawer" />
+  <dd-app-header fixed ref="header">
+    <dd-toolbar-side-icon @click.stop="onClickToggleDrawer" />
     <dd-toolbar-title>dd-skelton</dd-toolbar-title>
     <dd-spacer />
     <nav>
@@ -35,11 +35,8 @@ export default {
   },
 
   methods: {
-    toggleDrawer() {
-      this.$store.dispatch(
-        `${publicSettings.css.key}/drawer/setleft`,
-        !this.$store.getters[`${publicSettings.css.key}/drawer/left`]
-      );
+    onClickToggleDrawer(e) {
+      this.$emit('click-toggle-drawer');
     },
   },
 

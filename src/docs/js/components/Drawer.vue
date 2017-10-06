@@ -2,7 +2,7 @@
 </style>
 
 <template>
-  <dd-app-drawer left static="desktop" v-model="isActive">
+  <dd-app-drawer left static="desktop" v-model="isActive" ref="drawer">
     <p>
       <router-link :to="{name: 'index'}">トップ</router-link>
     </p>
@@ -52,6 +52,13 @@ export default {
       isActive: this.value,
       links: links,
     }
+  },
+
+  computed: {
+    lastRequested: {
+      get() { return this.$refs.drawer.lastRequested },
+      set(lastRequested) { this.$refs.drawer.lastRequested = lastRequested },
+    },
   },
 
   watch: {

@@ -4,13 +4,13 @@
 
 @include mq-each() {
   @for $i from 1 through 12 {
-    .#{$css-suffix}#{$mq-each-suffix}col--#{$i} {
+    .#{$css-prefix}#{$mq-each-prefix}col--#{$i} {
       width: ($i / 12 * 100) * 1%;
     }
   }
 
   @each $key in $size {
-    .#{$css-suffix}#{$mq-each-suffix}width--#{$key} {
+    .#{$css-prefix}#{$mq-each-prefix}width--#{$key} {
       width: get-size($key);
       max-width: 100%;
     }

@@ -3,15 +3,15 @@
 //
 
 @include mq-each() {
-  .#{$css-suffix}#{$mq-each-suffix}is-static {
+  .#{$css-prefix}#{$mq-each-prefix}is-static {
     position: static!important;
   }
 
-  .#{$css-suffix}#{$mq-each-suffix}is-relative {
+  .#{$css-prefix}#{$mq-each-prefix}is-relative {
     position: relative!important;
   }
 
-  .#{$css-suffix}#{$mq-each-suffix}is-absolute {
+  .#{$css-prefix}#{$mq-each-prefix}is-absolute {
     position: absolute!important;
   }
 }

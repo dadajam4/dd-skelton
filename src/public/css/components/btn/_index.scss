@@ -2,7 +2,7 @@
 // Button
 //
 
-.#{$css-suffix}btn {
+.#{$css-prefix}btn {
   $my-border-width: get-button(border-width);
 
   @mixin my-size($size) {
@@ -56,7 +56,7 @@
   &:hover,
   // &:active,
   &:focus {
-    .#{$css-suffix}btn__content {
+    .#{$css-prefix}btn__content {
       &:before {
         background-color: currentColor;
       }
@@ -64,7 +64,7 @@
   }
 
   &:active {
-    .#{$css-suffix}btn__content {
+    .#{$css-prefix}btn__content {
       &:after {
         background-color: rgba(0, 0, 0, .5);
       }
@@ -106,20 +106,20 @@
     justify-content: center;
     min-width: 0;
 
-    .#{$css-suffix}btn__content {
+    .#{$css-prefix}btn__content {
       padding: 0;
     }
 
     @include my-icon-size(md);
     @each $size in sm, lg {
-      &.#{$css-suffix}btn--#{$size} {
+      &.#{$css-prefix}btn--#{$size} {
         @include my-icon-size($size);
       }
     }
   }
 
   // includes icon
-  &__content .#{$css-suffix}icon {
+  &__content .#{$css-prefix}icon {
     color: inherit;
     line-height: inherit;
     vertical-align: middle;
@@ -139,7 +139,7 @@
 
     $my-bg-color: get-color(bg-muted);
 
-    &:not(.#{$css-suffix}btn--icon) {
+    &:not(.#{$css-prefix}btn--icon) {
       background-color: $my-bg-color!important;
       border-color: $my-bg-color!important;
     }
