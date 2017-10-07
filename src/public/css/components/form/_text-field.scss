@@ -1,36 +1,70 @@
-//
-// Text Field
-//
+.#{$css-prefix}input-group {
+  $my: &;
 
-.#{$css-prefix}text-field {
   display: block;
 
   &__label {
     display: inline-block;
     vertical-align: bottom;
+    @include font-size(sm);
+    transition: get-duration(promptly);
+    color: get-color(text-secondary);
+    padding-bottom: .3em;
   }
 
   &__body {
     display: block;
   }
 
-  &__input {
+  &--focused {
+    #{$my}__label {
+      color: get-color(text-primary);
+    }
+  }
+
+  &__details {
+    display: flex;
+    flex: 1 0 100%;
+    min-height: 26px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    padding-top: 4px;
+    @include font-size(sm);
+  }
+
+  &__messages {
+    color: get-color(text-secondary);
+  }
+}
+
+//
+// Text Field
+//
+
+.#{$css-prefix}text-field {
+
+  .#{$css-prefix}input-group__input {
     @include text-field-input-base;
-  }
-
-  &--focused &__input {
-    @include text-field-input-focused;
-  }
-
-  &__detail {
-    display: block;
+    margin: 0;
+    max-width: 100%;
+    vertical-align: bottom;
   }
 
   &__node {
     @include text-field-node-base;
   }
 
-  &--focused &__node {
+  &__counter {
+    color: get-color(text-secondary);
+    margin-left: auto;
+  }
+
+  @at-root .#{$css-prefix}input-group--focused .#{$css-prefix}input-group__input {
+    @include text-field-input-focused;
+  }
+
+  @at-root .#{$css-prefix}input-group--focused &__node {
     @include text-field-node-focus;
   }
 }

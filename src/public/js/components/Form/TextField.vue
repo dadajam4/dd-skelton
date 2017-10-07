@@ -1,27 +1,26 @@
 <script>
+import inputMixin from '../../mixins/input';
+
+
 
 export default {
   name: 'vn@-text-field',
 
+  mixins: [inputMixin],
+
   props: {
-    value: {
-      type: [String, Number],
-      default: null,
-    },
     autofocus: Boolean,
-    multiLine: Boolean,
-    placeholder: String,
-    disabled: Boolean,
-    label: String,
-    hint: String,
-    persistentHint: Boolean,
+
     rows: {
       default: 5,
     },
+
     type: {
       type: String,
       default: 'text',
     },
+
+    counter: [Boolean, Number, String],
     prefix: String,
     suffix: String,
     sm: Boolean,
@@ -31,7 +30,6 @@ export default {
 
   data() {
     return {
-      isFocused: false,
     }
   },
 
@@ -40,7 +38,6 @@ export default {
       return {
         [this.$options.name]: true,
 
-        [`${this.$options.name}--multi-line`]: this.multiLine,
         [`${this.$options.name}--sm`]: this.sm,
         [`${this.$options.name}--lg`]: this.lg,
         [`${this.$options.name}--suffix`]: this.suffix,
@@ -48,6 +45,8 @@ export default {
         [`${this.$options.name}--focused`]: this.isFocused,
       }
     },
+
+    isMultiLine() { return this.type === 'textarea' },
 
     inputClasses() {
       return {
@@ -57,12 +56,23 @@ export default {
 
     inputValue: {
       get() {
-        return this.value;
+        return this.lazyValue;
       },
+
       set(val) {
-        // this.lazyValue = val
+        this.lazyValue = val;
         this.$emit('input', val);
       }
+    },
+
+    count() {
+      const inputLength = this.lazyValue ? this.lazyValue.toString().length : 0;
+      return `${inputLength} / ${this.counterLength}`;
+    },
+
+    counterLength() {
+      const parsedLength = parseInt(this.counter, 10)
+      return isNaN(parsedLength) ? 25 : parsedLength;
     },
   },
 
@@ -71,12 +81,12 @@ export default {
   methods: {
     onInput(e) {
       this.inputValue = e.target.value;
-      // this.badInput = e.target.validity && e.target.validity.badInput
-      // this.shouldAutoGrow && this.calculateInputHeight()
     },
+
     onClickLabel(e) {
       return this.focus();
     },
+
     blur(e) {
       this.isFocused = false;
       // this.$nextTick(() => {
@@ -84,6 +94,7 @@ export default {
       // })
       this.$emit('blur', e);
     },
+
     focus(e) {
       this.isFocused = true;
       if (document.activeElement !== this.$refs.input) {
@@ -100,6 +111,15 @@ export default {
         key: this.hint,
         domProps: {innerHTML: this.hint},
       })
+    },
+
+    genCounter() {
+      return this.$createElement('div', {
+        'class': {
+          [`${this.$options.name}__counter`]: true,
+          [`${this.$options.name}__counter--error`]: this.hasError,
+        }
+      }, this.count)
     },
 
     genMessages() {
@@ -125,88 +145,53 @@ export default {
         }
       }, messages);
     },
+
+    genInput() {
+      const nodeTag   = this.isMultiLine ? 'textarea' : 'input';
+      const listeners = Object.assign({}, this.$listeners);
+
+      delete listeners['change']; // Change should not be bound externally
+
+      const nodeOptions = {
+        class: {
+          [`${this.$options.name}__node`]: true,
+        },
+        domProps: {
+          autofocus  : this.autofocus,
+          disabled   : this.disabled,
+          required   : this.required,
+          value      : this.lazyValue,
+        },
+        attrs: {
+          ...this.$attrs,
+          readonly: this.readonly,
+          tabindex: this.tabindex,
+          'aria-label': (!this.$attrs || !this.$attrs.id) && this.label, // Label `for` will be set if we have an id
+        },
+        on: Object.assign({}, listeners, {
+          blur: this.blur,
+          input: this.onInput,
+          focus: this.focus,
+        }),
+        ref: 'input',
+      };
+
+      if (this.isMultiLine) {
+        nodeOptions.domProps.rows = this.rows;
+      } else {
+        nodeOptions.domProps.type = this.type;
+      }
+
+      if (this.placeholder) {
+        nodeOptions.domProps.placeholder = this.placeholder;
+      }
+
+      return this.$createElement(nodeTag, nodeOptions);
+    },
   },
 
   render(h) {
-    const $group = h('div', {
-      class: this.classes,
-    });
-
-    const $label = h(this.label ? 'label' : 'div', {
-      class: {
-        [`${this.$options.name}__label`]: true,
-        [`${this.$options.name}__label--empty`]: !this.label,
-      },
-      on: {
-        click: this.onClickLabel,
-      },
-    }, this.label);
-
-    const $body = h('div', {
-      class: {
-        [`${this.$options.name}__body`]: true,
-      }
-    });
-
-    const $input = h('div', {
-      class: {
-        [`${this.$options.name}__input`]: true,
-      }
-    });
-
-    const nodeTag = this.multiLine ? 'textarea' : 'input';
-    const listeners = this.$listeners || {};
-    delete listeners['change']; // Change should not be bound externally
-
-    const nodeOptions = {
-      class: {
-        [`${this.$options.name}__node`]: true,
-      },
-      domProps: {
-        autofocus  : this.autofocus,
-        disabled   : this.disabled,
-        required   : this.required,
-        value      : this.value,
-      },
-      attrs: {
-        ...this.$attrs,
-        readonly: this.readonly,
-        tabindex: this.tabindex,
-        'aria-label': (!this.$attrs || !this.$attrs.id) && this.label, // Label `for` will be set if we have an id
-      },
-      on: Object.assign({}, listeners, {
-        blur: this.blur,
-        input: this.onInput,
-        focus: this.focus,
-      }),
-      ref: 'input',
-    };
-
-    if (this.multiLine) {
-      nodeOptions.domProps.rows = this.rows;
-    } else {
-      nodeOptions.domProps.type = this.type;
-    }
-
-    if (this.placeholder) {
-      nodeOptions.domProps.placeholder = this.placeholder;
-    }
-
-    const $node = h(nodeTag, nodeOptions);
-
-    const $detail = h('div', {
-      class: {
-        [`${this.$options.name}__detail`]: true,
-      }
-    });
-
-    $detail.children = [this.genMessages()];
-
-    $group.children = [$label, $body];
-    $body.children = [$input, $detail];
-    $input.children = [$node];
-
-    return $group;
+    return this.genInputGroup(this.genInput(), {attrs: {tabindex: false}});
   },
 }
 </script>

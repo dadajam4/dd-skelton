@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    <main class="vc@-container">
+    <main class="vc@container">
       <h1>Forms</h1>
 
 <!--
@@ -25,10 +25,11 @@
       <section>
         <h2>hoge</h2>
         <vn@-text-field
-          label="あいうえお"
+          label="氏名"
           name="input_1_1"
-          placeholder="あいうえお"
-          hint="これはヒントテキストです。"
+          placeholder="田中　太郎"
+          hint="30文字以内で入力してください"
+          counter="30"
         ></vn@-text-field>
       </section>
     </main>
@@ -65,6 +66,7 @@ export default {
   data() {
     return {
       inputType: {},
+      hoge: 5,
     }
   },
 
