@@ -8,18 +8,18 @@
     vertical-align: bottom;
     @include font-size(sm);
     transition: get-duration(promptly);
-    color: get-color(text-secondary);
+    @include color(text-secondary);
     padding-bottom: .3em;
   }
 
   &__body {
     display: block;
+    position: relative;
   }
 
-  &--focused {
-    #{$my}__label {
-      color: get-color(text-primary);
-    }
+  &__input {
+    display: flex;
+    flex: 1 0 100%;
   }
 
   &__details {
@@ -34,7 +34,40 @@
   }
 
   &__messages {
-    color: get-color(text-secondary);
+    @include color(text-secondary);
+  }
+
+  &__left-icon,
+  &__right-icon {
+    @include color(text-secondary);
+    align-items: center;
+    display: inline-flex;
+    transition: get-duration(promptly);
+  }
+
+  &__left-icon {
+    padding-left: get-text-field(padding-horizontal);
+  }
+
+  &__right-icon {
+    padding-right: get-text-field(padding-horizontal);
+  }
+
+  &--focused {
+    #{$my}__label,
+    #{$my}__left-icon,
+    #{$my}__right-icon {
+      @include color(text-primary);
+    }
+  }
+
+  &--error {
+    #{$my}__label,
+    #{$my}__messages,
+    #{$my}__left-icon,
+    #{$my}__right-icon {
+      @include color(text-danger);
+    }
   }
 }
 
@@ -51,13 +84,68 @@
     vertical-align: bottom;
   }
 
+  textarea {
+    padding-top: 4px;
+    resize: vertical;
+    overflow: auto;
+  }
+
   &__node {
     @include text-field-node-base;
   }
 
   &__counter {
-    color: get-color(text-secondary);
+    @include color(text-secondary);
     margin-left: auto;
+  }
+
+  &__prefix,
+  &__suffix {
+    @include color(text-secondary);
+    align-items: center;
+    display: inline-flex;
+  }
+
+  &__prefix {
+    padding-left: get-text-field(padding-horizontal);
+  }
+
+  &__suffix {
+    padding-right: get-text-field(padding-horizontal);
+  }
+
+  &__suggest {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    right: 0;
+    margin-bottom: 20px;
+    // border-radius: get-text-field(radius);
+    border: solid get-text-field(border-width) get-color(form-divider);
+    border-top: 0;
+    border-radius: 0 0 get-text-field(radius) get-text-field(radius);
+    background: #fff;
+    box-shadow: get-shadow(menu);
+
+    &-item {
+      @include btn-base($display: block);
+      width: 100%;
+      text-align: left;
+      @include font-size(sm);
+      padding: .5em;
+      @include ellipsis;
+
+      &:hover,
+      &:focus,
+      &--focused {
+        background: get-color(bg-light);
+      }
+    }
+  }
+
+  &--suggested .#{$css-prefix}input-group__input {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
   }
 
   @at-root .#{$css-prefix}input-group--focused .#{$css-prefix}input-group__input {
@@ -66,5 +154,14 @@
 
   @at-root .#{$css-prefix}input-group--focused &__node {
     @include text-field-node-focus;
+  }
+
+  @at-root .#{$css-prefix}input-group--error .#{$css-prefix}input-group__input {
+    border-color: get-color(context-danger);
+    @include color(text-danger);
+  }
+
+  @at-root .#{$css-prefix}input-group--error &__counter {
+    @include color(text-danger);
   }
 }

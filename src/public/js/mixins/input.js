@@ -1,4 +1,10 @@
+import Validatable from './validatable';
+
+
+
 export default {
+  mixins: [Validatable],
+
   props: {
     // appendIcon: String,
     // appendIconCb: Function,
@@ -22,6 +28,10 @@ export default {
     value: {
       required: false,
     },
+    leftIcon: String,
+    leftIconCb: Function,
+    rightIcon: String,
+    rightIconCb: Function,
   },
 
   data() {
@@ -43,8 +53,8 @@ export default {
         'vc@input-group--tab-focused': this.tabFocused,
         'vc@input-group--disabled': this.disabled,
         'vc@input-group--error': this.hasError,
-        // 'vc@input-group--append-icon': this.appendIcon,
-        // 'vc@input-group--prepend-icon': this.prependIcon,
+        'vc@input-group--left-icon': this.leftIcon,
+        'vc@input-group--right-icon': this.rightIcon,
         'vc@input-group--required': this.required,
         'vc@input-group--hide-details': this.hideDetails,
         'vc@input-group--placeholder': !!this.placeholder,
@@ -83,13 +93,12 @@ export default {
 
       if (
         (this.hint && this.isFocused || this.hint && this.persistentHint)
-        && true //this.validations.length === 0
+        && this.validations.length === 0
       ) {
         messages = [this.genHint()];
+      } else if (this.validations.length) {
+        messages = this.validations.filter(v => v).map(v => this.genError(v));
       }
-      // } else if (this.validations.length) {
-      //   messages = this.validations.map(v => this.genError(v))
-      // }
 
       return this.$createElement('transition-group', {
         class: {
@@ -113,39 +122,39 @@ export default {
     },
 
     genError(error) {
+      return this.$createElement('div', {
+        class: 'vc@input-group__error',
+        key: error,
+      }, error);
     },
 
-    // genIcon (type, defaultCallback = null) {
-    //   const shouldClear = type === 'append' && this.clearable && this.isDirty
-    //   const icon = shouldClear ? 'clear' : this[`${type}Icon`]
-    //   const callback = shouldClear
-    //     ? this.clearableCallback
-    //     : (this[`${type}IconCb`] || defaultCallback)
+    genIcon(type) {
+      const icon = this[`${type}Icon`];
 
-    //   return this.$createElement('v-icon', {
-    //     attrs: {
-    //       'aria-hidden': true
-    //     },
-    //     'class': {
-    //       [`input-group__${type}-icon`]: true,
-    //       'input-group__icon-cb': !!callback,
-    //       'input-group__icon-clearable': shouldClear
-    //     },
-    //     props: {
-    //       disabled: this.disabled
-    //     },
-    //     on: {
-    //       click: e => {
-    //         if (!callback) return
+      const callback = this[`${type}IconCb`];
 
-    //         e.stopPropagation()
-    //         callback()
-    //       }
-    //     }
-    //   }, icon)
-    // },
+      return this.$createElement('vn@-icon', {
+        attrs: {
+          'aria-hidden': true,
+        },
+        class: {
+          [`vc@input-group__${type}-icon`]: true,
+        },
+        props: {
+          disabled: this.disabled,
+        },
+        on: {
+          click: e => {
+            if (!callback) return;
 
-    genInputGroup($node, data = {}/*, defaultAppendCallback = null*/) {
+            e.stopPropagation();
+            callback();
+          }
+        }
+      }, icon);
+    },
+
+    genInputGroup(input, data = {}/*, defaultAppendCallback = null*/) {
       data = Object.assign({}, {
         class: this.inputGroupClasses,
         attrs: {
@@ -203,8 +212,11 @@ export default {
       if (this.counter) $details.children.push(this.genCounter());
 
       $group.children = [$label, $body];
-      $body.children = [$input, $details];
-      $input.children = [$node];
+      $body.children = [$input, this.genSuggest(), $details];
+      $input.children = [...input];
+
+      if (this.leftIcon) $input.children.unshift(this.genIcon('left'));
+      if (this.rightIcon) $input.children.push(this.genIcon('right'));
 
       return $group;
     },

@@ -53,7 +53,8 @@
 }
 
 @mixin text-field-input-base {
-  display: inline-block;
+  // display: inline-block;
+
   width: 100%;
   max-width: calc(100% - #{get-text-field(margin-horizontal) * 2});
   border-radius: get-text-field(radius);

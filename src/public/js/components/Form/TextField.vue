@@ -25,11 +25,20 @@ export default {
     suffix: String,
     sm: Boolean,
     md: Boolean,
+
+    iconLeft: String,
+    iconRight: String,
+    suggest: {
+      type: Array,
+      default: () => [],
+    },
   },
 
 
   data() {
     return {
+      initialValue: null,
+      suggestIndex: null,
     }
   },
 
@@ -43,10 +52,12 @@ export default {
         [`${this.$options.name}--suffix`]: this.suffix,
         [`${this.$options.name}--prefix`]: this.prefix,
         [`${this.$options.name}--focused`]: this.isFocused,
+        [`${this.$options.name}--suggested`]: this.isShowSuggest,
       }
     },
 
     isMultiLine() { return this.type === 'textarea' },
+    isShowSuggest() { return this.isFocused && this.suggests.length },
 
     inputClasses() {
       return {
@@ -74,12 +85,84 @@ export default {
       const parsedLength = parseInt(this.counter, 10)
       return isNaN(parsedLength) ? 25 : parsedLength;
     },
+
+    suggests() {
+      let myInput = this.inputValue;
+      if (typeof myInput === 'string') {
+        myInput = myInput.trim();
+      } else {
+        myInput = '';
+      }
+
+      const re = new RegExp(myInput);
+
+      return this.suggest.filter(suggest => {
+        return re.test(suggest);
+      });
+    },
+
+    suggestSelected() {
+      return this.suggests[this.suggestIndex];
+    },
   },
 
 
+  watch: {
+    suggests() {
+      this.suggestIndex = null;
+    },
+
+    isShowSuggest() {
+      this.suggestIndex = null;
+    },
+
+    isFocused(val) {
+      if (val) {
+        this.initialValue = this.lazyValue;
+      } else if (this.initialValue !== this.lazyValue) {
+        this.$emit('change', this.lazyValue);
+      }
+    },
+
+    value(val) {
+      this.lazyValue = val;
+    },
+
+    lazyValue(val) {
+      !this.validateOnBlur && this.validate();
+      // this.shouldAutoGrow && this.calculateInputHeight()
+    },
+  },
 
   methods: {
+    shiftSuggest(amount) {
+      let newIndex = 0;
+      if (this.suggestIndex === null) {
+        if (amount === -1) {
+          newIndex = this.suggests.length + amount;
+        } else {
+          newIndex = amount - 1;
+        }
+      } else {
+        newIndex = this.suggestIndex + amount;
+        if (newIndex >= this.suggests.length) {
+          newIndex = null;
+        } else if (newIndex < 0) {
+          newIndex = null;
+        }
+      }
+      this.suggestIndex = newIndex;
+    },
+
+    settleSuggest(suggest) {
+      this.inputValue = suggest || this.inputValue;
+      this.suggestIndex = null;
+      this.blur();
+      this.$emit('suggest', suggest);
+    },
+
     onInput(e) {
+      this.suggestIndex = null;
       this.inputValue = e.target.value;
     },
 
@@ -88,10 +171,26 @@ export default {
     },
 
     blur(e) {
+      if (
+        e
+        && typeof e === 'object'
+        && e.relatedTarget
+        && e.relatedTarget.dataset
+        && e.relatedTarget.dataset.suggestIndex !== undefined
+      ) {
+        this.settleSuggest(this.suggests[parseInt(e.relatedTarget.dataset.suggestIndex)]);
+      }
+
+      if (document.activeElement === this.$refs.input) {
+        this.$refs.input.blur();
+      }
+
       this.isFocused = false;
-      // this.$nextTick(() => {
-      //   this.validate()
-      // })
+
+      this.$nextTick(() => {
+        this.validate();
+      });
+
       this.$emit('blur', e);
     },
 
@@ -103,16 +202,6 @@ export default {
       this.$emit('focus', e);
     },
 
-    genHint() {
-      return this.$createElement('div', {
-        class: {
-          [`${this.$options.name}__hint`]: true,
-        },
-        key: this.hint,
-        domProps: {innerHTML: this.hint},
-      })
-    },
-
     genCounter() {
       return this.$createElement('div', {
         'class': {
@@ -122,28 +211,33 @@ export default {
       }, this.count)
     },
 
-    genMessages() {
-      let messages = [];
+    genFix(type) {
+      return this.$createElement('span', {
+        class: `${this.$options.name}__${type}`,
+      }, this[type])
+    },
 
-      if (
-        (this.hint && this.isFocused || this.hint && this.persistentHint)
-        && true //this.validations.length === 0
-      ) {
-        messages = [this.genHint()];
-      }
-      // } else if (this.validations.length) {
-      //   messages = this.validations.map(v => this.genError(v))
-      // }
-
-      return this.$createElement('transition-group', {
-        class: {
-          [`${this.$options.name}__messages`]: true,
-        },
-        props: {
-          tag: 'div',
+    genSuggest() {
+      const $suggest = this.$createElement('transition', {
+        attrs: {
           name: 'vc@transition-slide-y',
         }
-      }, messages);
+      }, [this.isShowSuggest ? this.$createElement('div', {
+        class: `${this.$options.name}__suggest`,
+      }, this.suggests.map((suggest, index) => {
+        return this.$createElement('button', {
+          class: {
+            [`${this.$options.name}__suggest-item`]: true,
+            [`${this.$options.name}__suggest-item--focused`]: index === this.suggestIndex,
+          },
+          attrs: {
+            'data-suggest-index': index,
+          },
+          key: suggest,
+        }, [suggest])
+      })) : this._e()]);
+
+      return $suggest;
     },
 
     genInput() {
@@ -160,7 +254,7 @@ export default {
           autofocus  : this.autofocus,
           disabled   : this.disabled,
           required   : this.required,
-          value      : this.lazyValue,
+          value      : this.suggestSelected || this.lazyValue,
         },
         attrs: {
           ...this.$attrs,
@@ -172,6 +266,19 @@ export default {
           blur: this.blur,
           input: this.onInput,
           focus: this.focus,
+          keydown: e => {
+            if (this.isShowSuggest) {
+              if (e.which === 13) {
+                this.settleSuggest(this.suggestSelected);
+              } else if (e.which === 38) {
+                this.shiftSuggest(-1);
+                e.preventDefault();
+              } else if (e.which === 9 || e.which === 40) {
+                this.shiftSuggest(1);
+                e.preventDefault();
+              }
+            }
+          },
         }),
         ref: 'input',
       };
@@ -186,7 +293,12 @@ export default {
         nodeOptions.domProps.placeholder = this.placeholder;
       }
 
-      return this.$createElement(nodeTag, nodeOptions);
+      const children = [this.$createElement(nodeTag, nodeOptions)];
+
+      this.prefix && children.unshift(this.genFix('prefix'));
+      this.suffix && children.push(this.genFix('suffix'));
+
+      return children;
     },
   },
 

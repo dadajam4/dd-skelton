@@ -1,6 +1,7 @@
-import Prototype  from './prototype';
 import components from '../components';
 import directives from '../directives';
+import Prototype  from './prototype';
+import Validator  from './validator';
 
 
 
@@ -8,6 +9,7 @@ export default function Plugin(Vue, opt = {}) {
 
   // plugins
   Vue.use(Prototype, opt);
+  Vue.use(Validator, opt);
 
   // Directives
   Object.keys(directives).forEach(key => {
