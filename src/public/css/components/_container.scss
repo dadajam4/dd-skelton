@@ -3,18 +3,19 @@
 //
 
 .#{$css-prefix}container {
-  $lastKey: null;
+  @include container;
+  // $lastKey: null;
 
-  @include container-base;
+  // @include container-base;
 
-  @each $key, $size in $container-size {
-    $lastKey: $key;
-    @include mq($key) {
-      @include container-size($key);
-    }
-  }
+  // @each $key, $size in $container-size {
+  //   $lastKey: $key;
+  //   @include mq($key) {
+  //     @include container-size($key);
+  //   }
+  // }
 
-  @include container-size($lastKey);
+  // @include container-size($lastKey);
 
   &-pull {
     @include container-pull;

@@ -1,0 +1,63 @@
+//
+// List
+//
+
+.#{$css-prefix}list {
+  list-style-type: none;
+  padding: get-space(xs) 0;
+  transition: height .4s cubic-bezier(.4,0,.2,1);
+  @include background-color(bg-base);
+
+  &__tile {
+    // font-size: 16px;
+    // font-weight: 400;
+    display: flex;
+    min-height: 48px;
+    text-decoration: none;
+    align-items: center;
+    padding: 0 get-space(xs);
+    // padding: 0;
+    margin: 0;
+    position: relative;
+    user-select: none;
+    color: inherit;
+
+    &--link {
+      cursor: pointer;
+      transition: get-duration(promptly);
+      @include color(text-base);
+
+      &:hover,
+      &:focus {
+        @include background-color(bg-light);
+      }
+    }
+
+    @mixin my-children {
+      margin: 0 get-space(xs);
+      padding: get-space(xs) 0;
+      overflow: hidden;
+    }
+
+    &__avatar {
+      @include my-children;
+      flex-shrink: 0;
+      @include square(get-avatar(size-md));
+    }
+
+    &__content {
+      @include my-children;
+    }
+
+    &__title {
+      @include font-size(md);
+      @include ellipsis;
+    }
+
+    &__sub-title {
+      @include color(text-secondary);
+      @include font-size(sm);
+      @include ellipsis;
+    }
+  }
+}

@@ -4,6 +4,10 @@ export load from './load';
 export addOnceEventListener from './addOnceEventListener';
 export blurActiveElement from './blurActiveElement';
 export createRange from './createRange';
+export createJavaScriptTransition from './createJavaScriptTransition';
+export createSimpleTransition from './createSimpleTransition';
+export getObjectValueByPath from './getObjectValueByPath';
+export getZIndex from './getZIndex';
 
 
 

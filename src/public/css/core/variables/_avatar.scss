@@ -1,0 +1,13 @@
+//
+// Avatar
+//
+
+@function get-avatar($key) {
+  @return map-get($avatar, $key);
+}
+
+$avatar: ();
+$avatar: map-set($avatar, size-sm, 1rem);
+$avatar: map-set($avatar, size-md, 2.5rem);
+$avatar: map-set($avatar, size-lg, 4rem);
+

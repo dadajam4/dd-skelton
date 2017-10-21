@@ -5,7 +5,17 @@ import routings  from '.tmp/docs-routings';
 
 
 
-const router = new VueRouter(routings);
+const router = new VueRouter(Object.assign({
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) return savedPosition;
+
+    if (to.hash) {
+      return {
+        selector: to.hash,
+      }
+    }
+  },
+}, routings));
 
 
 

@@ -8,6 +8,7 @@ const serverSettings = {
     static: {
       '/': config.path.public.root,
     },
+    historyApiFallback: true,
   },
   docs: {
     port  : 4000,

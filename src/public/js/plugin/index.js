@@ -2,6 +2,7 @@ import components from '../components';
 import directives from '../directives';
 import Prototype  from './prototype';
 import Validator  from './validator';
+import VueScrollTo from 'vue-scrollto';
 
 
 
@@ -10,6 +11,7 @@ export default function Plugin(Vue, opt = {}) {
   // plugins
   Vue.use(Prototype, opt);
   Vue.use(Validator, opt);
+  Vue.use(VueScrollTo);
 
   // Directives
   Object.keys(directives).forEach(key => {

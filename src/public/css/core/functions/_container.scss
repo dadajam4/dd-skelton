@@ -24,7 +24,21 @@
   max-width: get-container-size($key);
 }
 
-@mixin container($key) {
+@mixin container() {
+  $lastKey: null;
+
   @include container-base;
-  @include container-size($key);
+
+  @each $key, $size in $container-size {
+    $lastKey: $key;
+    @include mq($key) {
+      @include container-size($key);
+    }
+  }
+
+  @include container-size($lastKey);
+
+
+  // @include container-base;
+  // @include container-size($key);
 }

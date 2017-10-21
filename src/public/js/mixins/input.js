@@ -58,6 +58,8 @@ export default {
         'vc@input-group--required': this.required,
         'vc@input-group--hide-details': this.hideDetails,
         'vc@input-group--placeholder': !!this.placeholder,
+        'vc@input-group--left-btn': this.$slots.leftBtn,
+        'vc@input-group--right-btn': this.$slots.rightBtn,
         // 'theme--dark': this.dark,
         // 'theme--light': this.light
       }, this.classes);
@@ -195,6 +197,12 @@ export default {
         }
       });
 
+      const $inputWrapper = this.$createElement('div', {
+        class: {
+          'vc@input-group__input-wrapper': true,
+        }
+      });
+
       const $input = this.$createElement('div', {
         class: {
           'vc@input-group__input': true,
@@ -212,8 +220,17 @@ export default {
       if (this.counter) $details.children.push(this.genCounter());
 
       $group.children = [$label, $body];
-      $body.children = [$input, this.genSuggest(), $details];
+      $body.children = [$inputWrapper, this.genSuggest(), $details];
+      $inputWrapper.children = [$input];
       $input.children = [...input];
+
+      ['left', 'right'].forEach(type => {
+        if (this.$slots[`${type}Btn`]) {
+          const $btn = this.$slots[`${type}Btn`][0];
+          $btn.componentOptions.propsData[type] = true;
+          $inputWrapper.children[type === 'left' ? 'unshift' : 'push']($btn);
+        }
+      });
 
       if (this.leftIcon) $input.children.unshift(this.genIcon('left'));
       if (this.rightIcon) $input.children.push(this.genIcon('right'));

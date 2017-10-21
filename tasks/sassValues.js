@@ -4,6 +4,7 @@ const fs         = require('fs');
 const jsImporter = require('node-sass-js-importer');
 const Notifier   = require('dd-notifier');
 const chalk      = require('chalk');
+const mkdirp     = require('mkdirp');
 
 
 
@@ -14,6 +15,8 @@ function sassValuesTask(task, params = {}) {
       targets = typeof targets === 'string' ? [targets] : targets;
 
       const promiseList = [];
+
+      mkdirp.sync(params.dest);
 
       targets.forEach(target => {
         const pathInfo = path.parse(target),

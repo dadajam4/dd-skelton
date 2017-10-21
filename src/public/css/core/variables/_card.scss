@@ -1,0 +1,11 @@
+//
+// Card
+//
+
+@function get-card($key) {
+  @return map-get($card, $key);
+}
+
+$card: ();
+$card: map-set($card, border-radius, get-border-radius(md));
+

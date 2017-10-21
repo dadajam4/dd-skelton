@@ -26,8 +26,8 @@ export default {
     sm: Boolean,
     md: Boolean,
 
-    iconLeft: String,
-    iconRight: String,
+    // iconLeft: String,
+    // iconRight: String,
     suggest: {
       type: Array,
       default: () => [],
@@ -178,7 +178,9 @@ export default {
         && e.relatedTarget.dataset
         && e.relatedTarget.dataset.suggestIndex !== undefined
       ) {
-        this.settleSuggest(this.suggests[parseInt(e.relatedTarget.dataset.suggestIndex)]);
+        this.settleSuggest(this.suggests[parseInt(e.relatedTarget.dataset.suggestIndex, 10)]);
+      } else if (this.suggestIndex !== null) {
+        this.settleSuggest(this.suggests[this.suggestIndex]);
       }
 
       if (document.activeElement === this.$refs.input) {

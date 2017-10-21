@@ -36,6 +36,7 @@
   &__content {
     border-radius: inherit;
     padding: 0 get-button(padding-horizontal);
+    white-space: nowrap;
 
     &:before,
     &:after {
@@ -143,5 +144,22 @@
       background-color: $my-bg-color!important;
       border-color: $my-bg-color!important;
     }
+  }
+
+  &--left,
+  &--right {
+    min-width: 50px;
+  }
+
+  &--left {
+    border-radius: get-button(radius) 0 0 get-button(radius);
+    // border-top-right-radius: 0;
+    // border-bottom-right-radius: 0;
+  }
+
+  &--right {
+    border-radius: 0 get-button(radius) get-button(radius) 0;
+    // border-top-left-radius: 0;
+    // border-bottom-left-radius: 0;
   }
 }

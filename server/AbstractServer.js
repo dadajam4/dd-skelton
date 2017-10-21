@@ -1,10 +1,11 @@
-const express    = require('express');
-const proxy      = require('express-http-proxy');
-const url        = require('url');
-const bodyParser = require('body-parser');
-const os         = require('os');
-const chalk      = require('chalk');
-const FileUtil   = require('dd-file-util');
+const express            = require('express');
+const proxy              = require('express-http-proxy');
+const url                = require('url');
+const bodyParser         = require('body-parser');
+const os                 = require('os');
+const chalk              = require('chalk');
+const FileUtil           = require('dd-file-util');
+const historyApiFallback = require('connect-history-api-fallback');
 
 
 
@@ -16,11 +17,21 @@ class AbstractServer {
    * constructor
    */
   constructor(define) {
-    this.name   = define.name || 'server';
-    this.port   = define.port;
-    this.node   = express();
-    this.static = define.static ? define.static : {};
-    this.proxy  = define.proxy  ? define.proxy  : [];
+    this.name               = define.name || 'server';
+    this.port               = define.port;
+    this.node               = express();
+    this.static             = define.static ? define.static : {};
+    this.proxy              = define.proxy  ? define.proxy  : [];
+    this.historyApiFallback = define.historyApiFallback;
+
+    if (this.historyApiFallback) {
+      this.node.use(historyApiFallback(
+        Object.assign({
+          index: '/index.html',
+          htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'],
+        }, this.historyApiFallback)
+      ));
+    }
 
     // Setup Plugins
     this.node.use(bodyParser.urlencoded({
@@ -33,6 +44,7 @@ class AbstractServer {
       const targetPath = this.static[uri];
       this.node.use(uri, express.static(targetPath));
     }
+
 
     this.proxy.forEach(row => {
       this.node.use(row.from, proxy(row.to, {

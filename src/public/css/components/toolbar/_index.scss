@@ -5,7 +5,9 @@
 .#{$css-prefix}toolbar {
   @include background-color(bg-base);
   transition: padding get-duration(slowly) get-easing(drawer);
+  @include elevation(4);
 
+  .#{$css-prefix}btn--icon,
   &__side-icon {
     flex-shrink: 0;
   }

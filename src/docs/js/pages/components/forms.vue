@@ -3,8 +3,14 @@
 
 <template>
   <div>
-    <main class="vc@container">
-      <h1>Forms</h1>
+    <header class="vc@page-header">
+      <h1 class="vc@page-header__inner vc@container">Forms</h1>
+    </header>
+
+    <main class="vc@page">
+      <div class="vc@container">
+        <p class="vc@page__introduction">Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span></p>
+      </div>
 
 <!--
       <section>
@@ -22,8 +28,8 @@
       </section>
 -->
 
-      <section>
-        <h2>hoge</h2>
+      <section id="textfields" class="vc@page__section vc@container" data-anchor-point>
+        <h2 class="vc@page__section-header">Text fields</h2>
 
         <vn@-text-field
           label="氏名"
@@ -80,18 +86,37 @@
           ]"
         ></vn@-text-field>
 
-        <p>hoge</p>
-        <p>hoge</p>
-        <p>hoge</p>
-        <p>hoge</p>
-        <p>hoge</p>
-        <p>hoge</p>
-        <p>hoge</p>
-        <p>hoge</p>
-        <p>hoge</p>
-        <p>hoge</p>
-        <p>hoge</p>
-        <p>hoge</p>
+        <vn@-text-field
+          label="Search"
+          type="search"
+          left-icon="search"
+        >
+          <vn@-btn slot="leftBtn" primary outline>左ボタン</vn@-btn>
+        </vn@-text-field>
+
+        <vn@-text-field
+          label="Search"
+          type="search"
+          left-icon="search"
+          :suggest="[
+            'サジェスト1',
+            '長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。長ーいサジェスト2です。',
+            'サジェスト3',
+          ]"
+        >
+          <vn@-btn slot="rightBtn" primary icon><vn@-icon>search</vn@-icon></vn@-btn>
+        </vn@-text-field>
+
+        <vn@-text-field
+          label="Comment"
+          type="textarea"
+        >
+          <vn@-btn slot="leftBtn" secondary><vn@-icon>upload</vn@-icon></vn@-btn>
+        </vn@-text-field>
+      </section>
+
+      <section id="selects" class="vc@page__section vc@container" data-anchor-point>
+        <h2 class="vc@page__section-header">Selects</h2>
       </section>
     </main>
   </div>

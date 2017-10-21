@@ -1,6 +1,6 @@
 <script>
 import Contextualable from '../../mixins/contextualable';
-import GenerateRouteLink from '../../mixins/route-link';
+import Routable from '../../mixins/routable';
 
 
 
@@ -9,7 +9,7 @@ export default {
 
   mixins: [
     Contextualable,
-    GenerateRouteLink,
+    Routable,
   ],
 
   props: {
@@ -23,6 +23,8 @@ export default {
     outline: Boolean,
     block: Boolean,
     icon: Boolean,
+    left: Boolean,
+    right: Boolean,
 
     // states
     loading: Boolean,
@@ -57,6 +59,8 @@ export default {
         [`${this.$options.name}--outline`]: this.outline,
         [`${this.$options.name}--block`]: this.block,
         [`${this.$options.name}--icon`]: this.icon,
+        [`${this.$options.name}--left`]: this.left,
+        [`${this.$options.name}--right`]: this.right,
 
         // states
         [`${this.$options.name}--loading`]: this.loading,

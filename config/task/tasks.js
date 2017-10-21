@@ -141,6 +141,10 @@ module.exports = {
         dest: config.path.src.tmp.root,
         filename: 'docs-routings',
         importRoot: config.path.src.root,
+        watch: [
+          config.path.src.docs.html,
+          // path.join(config.path.src.docs.js, 'pages'),
+        ],
         html: {
           dest: config.path.docs.root,
           template: path.join(config.path.src.docs.html, 'index.ejs'),

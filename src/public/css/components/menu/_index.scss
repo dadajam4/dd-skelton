@@ -1,0 +1,106 @@
+//
+// Menu
+//
+
+.#{$css-prefix}menu {
+  $my: &;
+
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+
+  &--disabled {
+    cursor: default;
+
+    #{$my}__activator,
+    #{$my}__activator > * {
+      cursor: default;
+      pointer-events: none;
+    }
+  }
+
+  &__activator {
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+
+    input[readonly] {
+      cursor: pointer;
+    }
+
+    .#{$css-prefix}toolbar__side-icon {
+      margin: 0;
+    }
+  }
+
+  &__content {
+    position: absolute;
+    display: inline-block;
+    border-radius: 2px;
+    max-width: 80%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    transition: .3s get-transition(swing); //$transition.swing;
+    contain: content;
+    @include elevation(8);
+
+    &--active {
+      pointer-events: none;
+    }
+
+    &--dropdown {
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+      border-top: 1px solid get-color(divider);
+    }
+
+    & > .#{$css-prefix}card {
+      contain: content;
+      backface-visibility: hidden;
+    }
+  }
+
+  &-transition {
+    &-enter {
+      .#{$css-prefix}list__tile {
+        min-width: 0;
+        transition-delay: .4s;
+        opacity: 0;
+        transform: translateY(-15px);
+        pointer-events: none;
+      }
+    }
+
+
+    &-enter-to {
+      .#{$css-prefix}list__tile {
+        pointer-events: auto;
+        opacity: 1;
+      }
+
+      .#{$css-prefix}list__tile--active {
+        transform: none !important;
+      }
+    }
+
+    &-leave-to {
+      transform: translateY(-10px);
+    }
+
+    &-leave-active, &-leave-to {
+      pointer-events: none;
+    }
+
+    &-enter, &-leave-to {
+      opacity: 0;
+    }
+
+    &-enter-to, &-leave {
+      opacity: 1;
+    }
+
+    &-enter-active, &-leave-active {
+      transition: all .5s get-transition(swing);
+    }
+  }
+}

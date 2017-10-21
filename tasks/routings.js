@@ -32,21 +32,26 @@ function routingsTask(task, params = {}) {
           errorRoutings.push(define);
           return;
         }
-        const filename      = define.filename.replace(/\.vue$/, '');
-        const dirName       = filename === 'index' ? define.dir : path.join(define.dir, filename);
-        const relativeBase  = dirName.replace(new RegExp('^' + params.src.replace(/\//g, '\/') + '\/?'), '');
-        const dirNames      = relativeBase.split('/');
-        const relativeLevel = dirNames[0] ? dirNames.length : 0;
-        const name          = dirNames.reduce((prev, current) => prev + '-' + current) || 'index';
-        const myPath        = '/' + dirNames.join('/');
-        const componentPath = define.filepath.replace(new RegExp('^' + params.importRoot.replace(/\//g, '\/')), '').replace(/^\//, '').replace(/\.vue$/, '');
-        const parent        = relativeLevel > 0 ? name.replace(/-((?!-).)+$/, '') : null;
+        const filename       = define.filename.replace(/\.vue$/, '');
+        const dirName        = filename === 'index' ? define.dir : path.join(define.dir, filename);
+        const relativeBase   = dirName.replace(new RegExp('^' + params.src.replace(/\//g, '\/') + '\/?'), '');
+        const dirNames       = relativeBase.split('/');
+        const relativeLevel  = dirNames[0] ? dirNames.length : 0;
+        const name           = dirNames.reduce((prev, current) => prev + '-' + current) || 'index';
+        const myPath         = '/' + dirNames.join('/');
+        const componentPath  = define.filepath.replace(new RegExp('^' + params.importRoot.replace(/\//g, '\/')), '').replace(/^\//, '').replace(/\.vue$/, '');
+        const parent         = relativeLevel > 0 ? name.replace(/-((?!-).)+$/, '') : null;
+        const source         = fs.readFileSync(define.filepath, 'utf-8');
+        const templateSource = source.match(/<template>([\s\S]*?)<\/template>/)[0];
+        const anchorMatchs   = templateSource.match(/<(.*?)data-anchor-point(.*?)>/g);
+        const anchors        = anchorMatchs ? anchorMatchs.map(match => match.match(/id="(.*?)"/)[1]) : [];
 
         const routing = {
           _level: relativeLevel,
           _filename: filename,
           _component: componentPath,
           _parent: parent,
+          _anchors: anchors,
           name: name,
           path: myPath,
         };
@@ -120,6 +125,7 @@ function routingsTask(task, params = {}) {
           _filename: '${routing._filename}',
           _component: '${routing._component}',
           _parent: ${routing._parent ? '\'' + routing._parent + '\'' : 'null' },
+          _anchors: ${JSON.stringify(routing._anchors)},
           name: '${routing.name}',
           path: '${routing.path}',
           component: (resolve, reject) => getAsyncComponent(resolve, reject, '${webpackChunkName}', import(/* webpackChunkName: "${webpackChunkName}" */ '${routing._component}'))

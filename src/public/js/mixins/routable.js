@@ -10,16 +10,18 @@ export default {
 
 
   props: {
-    append  : Boolean,
-    disabled: Boolean,
-    exact   : Boolean,
-    href    : [String, Object],
-    to      : [String, Object],
-    nuxt    : Boolean,
-    replace : Boolean,
-    router  : Boolean,
-    ripple  : Boolean,
-    tag     : String,
+    activeClass: String,
+    append     : Boolean,
+    disabled   : Boolean,
+    exact      : Boolean,
+    href       : [String, Object],
+    to         : [String, Object],
+    nuxt       : Boolean,
+    replace    : Boolean,
+    // router     : Boolean,
+    // ripple     : Boolean,
+    tag        : String,
+    target     : String,
   },
 
 
@@ -61,6 +63,7 @@ export default {
 
         if (tag === 'a') {
           data.attrs.href = this.href || 'javascript:void(0);'
+          if (this.target) data.attrs.target = this.target;
         }
       }
 

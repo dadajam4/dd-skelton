@@ -11,6 +11,18 @@
       <ul>
         <li v-for="child, childIndex in parent.children">
           <router-link :to="{name: child.name}">{{child._filename}}</router-link>
+          <ul v-if="$route.name === child.name && child._anchors" style="padding-left:10px;">
+            <li v-for="anchor in child._anchors" :key="anchor">
+              <a
+                :href="`${child.path}/#${anchor}`"
+                v-scroll-to="{
+                  element: `#${anchor}`,
+                  offset: -30,
+                  onDone: () => { onDoneScroll(`${child.path}/#${anchor}`) },
+                }"
+              >{{anchor}}</a>
+            </li>
+          </ul>
         </li>
       </ul>
     </div>
@@ -71,7 +83,16 @@ export default {
     },
   },
 
-  created() {
+  methods: {
+    onDoneScroll(path) {
+      window.history.pushState(null, null, path);
+    },
   },
+
+  // created() {
+  //   setTimeout(() => {
+  //   console.warn(this.$router.currentRoute);
+  //   }, 1000);
+  // },
 }
 </script>

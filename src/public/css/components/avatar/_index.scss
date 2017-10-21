@@ -1,0 +1,32 @@
+//
+// Avatar
+//
+
+.#{$css-prefix}avatar {
+  align-items: center;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  text-align: center;
+  vertical-align: middle;
+  overflow: hidden;
+
+  &--tile {
+    border-radius: 0;
+  }
+
+  @include square(get-avatar(size-md));
+
+  &--sm { @include square(get-avatar(size-sm)) }
+  &--md { @include square(get-avatar(size-md)) }
+  &--lg { @include square(get-avatar(size-lg)) }
+
+  img {
+    // border-radius: 50%;
+    width: 100%;
+    height: auto;
+    @include user-drag(none);
+    // height: inherit;
+    // width: inherit;
+  }
+}

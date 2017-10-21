@@ -1,0 +1,53 @@
+//
+// Page Layout
+//
+
+.#{$css-prefix}page {
+  // @include container;
+  padding-top: 3rem;
+  padding-bottom: 6rem;
+
+  &-header {
+    @include background-color(bg-light);
+
+    &__inner {
+      // @include container;
+      height: 7.25rem;
+      padding: 3rem;
+      display: flex;
+      align-items: center;
+
+      &,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        @include font-size(xxxl);
+        @include font-weight(regular);
+        @include color(text-secondary);
+      }
+    }
+    // @include container-pull;
+  }
+
+  &__introduction {
+    @include color(text-secondary);
+  }
+
+  &__section {
+    padding-top: 3rem;
+
+    &-header {
+      @include font-size(xxl);
+      @include font-weight(regular);
+      @include color(text-secondary);
+      margin-bottom: 1rem;
+
+      // &:first-letter {
+      //   text-transform: uppercase;
+      // }
+    }
+  }
+}
