@@ -1,6 +1,6 @@
 export default function createSimpleTransition(name, origin = 'top center 0', mode) {
   return {
-    name,
+    name: `vn@-${name}`,
 
     functional: true,
 

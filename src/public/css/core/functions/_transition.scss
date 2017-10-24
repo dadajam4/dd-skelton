@@ -2,7 +2,102 @@
 // Transition
 //
 
-// slide-y
+// Component specific transitions
+@mixin transition-bottom-sheet {
+  &-enter {
+    transform: translateY(100%);
+  }
+
+  &-leave-to {
+    transform: translateY(100%);
+  }
+}
+
+@mixin transition-carousel {
+  &-enter {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  &-leave, &-leave-to {
+    position: absolute;
+    top: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+
+@mixin transition-carousel-reverse {
+  &-enter {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  &-leave, &-leave-to {
+    position: absolute;
+    top: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+@mixin transition-dialog {
+  &-enter, &-leave-to {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+
+  &-enter-to, &-leave {
+    opacity: 1;
+  }
+}
+
+@mixin transition-dialog-bottom {
+  &-enter, &-leave-to {
+    transform: translateY(100%);
+  }
+}
+
+@mixin transition-tab {
+  &-enter {
+    transform: translate(100%, 0);
+  }
+
+  &-enter-to {
+    transform: translate(0, 0);
+  }
+
+  &-leave, &-leave-active {
+    position: absolute;
+    top: 0;
+  }
+
+  &-leave-to {
+    position: absolute;
+    transform: translate(-100%, 0);
+  }
+}
+
+@mixin transition-tab-reverse {
+  &-enter {
+    transform: translate(-100%, 0);
+  }
+
+  &-leave, &-leave-to {
+    top: 0;
+    position: absolute;
+    transform: translate(100%, 0);
+  }
+}
+
+// Generic transitions
+@mixin transition-scale {
+  &-enter-active, &-leave-active {
+    transition: get-transition(primary);
+  }
+
+  &-enter, &-leave, &-leave-to {
+    opacity: 0;
+    transform: scale(0);
+  }
+}
+
 @mixin transition-slide-y {
   &-enter-active, &-leave-active {
     transition: get-transition(primary);
@@ -11,5 +106,58 @@
   &-enter, &-leave-to {
     opacity: 0;
     transform: translateY(-15px);
+  }
+}
+
+@mixin transition-slide-y-reverse {
+  &-enter-active, &-leave-active {
+    transition: get-transition(primary);
+  }
+
+  &-enter, &-leave-to {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+}
+
+@mixin transition-slide-x {
+  &-enter-active, &-leave-active {
+    transition: get-transition(primary);
+  }
+
+  &-enter, &-leave-to {
+    opacity: 0;
+    transform: translateX(-15px);
+  }
+}
+
+@mixin transition-slide-x-reverse {
+  &-enter-active, &-leave-active {
+    transition: get-transition(primary);
+  }
+
+  &-enter, &-leave-to {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+}
+
+@mixin transition-fade {
+  &-enter-active, &-leave-active {
+    transition: get-transition(primary);
+  }
+
+  &-enter, &-leave-to {
+    opacity: 0;
+  }
+}
+
+@mixin transition-fab {
+  &-enter-active, &-leave-active {
+    transition: get-transition(primary);
+  }
+
+  &-enter, &-leave-to {
+    transform: scale(0) rotate(-45deg);
   }
 }

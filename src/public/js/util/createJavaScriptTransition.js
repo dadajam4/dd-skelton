@@ -1,6 +1,6 @@
 export default function createJavaScriptTransition(name, functions, css = true, mode = 'in-out') {
   return {
-    name,
+    name: `vn@-${name}`,
 
     functional: true,
 

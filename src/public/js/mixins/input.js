@@ -32,6 +32,7 @@ export default {
     leftIconCb: Function,
     rightIcon: String,
     rightIconCb: Function,
+    name: String,
   },
 
   data() {
@@ -71,7 +72,8 @@ export default {
   },
 
   methods: {
-    groupFocus(e) {},
+    groupFocus(e) {
+    },
 
     groupBlur(e) {
       this.tabFocused = false;
@@ -79,15 +81,19 @@ export default {
 
     genLabel() {
       const _label = this.$slots.label || this.label;
-      return this.$createElement(_label ? 'label' : 'div', {
+      const data = {
         class: {
           'vc@input-group__label': true,
           'vc@input-group__label--empty': !_label,
         },
-        on: {
-          click: this.onClickLabel,
-        },
-      }, _label);
+        on: {},
+      };
+
+      if (this.onClickLabel) {
+        data.on.click = this.onClickLabel;
+      }
+
+      return this.$createElement(_label ? 'label' : 'div', data, _label);
     },
 
     genMessages() {
@@ -156,7 +162,7 @@ export default {
       }, icon);
     },
 
-    genInputGroup(input, data = {}/*, defaultAppendCallback = null*/) {
+    genInputGroup(input, data = {}, opts = {}/*, defaultAppendCallback = null*/) {
       data = Object.assign({}, {
         class: this.inputGroupClasses,
         attrs: {
@@ -219,9 +225,22 @@ export default {
 
       if (this.counter) $details.children.push(this.genCounter());
 
-      $group.children = [$label, $body];
-      $body.children = [$inputWrapper, this.genSuggest(), $details];
+      $group.children = [$body];
+      if (!opts.labelInsertForInput) {
+        $group.children.unshift($label);
+      }
+
+      const bodyChildren = [$inputWrapper];
+      if (this.genSuggest) bodyChildren.push(this.genSuggest());
+      bodyChildren.push($details);
+      $body.children = bodyChildren;
+
       $inputWrapper.children = [$input];
+
+      if (opts.labelInsertForInput) {
+        $inputWrapper.children.push($label);
+      }
+
       $input.children = [...input];
 
       ['left', 'right'].forEach(type => {

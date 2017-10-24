@@ -1,0 +1,11 @@
+//
+// Checkbox
+//
+
+@function get-radio($key) {
+  @return map-get($radio, $key);
+}
+
+$radio: ();
+// $radio: map-set($radio, border-radius, get-border-radius(md));
+

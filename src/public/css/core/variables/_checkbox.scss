@@ -1,0 +1,11 @@
+//
+// Checkbox
+//
+
+@function get-checkbox($key) {
+  @return map-get($checkbox, $key);
+}
+
+$checkbox: ();
+// $checkbox: map-set($checkbox, border-radius, get-border-radius(md));
+

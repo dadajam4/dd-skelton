@@ -2,4 +2,17 @@
 // Transition
 //
 
+.#{$css-prefix}transition-bottom-sheet { @include transition-slide-y; }
+.#{$css-prefix}transition-carousel { @include transition-carousel; }
+.#{$css-prefix}transition-carousel-reverse { @include transition-carousel-reverse; }
+.#{$css-prefix}transition-dialog { @include transition-dialog; }
+.#{$css-prefix}transition-dialog-bottom { @include transition-dialog-bottom; }
+.#{$css-prefix}transition-tab { @include transition-tab; }
+.#{$css-prefix}transition-tab-reverse { @include transition-tab-reverse; }
+.#{$css-prefix}transition-scale { @include transition-scale; }
 .#{$css-prefix}transition-slide-y { @include transition-slide-y; }
+.#{$css-prefix}transition-slide-y-reverse { @include transition-slide-y-reverse; }
+.#{$css-prefix}transition-slide-x { @include transition-slide-x; }
+.#{$css-prefix}transition-slide-x-reverse { @include transition-slide-x-reverse; }
+.#{$css-prefix}transition-fade { @include transition-fade; }
+.#{$css-prefix}transition-fab { @include transition-fab; }

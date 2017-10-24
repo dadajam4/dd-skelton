@@ -99,7 +99,7 @@ export default {
         this.validate();
       })
     },
-    validate(force = false, value) {
+    validate(force = false, value = this.inputValue) {
       if (force) this.shouldValidate = true;
 
       this.errorBucket = [];
@@ -116,7 +116,7 @@ export default {
                 handler          = this.$rules[tmp[0]],
                 handlerArguments = eval(`[${tmp[1]}]`);
 
-          valid = handler(this.inputValue, handlerArguments);
+          valid = handler(value, handlerArguments);
         } else {
           valid = handler;
         }

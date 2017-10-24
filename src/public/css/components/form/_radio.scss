@@ -1,0 +1,86 @@
+//
+// Radio
+//
+
+// @keyframes #{$css-prefix}radio-faux-body {
+//   0% {
+//     height: 0%;
+//   }
+
+//   100% {
+//     height: 100%;
+//   }
+// }
+
+.#{$css-prefix}radio {
+  $my: &;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  &__faux {
+    @include selection-control-faux-base;
+    border: solid 1px currentColor;
+    border-radius: 50%;
+
+    &__body {
+      $my-offset: 3px;
+      position: absolute;
+      top: $my-offset;
+      bottom: $my-offset;
+      left: $my-offset;
+      right: $my-offset;
+      border-radius: 50%;
+      background: currentColor;
+      transform-origin: center center;
+      transition: get-duration(immediately);
+      transform: scale(0);
+
+      .#{$css-prefix}input-group--active & {
+        transform: scale(1);
+      }
+    }
+
+    &--indeterminate {
+      &:after {
+        $my-offset: 3px;
+        content: "";
+        display: block;
+        position: absolute;
+        left: $my-offset;
+        right: $my-offset;
+        top: calc(50% - 1px);
+        bottom: calc(50% - 1px);
+        background: currentColor;
+        border-radius: 2px;
+      }
+    }
+  }
+
+  &-group {
+
+    &--column {
+      .#{$css-prefix}input-group__input-wrapper {
+        & > .#{$css-prefix}input-group__input {
+          flex-direction: column;
+        }
+      }
+    }
+
+    &--row {
+      .#{$css-prefix}input-group__input-wrapper {
+        & > .#{$css-prefix}input-group__input {
+          flex-wrap: wrap;
+          // flex-basis: 100%;
+          // flex-direction: column;
+        }
+      }
+
+      #{$my} {
+        margin-right: 3rem;
+        // flex: 1 1;
+      }
+    }
+  }
+}

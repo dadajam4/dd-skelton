@@ -253,13 +253,14 @@ export default {
           [`${this.$options.name}__node`]: true,
         },
         domProps: {
-          autofocus  : this.autofocus,
-          disabled   : this.disabled,
-          required   : this.required,
-          value      : this.suggestSelected || this.lazyValue,
+          autofocus: this.autofocus,
+          disabled : this.disabled,
+          required : this.required,
+          value    : this.suggestSelected || this.lazyValue,
         },
         attrs: {
           ...this.$attrs,
+          name    : this.name,
           readonly: this.readonly,
           tabindex: this.tabindex,
           'aria-label': (!this.$attrs || !this.$attrs.id) && this.label, // Label `for` will be set if we have an id

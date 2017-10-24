@@ -1,0 +1,88 @@
+//
+// Checkbox
+//
+
+@keyframes #{$css-prefix}checkbox-faux-bar-first {
+  0% {
+    height: 0%;
+  }
+
+  100% {
+    height: 100%;
+  }
+}
+
+@keyframes #{$css-prefix}checkbox-faux-bar-last {
+  0% {
+    width: 0%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.#{$css-prefix}checkbox {
+  $my: &;
+
+  &__faux {
+    @include selection-control-faux-base;
+    border: solid 1px currentColor;
+    border-radius: 2px;
+
+    &__body {
+      $my-offset: 2px;
+      position: absolute;
+      top: $my-offset * 2.5;
+      bottom: $my-offset * 2.5;
+      left: $my-offset;
+      right: $my-offset;
+      transform: rotate(-45deg);
+      transform-origin: $my-offset * 2.5 $my-offset * 1.5;
+
+      &-bar {
+        position: absolute;
+        background: currentColor;
+        border-radius: 2px;
+        animation-fill-mode: forwards;
+
+        &:first-child {
+          top: 0;
+          left: 0;
+          width: 2px;
+          height: 0%;
+
+          animation-name: #{$css-prefix}checkbox-faux-bar-first;
+          animation-duration: 25ms;
+          animation-delay: 0ms;
+        }
+
+        &:last-child {
+          bottom: 0;
+          left: 0;
+          width: 0%;
+          height: 2px;
+
+          animation-name: #{$css-prefix}checkbox-faux-bar-last;
+          animation-duration: 75ms;
+          animation-delay: 25ms;
+        }
+      }
+    }
+
+    &--indeterminate {
+      &:after {
+        $my-offset: 3px;
+        content: "";
+        display: block;
+        position: absolute;
+        left: $my-offset;
+        right: $my-offset;
+        top: calc(50% - 1px);
+        bottom: calc(50% - 1px);
+        background: currentColor;
+        border-radius: 2px;
+      }
+    }
+  }
+}

@@ -14,3 +14,10 @@ $text-field: map-set($text-field, height, get-button(height-md));
 $text-field: map-set($text-field, padding-horizontal, get-space(xs));
 $text-field: map-set($text-field, margin-vertical, get-button(margin-vertical));
 $text-field: map-set($text-field, margin-horizontal, get-button(margin-horizontal));
+
+@function get-selection-control($key) {
+  @return map-get($selection-control, $key);
+}
+
+$selection-control: ();
+$selection-control: map-set($selection-control, faux-size, 18px);

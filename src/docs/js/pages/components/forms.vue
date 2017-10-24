@@ -115,6 +115,83 @@
         </vn@-text-field>
       </section>
 
+      <section id="checkboxes" class="vc@page__section vc@container" data-anchor-point>
+        <h2 class="vc@page__section-header">Checkboxes</h2>
+        <vn@-checkbox
+          label="modelなし"
+          light
+          value="aaa"
+          name="checkbox1"
+          :rules="[
+            {rule: 'required', message: 'この項目は必須だよ'},
+          ]"
+        ></vn@-checkbox>
+
+        <vn@-checkbox
+          :label="`modelあり: ${checkbox1 === null ? 'null' : checkbox1.toString()}`"
+          v-model="checkbox1"
+          light
+          value="checked"
+          :rules="[
+            {rule: 'required', message: 'この項目は必須だよ'},
+          ]"
+        ></vn@-checkbox>
+
+        <h3>Array</h3>
+        <div>{{checkbox2}}</div>
+        <vn@-checkbox
+          label="太郎"
+          v-model="checkbox2"
+          light
+          value="太郎"
+        ></vn@-checkbox>
+
+        <vn@-checkbox
+          label="花子"
+          v-model="checkbox2"
+          light
+          value="花子"
+        ></vn@-checkbox>
+
+        <h3>States</h3>
+        <vn@-checkbox input-value="true" value label="on"></vn@-checkbox>
+        <vn@-checkbox value label="off"></vn@-checkbox>
+        <vn@-checkbox value indeterminate label="indeterminate"></vn@-checkbox>
+        <vn@-checkbox input-value="true" value disabled label="on disabled"></vn@-checkbox>
+        <vn@-checkbox value disabled label="off disabled"></vn@-checkbox>
+      </section>
+
+      <section id="radios" class="vc@page__section vc@container" data-anchor-point>
+        <h2 class="vc@page__section-header">Radios</h2>
+
+        <h3>モデル無し</h3>
+        <vn@-radio-group name="radio1">
+          <vn@-radio label="Radio 1" value="radio-1"></vn@-radio>
+          <vn@-radio label="Radio 2" value="radio-2"></vn@-radio>
+        </vn@-radio-group>
+
+        <h3>モデル有り</h3>
+        <p>&gt;&gt;&gt; {{radio1}}</p>
+        <vn@-radio-group v-model="radio1" row>
+          <vn@-radio label="Radio 1" value="radio-1"></vn@-radio>
+          <vn@-radio label="Radio 2" value="radio-2"></vn@-radio>
+          <vn@-radio label="Radio 3" value="radio-3"></vn@-radio>
+          <vn@-radio label="Radio 4" value="radio-4"></vn@-radio>
+          <vn@-radio label="Radio 5" value="radio-5"></vn@-radio>
+          <vn@-radio label="Radio 6" value="radio-6"></vn@-radio>
+          <vn@-radio label="Radio 7" value="radio-7"></vn@-radio>
+          <vn@-radio label="Radio 8" value="radio-8"></vn@-radio>
+          <vn@-radio label="Radio 9" value="radio-9"></vn@-radio>
+          <vn@-radio label="Radio 10" value="radio-10"></vn@-radio>
+        </vn@-radio-group>
+
+        <h3>状態</h3>
+        <vn@-radio-group name="radio2" disabled>
+          <vn@-radio label="Radio 1" value="radio-1"></vn@-radio>
+          <vn@-radio label="Radio 2" value="radio-2"></vn@-radio>
+        </vn@-radio-group>
+      </section>
+
       <section id="selects" class="vc@page__section vc@container" data-anchor-point>
         <h2 class="vc@page__section-header">Selects</h2>
       </section>
@@ -153,6 +230,9 @@ export default {
     return {
       inputType: {},
       hoge: '',
+      checkbox1: null,
+      checkbox2: [],
+      radio1: null,
     }
   },
 
