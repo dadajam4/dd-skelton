@@ -78,6 +78,10 @@
     width: 100%;
     padding-top: 4px;
     @include font-size(sm);
+
+    .#{$css-prefix}list__tile__action & {
+      display: none;
+    }
   }
 
   &__messages {
@@ -93,11 +97,11 @@
   }
 
   &__left-icon {
-    padding-left: get-text-field(padding-horizontal);
+    padding-left: get-field(padding-horizontal);
   }
 
   &__right-icon {
-    padding-right: get-text-field(padding-horizontal);
+    padding-right: get-field(padding-horizontal);
   }
 
   &--focused {

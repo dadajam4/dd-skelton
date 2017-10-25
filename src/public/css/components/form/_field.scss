@@ -1,0 +1,69 @@
+//
+// Field
+//
+
+.#{$css-prefix}field {
+
+  .#{$css-prefix}input-group__input {
+    @include field-input-base;
+    margin: 0;
+    max-width: 100%;
+    vertical-align: bottom;
+  }
+
+  &__node {
+    @include field-node-base;
+  }
+
+  &__custom-node {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: pointer;
+  }
+
+  &__prefix,
+  &__suffix {
+    @include color(text-secondary);
+    align-items: center;
+    display: inline-flex;
+  }
+
+  &__prefix {
+    padding-left: get-field(padding-horizontal);
+  }
+
+  &__suffix {
+    padding-right: get-field(padding-horizontal);
+  }
+
+  @at-root .#{$css-prefix}input-group--left-btn .#{$css-prefix}input-group__input {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-left: 0;
+  }
+
+  @at-root .#{$css-prefix}input-group--right-btn .#{$css-prefix}input-group__input {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-right: 0;
+  }
+
+  @at-root .#{$css-prefix}input-group--focused .#{$css-prefix}input-group__input {
+    @include field-input-focused;
+  }
+
+  @at-root .#{$css-prefix}input-group--focused &__node {
+    @include field-node-focus;
+  }
+
+  @at-root .#{$css-prefix}input-group--error .#{$css-prefix}input-group__input {
+    border-color: get-color(context-danger);
+    @include color(text-danger);
+  }
+
+  @at-root .#{$css-prefix}input-group--error &__counter {
+    @include color(text-danger);
+  }
+}

@@ -31,6 +31,14 @@
       &:focus {
         @include background-color(bg-light);
       }
+
+      &:active {
+        @include background-color(bg-active);
+      }
+    }
+
+    &--active {
+      @include color(text-primary);
     }
 
     & > * {
@@ -53,6 +61,11 @@
       @include my-children;
       flex-shrink: 0;
       @include square(get-avatar(size-md));
+    }
+
+    &__action {
+      @include my-children;
+      flex-shrink: 0;
     }
 
     &__content {

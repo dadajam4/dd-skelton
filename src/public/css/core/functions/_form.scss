@@ -2,7 +2,7 @@
 // Form
 //
 
-@mixin text-field-node-base {
+@mixin field-node-base {
   appearance: none;
   box-shadow: none;
   border: 0;
@@ -16,8 +16,8 @@
   background: transparent;
   border-radius: 0;
   margin: 0;
-  padding: 0 get-text-field(padding-horizontal);
-  min-height: get-text-field(height);
+  padding: 0 get-field(padding-horizontal);
+  min-height: get-field(height);
   caret-color: get-color(context-primary);
   @include ellipsis;
   transition: get-duration(promptly);
@@ -44,7 +44,7 @@
   }
 }
 
-@mixin text-field-node-focus {
+@mixin field-node-focus {
 
   // placeholder
   &::placeholder {
@@ -52,24 +52,24 @@
   }
 }
 
-@mixin text-field-input-base {
+@mixin field-input-base {
   // display: inline-block;
 
   width: 100%;
-  max-width: calc(100% - #{get-text-field(margin-horizontal) * 2});
-  border-radius: get-text-field(radius);
+  max-width: calc(100% - #{get-field(margin-horizontal) * 2});
+  border-radius: get-field(radius);
   border-color: get-color(form-divider);
-  border-width: get-text-field(border-width);
+  border-width: get-field(border-width);
   border-style: solid;
   // background: get-color(bg-base);
   background: transparent;
   outline: none;
   overflow: hidden;
-  margin: get-text-field(margin-vertical) get-text-field(margin-horizontal);
+  margin: get-field(margin-vertical) get-field(margin-horizontal);
   transition: get-duration(promptly);
 }
 
-@mixin text-field-input-focused {
+@mixin field-input-focused {
   border-color: get-color(context-primary);
 }
 

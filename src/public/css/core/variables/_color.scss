@@ -9,6 +9,7 @@
 $color: ();
 $color: map-set($color, bg-base, #fff);
 $color: map-set($color, bg-light, #f8f8f8);
+$color: map-set($color, bg-active, darken(#f8f8f8, 10%));
 $color: map-set($color, bg-muted, lighten(#7f8c8d, 20%));
 $color: map-set($color, overlay, rgba(0, 0, 0, .4));
 

@@ -236,6 +236,9 @@ export default {
       $body.children = bodyChildren;
 
       $inputWrapper.children = [$input];
+      if (opts.menu) {
+        $inputWrapper.children.push(opts.menu);
+      }
 
       if (opts.labelInsertForInput) {
         $inputWrapper.children.push($label);

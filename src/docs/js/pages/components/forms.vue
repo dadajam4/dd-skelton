@@ -194,6 +194,20 @@
 
       <section id="selects" class="vc@page__section vc@container" data-anchor-point>
         <h2 class="vc@page__section-header">Selects</h2>
+
+        <h3>モデルなし。option直書き</h3>
+        <vn@-select>
+
+          <vn@-option v-for="item in selectItems" :key="item.value" :value="item.value">{{item.content}}</vn@-option>
+        </vn@-select>
+
+        <h3>モデルあり。props渡し</h3>
+        <p>&gt;&gt;&gt; {{selectItems.filter(item => item.value === select1)[0] || '未選択'}}</p>
+        <vn@-select v-model="select1" :items="selectItems"></vn@-select>
+
+        <h3>複数選択</h3>
+        <p>&gt;&gt;&gt; {{select2}}</p>
+        <vn@-select v-model="select2" :items="selectItems" multiple></vn@-select>
       </section>
     </main>
   </div>
@@ -233,6 +247,15 @@ export default {
       checkbox1: null,
       checkbox2: [],
       radio1: null,
+      select1: null,
+      select2: [],
+      selectItems: [
+        {content: '選択肢1', value: 1},
+        {content: '選択肢2', value: 2},
+        {content: '選択肢3', value: 3},
+        {content: 'これは長い項目です', value: 4},
+        {content: '選択肢5', value: 5},
+      ],
     }
   },
 

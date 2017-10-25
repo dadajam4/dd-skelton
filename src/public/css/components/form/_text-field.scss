@@ -4,41 +4,15 @@
 
 .#{$css-prefix}text-field {
 
-  .#{$css-prefix}input-group__input {
-    @include text-field-input-base;
-    margin: 0;
-    max-width: 100%;
-    vertical-align: bottom;
-  }
-
   textarea {
     padding-top: 4px;
     resize: vertical;
     overflow: auto;
   }
 
-  &__node {
-    @include text-field-node-base;
-  }
-
   &__counter {
     @include color(text-secondary);
     margin-left: auto;
-  }
-
-  &__prefix,
-  &__suffix {
-    @include color(text-secondary);
-    align-items: center;
-    display: inline-flex;
-  }
-
-  &__prefix {
-    padding-left: get-text-field(padding-horizontal);
-  }
-
-  &__suffix {
-    padding-right: get-text-field(padding-horizontal);
   }
 
   &__suggest {
@@ -73,34 +47,5 @@
   &--suggested .#{$css-prefix}input-group__input {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-  }
-
-  @at-root .#{$css-prefix}input-group--left-btn .#{$css-prefix}input-group__input {
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    border-left: 0;
-  }
-
-  @at-root .#{$css-prefix}input-group--right-btn .#{$css-prefix}input-group__input {
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-right: 0;
-  }
-
-  @at-root .#{$css-prefix}input-group--focused .#{$css-prefix}input-group__input {
-    @include text-field-input-focused;
-  }
-
-  @at-root .#{$css-prefix}input-group--focused &__node {
-    @include text-field-node-focus;
-  }
-
-  @at-root .#{$css-prefix}input-group--error .#{$css-prefix}input-group__input {
-    border-color: get-color(context-danger);
-    @include color(text-danger);
-  }
-
-  @at-root .#{$css-prefix}input-group--error &__counter {
-    @include color(text-danger);
   }
 }

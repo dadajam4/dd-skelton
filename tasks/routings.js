@@ -44,7 +44,16 @@ function routingsTask(task, params = {}) {
         const source         = fs.readFileSync(define.filepath, 'utf-8');
         const templateSource = source.match(/<template>([\s\S]*?)<\/template>/)[0];
         const anchorMatchs   = templateSource.match(/<(.*?)data-anchor-point(.*?)>/g);
-        const anchors        = anchorMatchs ? anchorMatchs.map(match => match.match(/id="(.*?)"/)[1]) : [];
+        const anchors        = anchorMatchs ? anchorMatchs.map(match => {
+          const id         = match.match(/id="(.*?)"/)[1],
+                labelMatch = match.match(/data-anchor-point="(.*?)"/),
+                label      = labelMatch ? labelMatch[1] : id;
+
+          return {
+            id   : id,
+            label: label,
+          }
+        }) : [];
 
         const routing = {
           _level: relativeLevel,

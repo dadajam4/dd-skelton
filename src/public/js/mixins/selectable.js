@@ -63,7 +63,7 @@ export default {
         on: { click: this.toggle },
         attrs: {
           for: this.id,
-        }
+        },
       }, this.$slots.label || this.label)
     },
 

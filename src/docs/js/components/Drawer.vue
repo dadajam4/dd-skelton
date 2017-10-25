@@ -12,15 +12,15 @@
         <li v-for="child, childIndex in parent.children">
           <router-link :to="{name: child.name}">{{child._filename}}</router-link>
           <ul v-if="$route.name === child.name && child._anchors" style="padding-left:10px;">
-            <li v-for="anchor in child._anchors" :key="anchor">
+            <li v-for="anchor in child._anchors" :key="anchor.id">
               <a
-                :href="`${child.path}/#${anchor}`"
+                :href="`${child.path}/#${anchor.id}`"
                 v-scroll-to="{
-                  element: `#${anchor}`,
+                  element: `#${anchor.id}`,
                   offset: -30,
-                  onDone: () => { onDoneScroll(`${child.path}/#${anchor}`) },
+                  onDone: () => { onDoneScroll(`${child.path}/#${anchor.id}`) },
                 }"
-              >{{anchor}}</a>
+              >{{anchor.label}}</a>
             </li>
           </ul>
         </li>

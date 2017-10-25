@@ -35,7 +35,7 @@ export default {
     Resize
   },
 
-  data () {
+  data() {
     return {
       defaultOffset: 8,
       maxHeightAutoDefault: '200px',
@@ -158,7 +158,7 @@ export default {
       // Once transitioning, calculate scroll position
       setTimeout(this.calculateScroll, 50)
     },
-    onResize () {
+    onResize() {
       if (!this.isActive) return
 
       // Account for screen resize
@@ -176,25 +176,25 @@ export default {
     }
   },
 
-  render (h) {
+  render(h) {
     const data = {
-      staticClass: 'menu',
+      staticClass: 'vc@menu',
       class: {
-        'menu--disabled': this.disabled
+        'vc@menu--disabled': this.disabled,
       },
       style: {
-        display: this.fullWidth ? 'block' : 'inline-block'
+        display: this.fullWidth ? 'block' : 'inline-block',
       },
       directives: [{
         name: 'resize',
         value: {
           debounce: 500,
-          value: this.onResize
+          value: this.onResize,
         }
       }],
       on: {
-        keydown: this.changeListIndex
-      }
+        keydown: this.changeListIndex,
+      },
     }
 
     return h('div', data, [

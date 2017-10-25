@@ -1,8 +1,10 @@
 import App from './App';
 import Avatar from './Avatar';
 import Card from './Card';
+import TextField from './TextField';
 import Checkbox from './Checkbox';
 import Radio from './Radio';
+import Select from './Select';
 import Overlay from './Overlay';
 import Grid from './Grid';
 import Btn from './Btn';
@@ -20,8 +22,10 @@ export default Object.assign({},
   App,
   Avatar,
   Card,
+  TextField,
   Checkbox,
   Radio,
+  Select,
   Overlay,
   Grid,
   Btn,

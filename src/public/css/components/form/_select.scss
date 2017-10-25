@@ -1,0 +1,14 @@
+//
+// Select
+//
+
+.#{$css-prefix}select {
+
+  &__selected-item {
+    &:not(:first-child) {
+      &:before {
+        content: ", ";
+      }
+    }
+  }
+}

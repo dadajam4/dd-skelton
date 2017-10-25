@@ -1,12 +1,12 @@
 <script>
-import inputMixin from '../../mixins/input';
+import Input from '../../mixins/input';
 
 
 
 export default {
   name: 'vn@-text-field',
 
-  mixins: [inputMixin],
+  mixins: [Input],
 
   props: {
     autofocus: Boolean,
@@ -23,11 +23,9 @@ export default {
     counter: [Boolean, Number, String],
     prefix: String,
     suffix: String,
-    sm: Boolean,
-    md: Boolean,
+    // sm: Boolean,
+    // md: Boolean,
 
-    // iconLeft: String,
-    // iconRight: String,
     suggest: {
       type: Array,
       default: () => [],
@@ -47,12 +45,13 @@ export default {
       return {
         [this.$options.name]: true,
 
-        [`${this.$options.name}--sm`]: this.sm,
-        [`${this.$options.name}--lg`]: this.lg,
-        [`${this.$options.name}--suffix`]: this.suffix,
-        [`${this.$options.name}--prefix`]: this.prefix,
-        [`${this.$options.name}--focused`]: this.isFocused,
-        [`${this.$options.name}--suggested`]: this.isShowSuggest,
+        'vc@field'           : true,
+        'vc@field--suffix'   : this.suffix,
+        'vc@field--prefix'   : this.prefix,
+        'vc@field--focused'  : this.focused,
+        'vc@field--suggested': this.suggested,
+        // 'vc@field--sm': this.sm,
+        // 'vc@field--lg': this.lg,
       }
     },
 
@@ -61,7 +60,7 @@ export default {
 
     inputClasses() {
       return {
-        [`${this.$options.name}--input`]: true,
+        'vc@field--input': true,
       }
     },
 
@@ -207,15 +206,17 @@ export default {
     genCounter() {
       return this.$createElement('div', {
         'class': {
-          [`${this.$options.name}__counter`]: true,
-          [`${this.$options.name}__counter--error`]: this.hasError,
+          'vc@text-field__counter': true,
+          'vc@text-field__counter--error': this.hasError,
+          // [`${this.$options.name}__counter`]: true,
+          // [`${this.$options.name}__counter--error`]: this.hasError,
         }
       }, this.count)
     },
 
     genFix(type) {
       return this.$createElement('span', {
-        class: `${this.$options.name}__${type}`,
+        class: `vc@field__${type}`,
       }, this[type])
     },
 
@@ -225,12 +226,12 @@ export default {
           name: 'vc@transition-slide-y',
         }
       }, [this.isShowSuggest ? this.$createElement('div', {
-        class: `${this.$options.name}__suggest`,
+        class: `vc@text-field__suggest`,
       }, this.suggests.map((suggest, index) => {
         return this.$createElement('button', {
           class: {
-            [`${this.$options.name}__suggest-item`]: true,
-            [`${this.$options.name}__suggest-item--focused`]: index === this.suggestIndex,
+            'vc@text-field__suggest-item': true,
+            'vc@text-field__suggest-item--focused': index === this.suggestIndex,
           },
           attrs: {
             'data-suggest-index': index,
@@ -250,7 +251,7 @@ export default {
 
       const nodeOptions = {
         class: {
-          [`${this.$options.name}__node`]: true,
+          'vc@field__node': true,
         },
         domProps: {
           autofocus: this.autofocus,
