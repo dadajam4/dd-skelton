@@ -50,7 +50,7 @@ export default {
     auto: Boolean,
     closeOnClick: {
       type: Boolean,
-      default: true
+      default: true,
     },
     closeOnContentClick: {
       type: Boolean,

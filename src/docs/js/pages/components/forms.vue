@@ -196,7 +196,7 @@
         <h2 class="vc@page__section-header">Selects</h2>
 
         <h3>モデルなし。option直書き</h3>
-        <vn@-select>
+        <vn@-select name="dummy-select-name">
 
           <vn@-option v-for="item in selectItems" :key="item.value" :value="item.value">{{item.content}}</vn@-option>
         </vn@-select>

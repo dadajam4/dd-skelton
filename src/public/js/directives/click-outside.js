@@ -1,4 +1,4 @@
-function directive (e, el, binding, v) {
+function directive(e, el, binding, v) {
   // The include element callbacks below can be expensive
   // so we should avoid calling them when we're not active.
   // Explicitly check for false to allow fallback compatibility
@@ -27,6 +27,7 @@ function directive (e, el, binding, v) {
   // Toggleable can return true if it wants to deactivate.
   // Note that, because we're in the capture phase, this callback will occure before
   // the bubbling click event on any outside elements.
+
   if (!clickedInEls(e, elements) && cb(e)) {
     // Delay setting toggleable inactive to avoid conflicting
     // with an outside click on any activator toggling our state.
@@ -34,7 +35,7 @@ function directive (e, el, binding, v) {
   }
 }
 
-function clickedInEls (e, elements) {
+function clickedInEls(e, elements) {
   // Get position of click
   const { clientX: x, clientY: y } = e
   // Loop over all included elements to see if click was in any of them
@@ -51,7 +52,6 @@ function clickedInEl (el, x, y) {
   //  so can't use target.)
   const b = el.getBoundingClientRect()
   // Check if the click was in the element's bounding rect
-
   return x >= b.left && x <= b.right && y >= b.top && y <= b.bottom
 }
 

@@ -74,8 +74,6 @@ export default {
   },
 
 
-  // watch: {
-  // },
 
   methods: {
     genInput() {
@@ -89,36 +87,27 @@ export default {
           'vc@field__custom-node': true,
         },
         domProps: {
-          type     : 'text',
+          // type     : 'text',
           autofocus: this.autofocus,
           disabled : this.disabled,
-          required : this.required,
-          value    : this.lazyValue,
+          // required : this.required,
+          // value    : this.lazyValue,
         },
         attrs: {
-          ...this.$attrs,
-          name    : this.name,
-          readonly: this.readonly,
+          // ...this.$attrs,
+          // name    : this.name,
+          // readonly: this.readonly,
           tabindex: this.tabindex,
           'aria-label': (!this.$attrs || !this.$attrs.id) && this.label, // Label `for` will be set if we have an id
         },
         on: Object.assign({}, listeners, {
           blur: this.blur,
-          input: this.onInput,
-          focus: this.focus,
-          // keydown: e => {
-          //   if (this.isShowSuggest) {
-          //     if (e.which === 13) {
-          //       this.settleSuggest(this.suggestSelected);
-          //     } else if (e.which === 38) {
-          //       this.shiftSuggest(-1);
-          //       e.preventDefault();
-          //     } else if (e.which === 9 || e.which === 40) {
-          //       this.shiftSuggest(1);
-          //       e.preventDefault();
-          //     }
-          //   }
+          // input: this.onInput,
+          // focus: e => {
+          //   this.menuIsActive = true;
+          //   return this.focus(e);
           // },
+          focus: this.focus,
         }),
         ref: 'input',
       };
@@ -138,6 +127,38 @@ export default {
       this.prefix && children.unshift(this.genFix('prefix'));
       this.suffix && children.push(this.genFix('suffix'));
 
+      // 選択しているinput値をhiddenで列挙
+    // selectedItems() {
+    //   if (!this.isMultiple) {
+    //     const item = this.createdItems.find(item => item.value === this.inputValue);
+    //     return item !== undefined ? [item] : [];
+    //   } else {
+    //     return this.createdItems.filter(item => this.inputValue.includes(item.value));
+    //   }
+    // },
+
+      if (this.name) {
+        if (!this.isMultiple) {
+          children.push(this.$createElement('input', {
+            domProps: {
+              type: 'hidden',
+              value: this.inputValue,
+              name: this.name,
+            },
+          }));
+        } else {
+          this.selectedItems.forEach(item => {
+            children.push(this.$createElement('input', {
+              domProps: {
+                type: 'hidden',
+                value: item.value,
+                name: `${this.name}[]`,
+              },
+            }));
+          });
+        }
+      }
+
       return children;
     },
 
@@ -148,9 +169,14 @@ export default {
         this.inputValue = selectValue;
       } else {
         const selectedValues = [];
+        const hasSelectValue = this.inputValue.includes(selectValue);
 
         this.createdItems.forEach(createdItem => {
-          if (createdItem.value === selectValue || this.inputValue.includes(createdItem.value)) {
+          if (createdItem.value === selectValue) {
+            if (!hasSelectValue) {
+              selectedValues.push(createdItem.value);
+            }
+          } else if (this.inputValue.includes(createdItem.value)) {
             selectedValues.push(createdItem.value);
           }
         });
@@ -158,8 +184,6 @@ export default {
         this.inputValue = selectedValues;
       }
     },
-
-    genList() {},
 
     genMenu() {
       const $tiles = [];
@@ -177,11 +201,14 @@ export default {
               },
             }),
           ]),
+          this.$createElement('vn@-list-tile-content', {
+          }, [item.content]),
         ];
 
         const $tile = this.$createElement('vn@-list-tile', {
           on: {
             click: e => {
+              // this.onClickItem(item);
               this.selectItem(item);
             },
           },
@@ -197,10 +224,11 @@ export default {
 
       const $menu = this.$createElement('vn@-menu', {
         props: {
-          activator: this.$el,
+          // activator: this.$el,
+          activator: this.$refs.input,
           offsetY: true,
-          nudgeTop: 26,
-          closeOnClick: false,
+          // nudgeTop: 26,
+          closeOnClick: true,
           closeOnContentClick: !this.isMultiple,
           disabled: this.disabled,
           // maxHeight: this.maxHeight,
