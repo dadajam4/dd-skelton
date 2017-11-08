@@ -2,15 +2,8 @@
 // Color
 //
 
-// .#{$css-prefix}text
 @each $key, $define in $text-colors {
   .#{$css-prefix}text--#{$key} {
     color: map-get($define, value);
   }
 }
-
-// @include typo-theme-keys() {
-//   .#{$tpl}cl--#{$_typo-theme-key} {
-//     @include color(typo-#{$_typo-theme-key}, true);
-//   }
-// }

@@ -1,0 +1,11 @@
+//
+// Theme
+//
+
+.#{$css-prefix}theme {
+  @each $theme in inverted, base {
+    &--#{$theme} {
+      @include theme-apply($theme);
+    }
+  }
+}

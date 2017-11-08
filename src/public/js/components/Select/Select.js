@@ -198,6 +198,7 @@ export default {
             this.$createElement('vn@-checkbox', {
               props: {
                 inputValue: value,
+                tabindex: -1,
               },
             }),
           ]),

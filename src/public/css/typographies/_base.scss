@@ -12,7 +12,7 @@ html {
 body {
   @include font-size(md, em);
   @include line-height(md);
-  @include color(text-base);
+  // @include theme-color(text);
   overflow-wrap: break-word;
 }
 

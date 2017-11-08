@@ -3,7 +3,11 @@
 //
 
 .#{$css-prefix}app {
+  @include theme-color();
+
+  position: relative;
   transition: padding get-duration(slowly) get-easing(drawer);
+  min-height: 100vh;
 
   &--header-fixed {
     padding-top: $toolbar-row-height;

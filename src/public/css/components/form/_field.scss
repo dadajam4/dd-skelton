@@ -25,7 +25,7 @@
 
   &__prefix,
   &__suffix {
-    @include color(text-secondary);
+    @include theme-color(text-secondary);
     align-items: center;
     display: inline-flex;
   }
@@ -59,11 +59,7 @@
   }
 
   @at-root .#{$css-prefix}input-group--error .#{$css-prefix}input-group__input {
-    border-color: get-color(context-danger);
-    @include color(text-danger);
-  }
-
-  @at-root .#{$css-prefix}input-group--error &__counter {
+    border-color: get-color(context-danger) !important;
     @include color(text-danger);
   }
 }

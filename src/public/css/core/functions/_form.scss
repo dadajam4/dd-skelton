@@ -58,7 +58,8 @@
   width: 100%;
   max-width: calc(100% - #{get-field(margin-horizontal) * 2});
   border-radius: get-field(radius);
-  border-color: get-color(form-divider);
+  // border-color: get-color(form-divider);
+  @include theme-color(form-divider);
   border-width: get-field(border-width);
   border-style: solid;
   // background: get-color(bg-base);
@@ -70,7 +71,7 @@
 }
 
 @mixin field-input-focused {
-  border-color: get-color(context-primary);
+  border-color: get-color(context-primary) !important;
 }
 
 @mixin hidden-selection-control-node() {

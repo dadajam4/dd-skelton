@@ -56,6 +56,7 @@ export default {
       drawer: {
         left: false,
       },
+      theme: null,
     }
   },
 

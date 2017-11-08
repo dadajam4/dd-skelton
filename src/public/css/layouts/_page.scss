@@ -3,15 +3,13 @@
 //
 
 .#{$css-prefix}page {
-  // @include container;
   padding-top: 3rem;
   padding-bottom: 6rem;
 
   &-header {
-    @include background-color(bg-light);
+    @include theme-color(background-light);
 
     &__inner {
-      // @include container;
       height: 7.25rem;
       padding: 3rem;
       display: flex;
@@ -26,14 +24,14 @@
       h6 {
         @include font-size(xxxl);
         @include font-weight(regular);
-        @include color(text-secondary);
+        @include theme-color(text-secondary);
       }
     }
     // @include container-pull;
   }
 
   &__introduction {
-    @include color(text-secondary);
+    @include theme-color(text-secondary);
   }
 
   &__section {
@@ -42,7 +40,7 @@
     &-header {
       @include font-size(xxl);
       @include font-weight(regular);
-      @include color(text-secondary);
+      @include theme-color(text-secondary);
       margin-bottom: 1rem;
 
       // &:first-letter {

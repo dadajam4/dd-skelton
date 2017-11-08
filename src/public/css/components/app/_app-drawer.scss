@@ -16,7 +16,7 @@
     bottom: -$my-overflow-size;
     width: $navigation-drawer-width;
     max-width: 100%;
-    background: #fff;
+    @include theme-color(background);
     box-shadow: 0 0 4px rgba(0, 0, 0, .4);
     transition: get-duration(slowly) get-easing(drawer);
   }

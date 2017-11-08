@@ -2,12 +2,12 @@
 // Color
 //
 
-@mixin color($key) {
-  color: get-color($key);
+@mixin color($key, $important: false) {
+  color: get-color($key) if($important, !important, null);
 }
 
-@mixin background-color($key) {
-  background-color: get-color($key);
+@mixin background-color($key, $important: false) {
+  background-color: get-color($key) if($important, !important, null);
 }
 
 $suitable-text-color-ammount: 70;
@@ -16,7 +16,7 @@ $suitable-text-color-ammount: 70;
   $bg-color,
   $ammount: $suitable-text-color-ammount,
   $dark: get-color(text-base),
-  $light: get-color(text-rev)
+  $light: get-color(text-base-reverse)
 ) {
   @if lightness($bg-color) <= $ammount {
     @return $light;
@@ -29,7 +29,7 @@ $suitable-text-color-ammount: 70;
   $bg-color,
   $ammount: $suitable-text-color-ammount,
   $dark: get-color(text-base),
-  $light: get-color(text-rev)
+  $light: get-color(text-base-reverse)
 ) {
   color: get-suitable-text-color(
     $bg-color: $bg-color,

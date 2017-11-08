@@ -1,11 +1,12 @@
-import appMixin from '../../mixins/app';
+import appMixin  from '../../mixins/app';
+import Themeable from '../../mixins/themeable';
 
 
 
 export default {
   name: 'vn@-app',
 
-  mixins: [appMixin],
+  mixins: [appMixin, Themeable],
 
   props: {
     id: {
@@ -21,14 +22,14 @@ export default {
 
   computed: {
     classes() {
-      return {
+      return Object.assign({
         [this.$options.name]: true,
         [`${this.$options.name}--header-fixed`]: this.headerFixed,
         [`${this.$options.name}--drawer-left-active`]: this.leftDrawerActive,
         [`${this.$options.name}--drawer-right-active`]: this.rightDrawerActive,
         [`${this.$options.name}--drawer-left-static`]: this.leftDrawerActive && this.leftDrawerStatic,
         [`${this.$options.name}--drawer-right-static`]: this.rightDrawerActive && this.rightDrawerStatic,
-      }
+      }, this.themeClasses)
     },
   },
 

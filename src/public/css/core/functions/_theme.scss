@@ -1,0 +1,107 @@
+//
+// Theme
+//
+
+@function get-theme-color($theme: base, $prop: null) {
+  @return map-get(get-theme($theme), $prop);
+}
+
+@mixin theme($key) {
+  $sel: ".#{$css-prefix}theme--#{$key}";
+
+  @if $key == base {
+    &,
+    #{$sel} &,
+    &#{$sel} {
+      @content;
+    }
+  } @else {
+    #{$sel} &,
+    &#{$sel} {
+      @content;
+    }
+  }
+}
+
+@mixin theme-text-color($theme) {
+  color: get-theme-color($theme, text);
+}
+
+@mixin theme-text-secondary-color($theme) {
+  color: get-theme-color($theme, text-secondary);
+}
+
+@mixin theme-link-color($theme) {
+  a {
+    color: get-theme-color($theme, link);
+
+    &:hover,
+    &:focus,
+    &:active {
+      color: get-theme-color($theme, link-hover);
+    }
+  }
+}
+
+@mixin theme-background-color($theme) {
+  background-color: get-theme-color($theme, background);
+}
+
+@mixin theme-background-light-color($theme) {
+  background-color: get-theme-color($theme, background-light);
+}
+
+@mixin theme-background-active-color($theme) {
+  background-color: get-theme-color($theme, background-active);
+}
+
+@mixin theme-border-color($theme) {
+  border-color: get-theme-color($theme, border);
+}
+
+@mixin theme-form-divider-color($theme) {
+  border-color: get-theme-color($theme, form-divider);
+}
+
+$theme-default-props: (
+  text,
+  link,
+  background,
+  border,
+);
+
+@mixin theme-apply($theme: base, $props: $theme-default-props) {
+  @if index($props, text) != null {
+    @include theme-text-color($theme);
+  }
+  @if index($props, text-secondary) != null {
+    @include theme-text-secondary-color($theme);
+  }
+  @if index($props, link) != null {
+    @include theme-link-color($theme);
+  }
+  @if index($props, background) != null {
+    @include theme-background-color($theme);
+  }
+  @if index($props, background-light) != null {
+    @include theme-background-light-color($theme);
+  }
+  @if index($props, background-active) != null {
+    @include theme-background-active-color($theme);
+  }
+  @if index($props, border) != null {
+    @include theme-border-color($theme);
+  }
+  @if index($props, form-divider) != null {
+    @include theme-form-divider-color($theme);
+  }
+}
+
+@mixin theme-color($props: $theme-default-props) {
+  @each $theme in inverted, base {
+    @include theme($theme) {
+      @include theme-apply($theme, $props);
+    }
+  }
+}
+

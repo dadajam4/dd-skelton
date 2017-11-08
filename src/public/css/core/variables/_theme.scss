@@ -1,0 +1,33 @@
+//
+// Theme
+//
+
+@function get-theme($key) {
+  @return map-get($theme, $key);
+}
+
+$theme: (
+  base: (
+    text: get-color(text-base),
+    text-secondary: get-color(text-secondary),
+    link: get-color(text-link),
+    link-hover: get-color(text-link-hover),
+    background: get-color(bg-base),
+    background-light: get-color(bg-light),
+    background-active: get-color(bg-active),
+    border: get-color(bg-base),
+    form-divider: get-color(form-divider),
+  ),
+
+  inverted: (
+    text: get-color(text-inverted),
+    text-secondary: get-color(text-secondary-inverted),
+    link: get-color(text-link-inverted),
+    link-hover: get-color(text-link-hover-inverted),
+    background: get-color(bg-inverted),
+    background-light: get-color(bg-light-inverted),
+    background-active: get-color(bg-active-inverted),
+    border: get-color(bg-inverted),
+    form-divider: get-color(form-divider-inverted),
+  ),
+);

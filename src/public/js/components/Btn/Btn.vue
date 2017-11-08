@@ -51,24 +51,24 @@ export default {
         [this.$options.name]: true,
 
         // size
-        [`${this.$options.name}--sm`]: this.sm,
-        [`${this.$options.name}--lg`]: this.lg,
+        'vc@btn--sm': this.sm,
+        'vc@btn--lg': this.lg,
 
         // outline
-        [`${this.$options.name}--flat`]: this.flat,
-        [`${this.$options.name}--outline`]: this.outline,
-        [`${this.$options.name}--block`]: this.block,
-        [`${this.$options.name}--icon`]: this.icon,
-        [`${this.$options.name}--left`]: this.left,
-        [`${this.$options.name}--right`]: this.right,
+        'vc@btn--flat': this.flat,
+        'vc@btn--outline': this.outline,
+        'vc@btn--block': this.block,
+        'vc@btn--icon': this.icon,
+        'vc@btn--left': this.left,
+        'vc@btn--right': this.right,
 
         // states
-        [`${this.$options.name}--loading`]: this.loading,
-        [`${this.$options.name}--disabled`]: this.disabled,
+        'vc@btn--loading': this.loading,
+        'vc@btn--disabled': this.disabled,
       }
 
       for (let key in Contextualable.props) {
-        classes[`${this.$options.name}--${key}`] = this[key] && !this.colorForText;
+        classes[`vc@btn--${key}`] = this[key] && !this.colorForText;
         classes[`vc@text--${key}`] = !this.disabled && this.colorForText && this[key];
       }
 

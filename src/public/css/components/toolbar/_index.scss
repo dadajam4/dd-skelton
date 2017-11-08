@@ -3,7 +3,7 @@
 //
 
 .#{$css-prefix}toolbar {
-  @include background-color(bg-base);
+  @include theme-color(background);
   transition: padding get-duration(slowly) get-easing(drawer);
   @include elevation(4);
 

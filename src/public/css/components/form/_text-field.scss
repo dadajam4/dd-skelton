@@ -11,8 +11,16 @@
   }
 
   &__counter {
-    @include color(text-secondary);
+    @include theme-color(text-secondary);
     margin-left: auto;
+
+    &--error {
+      @include color(text-danger);
+    }
+
+    @at-root .#{$css-prefix}input-group--error & {
+      @include color(text-danger);
+    }
   }
 
   &__suggest {
@@ -39,7 +47,7 @@
       &:hover,
       &:focus,
       &--focused {
-        background: get-color(bg-light);
+        @include theme-color(background-light);
       }
     }
   }

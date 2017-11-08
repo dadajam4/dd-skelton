@@ -6,7 +6,7 @@
   list-style-type: none;
   padding: get-space(xs) 0;
   transition: height .4s cubic-bezier(.4,0,.2,1);
-  @include background-color(bg-base);
+  @include theme-color(background);
 
   &__tile {
     // font-size: 16px;
@@ -22,23 +22,34 @@
     user-select: none;
     color: inherit;
 
+    @at-root a#{&} {
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        color: inherit;
+      }
+    }
+
     &--link {
       cursor: pointer;
       transition: get-duration(promptly);
-      @include color(text-base);
+      @include theme-color(text);
 
-      &:hover,
-      &:focus {
-        @include background-color(bg-light);
-      }
+      &:not(.#{$css-prefix}list__tile--active) {
+        &:hover {
+          @include theme-color(background-light);
+        }
 
-      &:active {
-        @include background-color(bg-active);
+        &:active {
+          @include theme-color(background-active);
+        }
       }
     }
 
     &--active {
-      @include color(text-primary);
+      @include theme-color(background-active);
+      // @include color(text-primary);
     }
 
     & > * {
@@ -78,7 +89,7 @@
     }
 
     &__sub-title {
-      @include color(text-secondary);
+      @include theme-color(text-secondary);
       @include font-size(sm);
       @include ellipsis;
     }
