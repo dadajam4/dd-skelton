@@ -33,8 +33,10 @@ time, mark, audio, video {
   border: 0;
   outline: 0;
   vertical-align: baseline;
-  font-weight: normal;
-  font-style: normal;
+  font-weight: inherit;
+  font-style: inherit;
+  // font-weight: normal;
+  // font-style: normal;
   background: transparent;
 }
 

@@ -1,7 +1,7 @@
-// import { VExpandTransition } from '../transitions'
-
 import Bootable from '../../mixins/bootable';
 import Toggleable from '../../mixins/toggleable';
+
+
 
 export default {
   name: 'vn@-list-group',
@@ -33,6 +33,7 @@ export default {
         this.listClose(this._uid);
       }
     },
+
     $route(to) {
       const isActive = this.matchRoute(to.path);
 
@@ -42,7 +43,7 @@ export default {
         }
         this.isActive = isActive;
       }
-    }
+    },
   },
 
   mounted() {
@@ -88,11 +89,11 @@ export default {
       ref: 'item',
     }, [this.$slots.item]);
 
-    // const transition = h(VExpandTransition, [group])
+    const transition = h('vn@-expand-transition', [group]);
 
     return h('div', { 'class': 'list--group__container' }, [
       item,
-      // transition,
+      transition,
     ]);
   }
 }

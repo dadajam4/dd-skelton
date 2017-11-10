@@ -28,7 +28,6 @@ $color: map-set($color, context-danger, #f66);
 
 // text colors
 $color: map-set($color, text-base, #34495e);
-$color: map-set($color, text-base-reverse, #fff);
 $color: map-set($color, text-muted, #7f8c8d);
 $color: map-set($color, text-link, get-color(context-primary));
 $color: map-set($color, text-link-hover, get-color(text-link));

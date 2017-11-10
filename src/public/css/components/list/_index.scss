@@ -3,6 +3,8 @@
 //
 
 .#{$css-prefix}list {
+  $my: #{&};
+
   list-style-type: none;
   padding: get-space(xs) 0;
   transition: height .4s cubic-bezier(.4,0,.2,1);
@@ -48,8 +50,20 @@
     }
 
     &--active {
-      @include theme-color(background-active);
-      // @include color(text-primary);
+      // @include theme-color(background-active);
+      @include color(text-primary, true);
+    }
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 1px;
+      opacity: 0;
+      width: 100%;
+      transition: get-transition(primary);
+      background-color: get-color(bg-active);
     }
 
     & > * {
@@ -72,15 +86,29 @@
       @include my-children;
       flex-shrink: 0;
       @include square(get-avatar(size-md));
+      min-width: 32px;
     }
 
     &__action {
       @include my-children;
       flex-shrink: 0;
+      min-width: 32px;
+      display: flex;
+      justify-content: flex-start;
+
+      .#{$css-prefix}icon {
+        transition: get-transition(primary);
+        display: inline-flex;
+      }
     }
 
     &__content {
       @include my-children;
+
+      & ~ #{$my}__tile__action:not(#{$my}__tile__action--stack) {
+        justify-content: flex-end;
+        margin-left: auto;
+      }
     }
 
     &__title {
@@ -92,6 +120,67 @@
       @include theme-color(text-secondary);
       @include font-size(sm);
       @include ellipsis;
+    }
+  }
+
+  &--group {
+    position: relative;
+    padding: 0;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 1px;
+      opacity: 0;
+      width: 100%;
+      background-color: get-color(bg-active);
+    }
+
+    &__header {
+      & > li:first-child {
+        cursor: pointer;
+
+        &:hover {
+          @include theme-color(background-light);
+        }
+      }
+
+      & + #{$my}--group {
+        &:after {
+          opacity: 1;
+        }
+      }
+
+      &--active {
+        #{$my}__tile {
+          &,
+          &:hover {
+            @include theme-color(background-active);
+          }
+          // background: $material-twelve-percent-dark
+          &:after {
+            opacity: 1;
+          }
+
+          #{$my}__tile__title {
+            color: inherit;
+          }
+
+          #{$my}__tile__action:last-of-type {
+            .#{$css-prefix}icon {
+              transform: rotate(-180deg);
+            }
+          }
+        }
+      }
+    }
+
+    #{$my}__tile--active {
+      #{$my}__tile__title {
+        // color: $material.text.link;
+      }
     }
   }
 }

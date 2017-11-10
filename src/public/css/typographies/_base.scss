@@ -10,8 +10,10 @@ html {
 // @fix
 //   for chrome bug
 body {
-  @include font-size(md, em);
+  @include font-size(base);
+  @include font-weight(regular);
   @include line-height(md);
+  @include font-family(base);
   // @include theme-color(text);
   overflow-wrap: break-word;
 }
@@ -20,6 +22,9 @@ body {
 body, input, textarea, select, button {
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+}
+
+input, textarea, select, button {
   font-family: inherit;
   font-size: inherit;
   color: inherit;

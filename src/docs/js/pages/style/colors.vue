@@ -15,6 +15,10 @@
       <section id="colors" class="vc@page__section vc@container" data-anchor-point>
         <h2 class="vc@page__section-header">Colors</h2>
 
+        <div v-for="theme in THEME_TABLE" :key="theme.name" :class="`vc@theme--${theme.name}`">
+          <h2>{{theme.name}}</h2>
+          <p v-for="color in theme.colors" :key="color" :class="`vc@text--${color}`">{{color}}</p>
+        </div>
       </section>
 
     </main>
@@ -22,6 +26,34 @@
 </template>
 
 <script>
+
+const COLORS = [
+  'base',
+  'muted',
+  'link',
+  'link-hover',
+  'primary',
+  'secondary',
+  'success',
+  'info',
+  'warning',
+  'danger',
+  'inverted',
+  'secondary-inverted',
+  'link-inverted',
+  'link-hover-inverted',
+];
+
+const THEME_TABLE = [
+  {name: 'base'    , colors: []},
+  {name: 'inverted', colors: []},
+];
+
+COLORS.forEach(color => {
+  const themeName = /inverted$/.test(color) ? 'inverted' : 'base';
+  THEME_TABLE.find(theme => theme.name === themeName).colors.push(color);
+});
+
 
 export default {
   head: {
@@ -34,6 +66,7 @@ export default {
 
   data() {
     return {
+      THEME_TABLE,
     }
   },
 }

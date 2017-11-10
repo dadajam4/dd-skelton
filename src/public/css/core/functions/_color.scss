@@ -16,7 +16,7 @@ $suitable-text-color-ammount: 70;
   $bg-color,
   $ammount: $suitable-text-color-ammount,
   $dark: get-color(text-base),
-  $light: get-color(text-base-reverse)
+  $light: get-color(text-inverted)
 ) {
   @if lightness($bg-color) <= $ammount {
     @return $light;
@@ -29,7 +29,7 @@ $suitable-text-color-ammount: 70;
   $bg-color,
   $ammount: $suitable-text-color-ammount,
   $dark: get-color(text-base),
-  $light: get-color(text-base-reverse)
+  $light: get-color(text-inverted)
 ) {
   color: get-suitable-text-color(
     $bg-color: $bg-color,

@@ -1,0 +1,88 @@
+//
+// Type
+//
+
+
+h1,
+.#{$css-prefix}display-4 {
+  @include font-size(xxxxxxl);
+  @include font-weight(regular);
+  @include line-height(xxs);
+  letter-spacing: -.04em;
+}
+
+h2,
+.#{$css-prefix}display-3 {
+  @include font-size(xxxxxl);
+  @include font-weight(regular);
+  @include line-height(xs);
+  letter-spacing: -.02em
+}
+
+h3,
+.#{$css-prefix}display-2 {
+  @include font-size(xxxxl);
+  @include font-weight(regular);
+  @include line-height(xs);
+  letter-spacing: normal;
+}
+
+h4,
+.#{$css-prefix}display-1 {
+  @include font-size(xxxl);
+  @include font-weight(regular);
+  @include line-height(heading);
+  letter-spacing: normal;
+}
+
+h5,
+.#{$css-prefix}headline {
+  @include font-size(xxl);
+  @include font-weight(regular);
+  @include line-height(heading);
+  letter-spacing: normal;
+}
+
+h6,
+.#{$css-prefix}title {
+  @include font-size(xl);
+  @include font-weight(regular);
+  @include line-height(heading);
+  letter-spacing: normal;
+}
+
+.#{$css-prefix}subheading {
+  @include font-size(lg);
+  @include font-weight(regular);
+  @include line-height(sm);
+  letter-spacing: normal;
+}
+
+.#{$css-prefix}body-2 {
+  @include font-size(md);
+  @include font-weight(bold);
+  @include line-height(md);
+  letter-spacing: normal;
+}
+
+.#{$css-prefix}body-1 {
+  @include font-size(md);
+  @include font-weight(regular);
+  @include line-height(md);
+  letter-spacing: normal;
+}
+
+.#{$css-prefix}caption {
+  @include font-size(sm);
+  @include font-weight(regular);
+  @include line-height(md);
+  letter-spacing: normal;
+}
+
+small,
+.#{$css-prefix}small {
+  @include font-size(sm);
+  @include font-weight(regular);
+  @include line-height(md);
+  letter-spacing: normal;
+}

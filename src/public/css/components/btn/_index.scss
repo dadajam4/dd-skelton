@@ -83,6 +83,9 @@
   &--block {
     display: flex;
     width: 100%;
+    // max-width: calc(100% - #{get-button(margin-horizontal) * 2});
+    margin-left: 0;
+    margin-right: 0;
   }
 
   // context color

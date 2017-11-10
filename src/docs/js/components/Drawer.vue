@@ -1,16 +1,51 @@
 <style lang="scss" scoped>
+.my-parent-name,
+.my-child-name {
+  &:first-letter {
+    text-transform: uppercase;
+  }
+}
 </style>
 
 <template>
   <vn@-app-drawer left static="desktop" v-model="isActive" ref="drawer">
-    <p>
+    <div>
       <router-link :to="{name: 'index'}">トップ</router-link>
-    </p>
-    <div v-for="parent, parentIndex in links" :key="parentIndex">
-      <h3>{{parent.name}}</h3>
-      <ul>
-        <li v-for="child, childIndex in parent.children">
-          <router-link :to="{name: child.name}">{{child._filename}}</router-link>
+    </div>
+    <vn@-list>
+      <vn@-list-group
+        v-for="parent, parentIndex in links"
+        :key="parentIndex"
+        :group="parent.path"
+      >
+        <vn@-list-tile slot="item">
+          <vn@-list-tile-action>
+            <vn@-icon>{{iconMap[parent.name]}}</vn@-icon>
+          </vn@-list-tile-action>
+          <vn@-list-tile-content>
+            <vn@-list-tile-title class="my-parent-name">{{parent.name}}</vn@-list-tile-title>
+          </vn@-list-tile-content>
+          <vn@-list-tile-action>
+            <vn@-icon>angle-down</vn@-icon>
+          </vn@-list-tile-action>
+        </vn@-list-tile>
+
+        <vn@-list-tile
+          v-for="child, childIndex in parent.children"
+          :key="childIndex"
+          :to="{name: child.name}"
+        >
+          <vn@-list-tile-action>&nbsp;</vn@-list-tile-action>
+          <vn@-list-tile-content>
+            <vn@-list-tile-title class="my-child-name">{{child._filename}}</vn@-list-tile-title>
+          </vn@-list-tile-content>
+          <vn@-list-tile-action>
+<!--
+            <v-icon>{{ subItem.action }}</v-icon>
+-->
+          </vn@-list-tile-action>
+        </vn@-list-tile>
+<!--
           <ul v-if="$route.name === child.name && child._anchors" style="padding-left:10px;">
             <li v-for="anchor in child._anchors" :key="anchor.id">
               <a
@@ -23,9 +58,9 @@
               >{{anchor.label}}</a>
             </li>
           </ul>
-        </li>
-      </ul>
-    </div>
+-->
+      </vn@-list-group>
+    </vn@-list>
   </vn@-app-drawer>
 
 </template>
@@ -42,13 +77,13 @@ level2.forEach(route => {
   if (!parent) {
     parent = {
       name    : route._parent,
+      path    : route.path.replace(/\/((?!\/).)*$/, ''),
       children: [],
     }
     links.push(parent);
   }
   parent.children.push(route);
 });
-
 
 
 
@@ -63,6 +98,10 @@ export default {
     return {
       isActive: this.value,
       links: links,
+      iconMap: {
+        components: 'th-large',
+        style     : 'columns',
+      },
     }
   },
 

@@ -41,7 +41,7 @@ export default {
   watch: {
     uid() {
       this.$children.filter(i => i.$options._componentTag === 'vn@-list-group').forEach(i => i.toggle(this.uid))
-    }
+    },
   },
 
   methods: {

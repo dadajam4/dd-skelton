@@ -2,6 +2,10 @@
 // Text
 //
 
+@mixin font-family($key) {
+  font-family: get-font-family($key);
+}
+
 @mixin font-size($key, $unit: null) {
   font-size: get-font-size($key, $unit);
 }
@@ -12,41 +16,6 @@
 
 @mixin font-weight($key) {
   font-weight: get-font-weight($key);
-}
-
-@mixin text-heading($key) {
-  $define: get-heading($key);
-  $weight: map-get($define, weight);
-  $size  : map-get($define, size  );
-  $height: map-get($define, height);
-
-  @if $weight != null {
-    @include font-weight($weight);
-  }
-
-  @if $size != null {
-    @include font-weight($size);
-  }
-
-  @if $height != null {
-    @include font-weight($height);
-  }
-}
-
-@mixin text-heading--lg() {
-  @include text-heading(lg);
-}
-
-@mixin text-heading--md() {
-  @include text-heading(md);
-}
-
-@mixin text-heading--sm() {
-  @include text-heading(sm);
-}
-
-@mixin text-heading--xs() {
-  @include text-heading(xs);
 }
 
 @mixin text-link--reset($cursor: pointer) {
