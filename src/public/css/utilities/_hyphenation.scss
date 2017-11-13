@@ -2,8 +2,8 @@
 // Hyphenation
 //
 
-@include mq-each() {
-  .#{$css-prefix}#{$mq-each-prefix}hyphenate {
-    @include hyphenate;
-  }
-}
+// @include mq-each() {
+//   .#{$css-prefix}#{$mq-each-prefix}hyphenate {
+//     @include hyphenate;
+//   }
+// }

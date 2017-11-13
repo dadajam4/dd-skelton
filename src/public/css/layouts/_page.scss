@@ -27,7 +27,6 @@
         @include theme-color(text-secondary);
       }
     }
-    // @include container-pull;
   }
 
   &__introduction {
@@ -46,6 +45,14 @@
       // &:first-letter {
       //   text-transform: uppercase;
       // }
+    }
+  }
+
+  &__container {
+    @include page-container;
+
+    &-pull {
+      @include page-container-pull;
     }
   }
 }

@@ -11,11 +11,13 @@ $color: ();
 // background colors
 $color: map-set($color, bg-base, #fff);
 $color: map-set($color, bg-light, #f8f8f8);
+$color: map-set($color, bg-darken, #424242);
 $color: map-set($color, bg-active, darken(#f8f8f8, 10%));
 $color: map-set($color, bg-muted, lighten(#7f8c8d, 20%));
 
 $color: map-set($color, bg-inverted, #424242);
 $color: map-set($color, bg-light-inverted, #212121);
+$color: map-set($color, bg-darken-inverted, #fff);
 $color: map-set($color, bg-active-inverted, #000);
 
 // context colors
@@ -28,6 +30,7 @@ $color: map-set($color, context-danger, #f66);
 
 // text colors
 $color: map-set($color, text-base, #34495e);
+$color: map-set($color, text-darken, #fff);
 $color: map-set($color, text-muted, #7f8c8d);
 $color: map-set($color, text-link, get-color(context-primary));
 $color: map-set($color, text-link-hover, get-color(text-link));
@@ -39,6 +42,7 @@ $color: map-set($color, text-warning, get-color(context-warning));
 $color: map-set($color, text-danger, get-color(context-danger));
 
 $color: map-set($color, text-inverted, #fff);
+$color: map-set($color, text-darken-inverted, get-color(text-base));
 $color: map-set($color, text-secondary-inverted, #fff);
 $color: map-set($color, text-link-inverted, #fff);
 $color: map-set($color, text-link-hover-inverted, #fff);

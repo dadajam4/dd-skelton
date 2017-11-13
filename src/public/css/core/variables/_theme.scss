@@ -9,11 +9,13 @@
 $theme: (
   base: (
     text: get-color(text-base),
+    text-darken: get-color(text-darken),
     text-secondary: get-color(text-secondary),
     link: get-color(text-link),
     link-hover: get-color(text-link-hover),
     background: get-color(bg-base),
     background-light: get-color(bg-light),
+    background-darken: get-color(bg-darken),
     background-active: get-color(bg-active),
     border: get-color(bg-base),
     form-divider: get-color(form-divider),
@@ -21,11 +23,13 @@ $theme: (
 
   inverted: (
     text: get-color(text-inverted),
+    text-darken: get-color(text-darken-inverted),
     text-secondary: get-color(text-secondary-inverted),
     link: get-color(text-link-inverted),
     link-hover: get-color(text-link-hover-inverted),
     background: get-color(bg-inverted),
     background-light: get-color(bg-light-inverted),
+    background-darken: get-color(bg-darken-inverted),
     background-active: get-color(bg-active-inverted),
     border: get-color(bg-inverted),
     form-divider: get-color(form-divider-inverted),

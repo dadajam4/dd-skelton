@@ -27,6 +27,10 @@
   color: get-theme-color($theme, text);
 }
 
+@mixin theme-text-darken-color($theme) {
+  color: get-theme-color($theme, text-darken);
+}
+
 @mixin theme-text-secondary-color($theme) {
   color: get-theme-color($theme, text-secondary);
 }
@@ -49,6 +53,10 @@
 
 @mixin theme-background-light-color($theme) {
   background-color: get-theme-color($theme, background-light);
+}
+
+@mixin theme-background-darken-color($theme) {
+  background-color: get-theme-color($theme, background-darken);
 }
 
 @mixin theme-background-active-color($theme) {
@@ -74,6 +82,9 @@ $theme-default-props: (
   @if index($props, text) != null {
     @include theme-text-color($theme);
   }
+  @if index($props, text-darken) != null {
+    @include theme-text-darken-color($theme);
+  }
   @if index($props, text-secondary) != null {
     @include theme-text-secondary-color($theme);
   }
@@ -85,6 +96,9 @@ $theme-default-props: (
   }
   @if index($props, background-light) != null {
     @include theme-background-light-color($theme);
+  }
+  @if index($props, background-darken) != null {
+    @include theme-background-darken-color($theme);
   }
   @if index($props, background-active) != null {
     @include theme-background-active-color($theme);

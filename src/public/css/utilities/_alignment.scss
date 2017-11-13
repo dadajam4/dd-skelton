@@ -2,12 +2,12 @@
 // Alignment
 //
 
-@include mq-each() {
-  .#{$css-prefix}#{$mq-each-prefix}align--absolute-center {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    align-items: center;
-    margin: auto;
-  }
-}
+// @include mq-each() {
+//   .#{$css-prefix}#{$mq-each-prefix}align--absolute-center {
+//     display: flex;
+//     justify-content: center;
+//     align-content: center;
+//     align-items: center;
+//     margin: auto;
+//   }
+// }

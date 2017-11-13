@@ -132,26 +132,26 @@
 
 
 
-// //
-// // blockquote
-// //
-// blockquote {
-//   margin-bottom: $spacing-md;
-//   border-left: solid $spacing-xxs $color-brand-gray-light;
-//   padding: $spacing-xxs $spacing-md;
-//   padding-right: 0;
-//   @include font-size(lg);
-//   @include line-height(sm);
+//
+// blockquote
+//
+.#{$css-prefix}blockquote,
+blockquote {
+  @include font-size(lg);
+  margin-bottom: get-space(md);
+  padding: get-space(sm) 0 get-space(sm) get-space(sm);
+  border-left: solid 5px get-color(context-primary);
+  @include font-weight(regular);
 
-//   footer {
-//     font-size: 80%;
-//     color: $color-brand-muted;
-//     @include line-height(md);
-//     &:before {
-//       content: '\2014 \00A0';
-//     }
-//   }
-// }
+  // footer {
+  //   font-size: 80%;
+  //   color: $color-brand-muted;
+  //   @include line-height(md);
+  //   &:before {
+  //     content: '\2014 \00A0';
+  //   }
+  // }
+}
 
 // .#{$tpl}blockquote--reverse {
 //   border-left: 0;
@@ -173,17 +173,49 @@
 
 
 
-// //
-// // Paragraphs
-// //
-// @mixin sel-para {
-//   p, .#{$tpl}para { @content; }
-// }
+//
+// Paragraphs
+//
+.#{$css-prefix}paragraph,
+p {
+  margin-bottom: get-space(md);
+}
 
-// .#{$tpl}para {
-//   margin-bottom: $spacing-sm;
+.#{$css-prefix}code,
+code,
+.#{$css-prefix}kbd,
+kbd {
+  display: inline-block;
+  border-radius: 3px;
+  white-space: pre-wrap;
+  font-size: 85%;
+  font-weight: 900;
 
-//   &:last-child {
-//     margin-bottom: 0;
-//   }
-// }
+  &:after,
+  &:before {
+    content: "\00a0";
+    letter-spacing: -1px;
+  }
+}
+
+.#{$css-prefix}code,
+code {
+  @include theme-color(background-light);
+  color: #bd4147;
+  @include elevation(1);
+}
+
+.#{$css-prefix}kbd,
+kbd {
+  @include theme-color(text-darken background-darken);
+}
+
+.#{$css-prefix}text--italic,
+i,
+cite,
+em,
+var,
+address,
+dfn {
+  font-style: italic;
+}

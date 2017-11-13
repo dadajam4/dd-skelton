@@ -3,7 +3,7 @@
 
 <template>
   <div>
-    <main class="dd-container">
+    <main class="dd-page__container">
       <h1>dd-skelton</h1>
       <p class="dd-text-caption">
         Webコンテンツ制作の際の雛形です。基本的なエレメントのcssマークアップと、vueコンポーネントを実装済みです。

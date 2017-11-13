@@ -40,7 +40,7 @@ $mq-each-prefix: null !global;
   } @else {
     $max: map-get($define, max);
     @if $max == null {
-      @warn #{"メディアクエリキー `" + $target + "` は最大値のため `mq-max` を利用できません。"}
+      @content;
     } @else {
       @media #{$media-query-target} and (max-width: #{$max}px) {
         @content;
@@ -57,7 +57,7 @@ $mq-each-prefix: null !global;
   } @else {
     $min: map-get($define, min);
     @if $min == null {
-      @warn #{"メディアクエリキー `" + $target + "` は最小値のため `mq-min` を利用できません。"}
+      @content;
     } @else {
       @media #{$media-query-target} and (min-width: #{$min}px) {
         @content;
@@ -66,24 +66,42 @@ $mq-each-prefix: null !global;
   }
 }
 
-// each targets
-// default: group only
-@mixin mq-each($type: group) {
+// // each targets
+// // default: group only
+// @mixin mq-targets($type: group) {
+//   $mq-each-target: null !global;
+//   $mq-each-prefix: null !global;
+
+//   @if $type == all or $type == group {
+//     @each $target, $define in $media-query-groups {
+//       $mq-each-target: $target !global;
+//       $mq-each-prefix: #{$target + "-"} !global;
+//       @include mq($target) { @content; }
+//     }
+//   }
+
+//   @if $type == all or $type == key {
+//     @each $target, $define in $media-query-breakpoints {
+//       $mq-each-target: $target !global;
+//       $mq-each-prefix: #{$target + "-"} !global;
+//       @include mq($target) { @content; }
+//     }
+//   }
+// }
+
+@mixin mq-each($vec: min) {
   $mq-each-target: null !global;
   $mq-each-prefix: null !global;
 
-  @if $type == all or $type == group {
-    @each $target, $define in $media-query-groups {
-      $mq-each-target: $target !global;
-      $mq-each-prefix: #{$target + "-"} !global;
-      @include mq($target) { @content; }
-    }
-  }
+  @each $target, $define in $media-query-breakpoints {
+    $mq-each-target: $target !global;
+    $mq-each-prefix: #{$target + "-"} !global;
 
-  @if $type == all or $type == key {
-    @each $target, $define in $media-query-breakpoints {
-      $mq-each-target: $target !global;
-      $mq-each-prefix: #{$target + "-"} !global;
+    @if $vec == min {
+      @include mq-min($target) { @content; }
+    } @else if $vec == max {
+      @include mq-max($target) { @content; }
+    } @else {
       @include mq($target) { @content; }
     }
   }

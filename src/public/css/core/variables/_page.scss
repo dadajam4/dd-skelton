@@ -1,0 +1,16 @@
+//
+// Page
+//
+
+$page-container-padding: 16px;
+
+@function get-container-size($key) {
+  @return map-get($page-container-size, $key);
+}
+
+$page-container-size: ();
+$page-container-size: map-set($page-container-size, xs, 100%  );
+$page-container-size: map-set($page-container-size, sm, 100%  );
+$page-container-size: map-set($page-container-size, md, 100%  );
+$page-container-size: map-set($page-container-size, lg, 992px );
+$page-container-size: map-set($page-container-size, xl, 1200px);

@@ -2,8 +2,8 @@
 // Float
 //
 
-@include mq-each() {
-  .#{$css-prefix}#{$mq-each-prefix}clearfix { @include clearfix; }
-  .#{$css-prefix}#{$mq-each-prefix}float--left { float: left; }
-  .#{$css-prefix}#{$mq-each-prefix}float--right { float: right; }
-}
+// @include mq-each() {
+//   .#{$css-prefix}#{$mq-each-prefix}clearfix { @include clearfix; }
+//   .#{$css-prefix}#{$mq-each-prefix}float--left { float: left; }
+//   .#{$css-prefix}#{$mq-each-prefix}float--right { float: right; }
+// }

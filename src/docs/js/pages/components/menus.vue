@@ -4,15 +4,15 @@
 <template>
   <div>
     <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@container">Menus</h1>
+      <h1 class="vc@page-header__inner vc@page__container">Menus</h1>
     </header>
 
     <main class="vc@page">
-      <div class="vc@container">
+      <div class="vc@page__container">
         <p class="vc@page__introduction">Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span></p>
       </div>
 
-      <section id="basic" class="vc@page__section vc@container" data-anchor-point>
+      <section id="basic" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Basic</h2>
 
         <vn@-menu offset-y>
@@ -25,7 +25,7 @@
         </vn@-menu>
       </section>
 
-      <section id="absolute-position" class="vc@page__section vc@container" data-anchor-point>
+      <section id="absolute-position" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Absolute position</h2>
 
         <vn@-menu offset-y absolute full-width>
@@ -38,7 +38,7 @@
         </vn@-menu>
       </section>
 
-      <section id="absolute-position-without-activator" class="vc@page__section vc@container" data-anchor-point>
+      <section id="absolute-position-without-activator" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Absolute position without activator</h2>
         <vn@-card class="portrait" img="assets/img/portrait/portrait-2.jpg" height="450px" @contextmenu="showMenu1"></vn@-card>
         <vn@-menu offset-y absolute v-model="menu1.show" :position-x="menu1.x" :position-y="menu1.y">
@@ -50,7 +50,7 @@
         </vn@-menu>
       </section>
 
-      <section id="hover" class="vc@page__section vc@container" data-anchor-point>
+      <section id="hover" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Hover</h2>
 
         <vn@-menu offset-y open-on-hover>
@@ -63,7 +63,7 @@
         </vn@-menu>
       </section>
 
-      <section id="menu" class="vc@page__section vc@container" data-anchor-point>
+      <section id="menu" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Menu</h2>
 
         <vn@-card>
@@ -96,7 +96,7 @@
         </vn@-card>
       </section>
 
-      <section id="custom-transitions" class="vc@page__section vc@container" data-anchor-point>
+      <section id="custom-transitions" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Custom transitions</h2>
 
         <div class="text-xs-center">
@@ -146,7 +146,7 @@
         </div>
       </section>
 
-      <section id="popover-menu" class="vc@page__section vc@container" data-anchor-point>
+      <section id="popover-menu" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Popover menu</h2>
 
         <vn@-menu offset-x :close-on-content-click="false" :nudge-width="200">

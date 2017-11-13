@@ -2,16 +2,16 @@
 // Position
 //
 
-@include mq-each() {
-  .#{$css-prefix}#{$mq-each-prefix}is-static {
-    position: static!important;
-  }
+// @include mq-each() {
+//   .#{$css-prefix}#{$mq-each-prefix}is-static {
+//     position: static!important;
+//   }
 
-  .#{$css-prefix}#{$mq-each-prefix}is-relative {
-    position: relative!important;
-  }
+//   .#{$css-prefix}#{$mq-each-prefix}is-relative {
+//     position: relative!important;
+//   }
 
-  .#{$css-prefix}#{$mq-each-prefix}is-absolute {
-    position: absolute!important;
-  }
-}
+//   .#{$css-prefix}#{$mq-each-prefix}is-absolute {
+//     position: absolute!important;
+//   }
+// }

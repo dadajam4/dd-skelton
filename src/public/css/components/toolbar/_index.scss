@@ -13,7 +13,7 @@
   }
 
   &__title {
-    margin-left: $container-padding;
+    margin-left: $page-container-padding;
     @include font-weight(regular);
     @include font-size(lg);
     @include ellipsis;
@@ -26,11 +26,11 @@
 
     & > * {
       &:first-child {
-        margin-left: $container-padding / 2;
+        margin-left: $page-container-padding / 2;
       }
 
       &:last-child {
-        margin-right: $container-padding / 2;
+        margin-right: $page-container-padding / 2;
       }
     }
   }
@@ -41,7 +41,7 @@
     color: inherit;
     padding: 0 .6em;
     border-bottom: solid 2px transparent;
-    // margin: $container-padding;
+
     &--active,
     &:hover,
     &:focus {

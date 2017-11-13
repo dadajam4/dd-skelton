@@ -1,0 +1,18 @@
+//
+// Grid
+//
+
+@function get-grid($key) {
+  @return map-get($grid, $key);
+}
+
+$grid: ();
+$grid: map-set($grid, columns, 12);
+$grid: map-set($grid, gutter, 8px);
+$grid: map-set($grid, gutters, (
+  xs: get-grid(gutter) / 4,
+  sm: get-grid(gutter) / 2,
+  md: get-grid(gutter),
+  lg: get-grid(gutter) * 2,
+  xl: get-grid(gutter) * 3,
+));

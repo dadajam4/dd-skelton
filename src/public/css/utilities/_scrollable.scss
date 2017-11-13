@@ -2,16 +2,16 @@
 // Scrollable
 //
 
-@include mq-each() {
-  .#{$css-prefix}#{$mq-each-prefix}scrollable {
-    @include scrollable;
-  }
+// @include mq-each() {
+//   .#{$css-prefix}#{$mq-each-prefix}scrollable {
+//     @include scrollable;
+//   }
 
-  .#{$css-prefix}#{$mq-each-prefix}scrollable--x {
-    @include scrollable--x;
-  }
+//   .#{$css-prefix}#{$mq-each-prefix}scrollable--x {
+//     @include scrollable--x;
+//   }
 
-  .#{$css-prefix}#{$mq-each-prefix}scrollable--y {
-    @include scrollable--y;
-  }
-}
+//   .#{$css-prefix}#{$mq-each-prefix}scrollable--y {
+//     @include scrollable--y;
+//   }
+// }

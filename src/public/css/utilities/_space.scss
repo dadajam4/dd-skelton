@@ -2,27 +2,27 @@
 // Space
 //
 
-$properties: (m: margin, p: padding);
-$directions: (
-  t: (top),
-  r: (right),
-  b: (bottom),
-  l: (left),
-  v: (top, bottom),
-  h: (left, right),
-  a: (top, right, bottom, left),
-);
+// $properties: (m: margin, p: padding);
+// $directions: (
+//   t: (top),
+//   r: (right),
+//   b: (bottom),
+//   l: (left),
+//   v: (top, bottom),
+//   h: (left, right),
+//   a: (top, right, bottom, left),
+// );
 
-@include mq-each() {
-  @each $property-cel, $property-name in $properties {
-    @each $direction-cel, $direction-targets in $directions {
-      @each $size-cel, $size-val in $space {
-        .#{$css-prefix}#{$mq-each-prefix}#{$property-cel}-#{$direction-cel}--#{$size-cel} {
-          @each $direction-name in $direction-targets {
-            #{$property-name}-#{$direction-name}: $size-val!important;
-          }
-        }
-      }
-    }
-  }
-}
+// @include mq-each() {
+//   @each $property-cel, $property-name in $properties {
+//     @each $direction-cel, $direction-targets in $directions {
+//       @each $size-cel, $size-val in $space {
+//         .#{$css-prefix}#{$mq-each-prefix}#{$property-cel}-#{$direction-cel}--#{$size-cel} {
+//           @each $direction-name in $direction-targets {
+//             #{$property-name}-#{$direction-name}: $size-val!important;
+//           }
+//         }
+//       }
+//     }
+//   }
+// }

@@ -12,7 +12,7 @@ $button: map-set($button, radius, get-border-radius(field));
 $button: map-set($button, border-width, 1px);
 $button: map-set($button, margin-vertical, 6px);
 $button: map-set($button, margin-horizontal, 8px);
-$button: map-set($button, padding-horizontal, $container-padding);
+$button: map-set($button, padding-horizontal, $page-container-padding);
 
 $button: map-set($button, height-sm, 28px);
 $button: map-set($button, height-md, 36px);

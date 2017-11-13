@@ -4,11 +4,11 @@
 <template>
   <div>
     <header class="vc@page-header">
-      <h1 class="vc@page-header__inner vc@container">Forms</h1>
+      <h1 class="vc@page-header__inner vc@page__container">Forms</h1>
     </header>
 
     <main class="vc@page">
-      <div class="vc@container">
+      <div class="vc@page__container">
         <p class="vc@page__introduction">Use our iOS integration to style your native iOS applications to be consistent with the <span>hogehoge</span></p>
       </div>
 
@@ -28,7 +28,7 @@
       </section>
 -->
 
-      <section id="textfields" class="vc@page__section vc@container" data-anchor-point>
+      <section id="textfields" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Text fields</h2>
 
         <vn@-text-field
@@ -115,7 +115,7 @@
         </vn@-text-field>
       </section>
 
-      <section id="checkboxes" class="vc@page__section vc@container" data-anchor-point>
+      <section id="checkboxes" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Checkboxes</h2>
         <vn@-checkbox
           label="modelなし"
@@ -161,7 +161,7 @@
         <vn@-checkbox value disabled label="off disabled"></vn@-checkbox>
       </section>
 
-      <section id="radios" class="vc@page__section vc@container" data-anchor-point>
+      <section id="radios" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Radios</h2>
 
         <h3>モデル無し</h3>
@@ -192,7 +192,7 @@
         </vn@-radio-group>
       </section>
 
-      <section id="selects" class="vc@page__section vc@container" data-anchor-point>
+      <section id="selects" class="vc@page__section vc@page__container" data-anchor-point>
         <h2 class="vc@page__section-header">Selects</h2>
 
         <h3>モデルなし。option直書き</h3>
