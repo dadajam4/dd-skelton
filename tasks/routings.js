@@ -35,12 +35,14 @@ function routingsTask(task, params = {}) {
         const filename       = define.filename.replace(/\.vue$/, '');
         const dirName        = filename === 'index' ? define.dir : path.join(define.dir, filename);
         const relativeBase   = dirName.replace(new RegExp('^' + params.src.replace(/\//g, '\/') + '\/?'), '');
-        const dirNames       = relativeBase.split('/');
+        const dirNamesTmp    = relativeBase.split('/');
+        const dirNames       = dirNamesTmp.length === 1 && !dirNamesTmp[0] ? [] : dirNamesTmp;
         const relativeLevel  = dirNames[0] ? dirNames.length : 0;
-        const name           = dirNames.reduce((prev, current) => prev + '-' + current) || 'index';
+        const name           = dirNames.length ? dirNames.reduce((prev, current) => prev + '-' + current) : 'index';
         const myPath         = '/' + dirNames.join('/');
         const componentPath  = define.filepath.replace(new RegExp('^' + params.importRoot.replace(/\//g, '\/')), '').replace(/^\//, '').replace(/\.vue$/, '');
-        const parent         = relativeLevel > 0 ? name.replace(/-((?!-).)+$/, '') : null;
+        // const parent         = relativeLevel > 0 ? name.replace(/-((?!-).)+$/, '') : null;
+        const parent         = dirNames.length ? dirNames[dirNames.length - 2] || 'index' : null;
         const source         = fs.readFileSync(define.filepath, 'utf-8');
         const templateSource = source.match(/<template>([\s\S]*?)<\/template>/)[0];
         const anchorMatchs   = templateSource.match(/<(.*?)data-anchor-point(.*?)>/g);

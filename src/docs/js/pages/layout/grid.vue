@@ -16,34 +16,34 @@
         <h2 class="vc@page__section-header">Grid</h2>
 
         <vn@-container grid-list-md text-xs-center>
-          <vn@-layout row wrap>
+          <vn@-layout row wrap text--center>
             <vn@-flex xs12>
-              <vn@-card>
+              <vn@-card class="vc@primary">
                 <vn@-card-text>12</vn@-card-text>
               </vn@-card>
             </vn@-flex>
             <vn@-flex xs6 v-for="i in 2" :key="i">
-              <vn@-card>
+              <vn@-card class="vc@secondary">
                 <vn@-card-text>6</vn@-card-text>
               </vn@-card>
             </vn@-flex>
             <vn@-flex xs4 v-for="i in 3" :key="i">
-              <vn@-card>
+              <vn@-card class="vc@primary">
                 <vn@-card-text>4</vn@-card-text>
               </vn@-card>
             </vn@-flex>
             <vn@-flex xs3 v-for="i in 4" :key="i">
-              <vn@-card>
+              <vn@-card class="vc@secondary">
                 <vn@-card-text>3</vn@-card-text>
               </vn@-card>
             </vn@-flex>
             <vn@-flex xs2 v-for="i in 6" :key="i">
-              <vn@-card>
+              <vn@-card class="vc@primary">
                 <vn@-card-text>2</vn@-card-text>
               </vn@-card>
             </vn@-flex>
             <vn@-flex xs1 v-for="i in 12" :key="i">
-              <vn@-card>
+              <vn@-card class="vc@secondary">
                 <vn@-card-text>1</vn@-card-text>
               </vn@-card>
             </vn@-flex>
@@ -55,24 +55,24 @@
         <h2 class="vc@page__section-header">Offset</h2>
 
         <vn@-container grid-list-xl text-xs-center>
-          <vn@-layout row wrap>
+          <vn@-layout row wrap text--center>
             <vn@-flex xs10 offset-xs1>
-              <vn@-card dark color="purple">
+              <vn@-card dark class="vc@primary">
                 <vn@-card-text>xs10 offset-xs1</vn@-card-text>
               </vn@-card>
             </vn@-flex>
             <vn@-flex xs7 offset-xs0 offset-md2 offset-lg5>
-              <vn@-card dark color="secondary">
+              <vn@-card dark class="vc@success">
                 <vn@-card-text>xs7 offset-xs5</vn@-card-text>
               </vn@-card>
             </vn@-flex>
             <vn@-flex xs12 sm5 md2>
-              <vn@-card dark color="primary">
+              <vn@-card dark class="vc@info">
                 <vn@-card-text>xs5</vn@-card-text>
               </vn@-card>
             </vn@-flex>
             <vn@-flex xs12 sm5 md3 offset-xs2 offset-lg2>
-              <vn@-card dark color="green">
+              <vn@-card dark class="vc@warning">
                 <vn@-card-text>xs5 offset-xs2</vn@-card-text>
               </vn@-card>
             </vn@-flex>

@@ -108,9 +108,15 @@ export default {
     checkStatic() {
       this.isStatic = this.mq[this.static];
     },
+
+    clearAppState() {
+      this.isActive = false;
+      // this.$emit('input', isActive);
+    },
   },
 
   created() {
+    this.$_app.uses[`${this.vec}Drawer`] = true;
     this.$emit('input', this.isActive);
 
     if (this.static) {
@@ -124,6 +130,11 @@ export default {
 
   beforeDestroy() {
     if (this.unWatchMq) this.unWatchMq();
+    this.clearAppState();
+  },
+
+  destroyed() {
+    this.$_app.uses[`${this.vec}Drawer`] = false;
   },
 }
 </script>

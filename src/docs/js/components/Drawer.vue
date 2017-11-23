@@ -13,53 +13,68 @@
       <router-link :to="{name: 'index'}">トップ</router-link>
     </div>
     <vn@-list>
-      <vn@-list-group
-        v-for="parent, parentIndex in links"
-        :key="parentIndex"
-        :group="parent.path"
-      >
-        <vn@-list-tile slot="item">
+      <template v-for="parent, parentIndex in links">
+        <vn@-list-tile
+          v-if="!parent.children"
+          :key="parentIndex"
+          :to="{name: parent.name}"
+        >
           <vn@-list-tile-action>
             <vn@-icon>{{iconMap[parent.name]}}</vn@-icon>
           </vn@-list-tile-action>
           <vn@-list-tile-content>
             <vn@-list-tile-title class="my-parent-name">{{parent.name}}</vn@-list-tile-title>
           </vn@-list-tile-content>
-          <vn@-list-tile-action>
-            <vn@-icon>angle-down</vn@-icon>
-          </vn@-list-tile-action>
         </vn@-list-tile>
 
-        <vn@-list-tile
-          v-for="child, childIndex in parent.children"
-          :key="childIndex"
-          :to="{name: child.name}"
+        <vn@-list-group
+          v-if="parent.children"
+          :key="parentIndex"
+          :group="parent.path"
         >
-          <vn@-list-tile-action>&nbsp;</vn@-list-tile-action>
-          <vn@-list-tile-content>
-            <vn@-list-tile-title class="my-child-name">{{child._filename}}</vn@-list-tile-title>
-          </vn@-list-tile-content>
-          <vn@-list-tile-action>
-<!--
-            <v-icon>{{ subItem.action }}</v-icon>
--->
-          </vn@-list-tile-action>
-        </vn@-list-tile>
-<!--
-          <ul v-if="$route.name === child.name && child._anchors" style="padding-left:10px;">
-            <li v-for="anchor in child._anchors" :key="anchor.id">
-              <a
-                :href="`${child.path}/#${anchor.id}`"
-                v-scroll-to="{
-                  element: `#${anchor.id}`,
-                  offset: -30,
-                  onDone: () => { onDoneScroll(`${child.path}/#${anchor.id}`) },
-                }"
-              >{{anchor.label}}</a>
-            </li>
-          </ul>
--->
-      </vn@-list-group>
+          <vn@-list-tile slot="item">
+            <vn@-list-tile-action>
+              <vn@-icon>{{iconMap[parent.name]}}</vn@-icon>
+            </vn@-list-tile-action>
+            <vn@-list-tile-content>
+              <vn@-list-tile-title class="my-parent-name">{{parent.name}}</vn@-list-tile-title>
+            </vn@-list-tile-content>
+            <vn@-list-tile-action>
+              <vn@-icon>angle-down</vn@-icon>
+            </vn@-list-tile-action>
+          </vn@-list-tile>
+
+          <vn@-list-tile
+            v-for="child, childIndex in parent.children"
+            :key="childIndex"
+            :to="{name: child.name}"
+          >
+            <vn@-list-tile-action>&nbsp;</vn@-list-tile-action>
+            <vn@-list-tile-content>
+              <vn@-list-tile-title class="my-child-name">{{child._filename}}</vn@-list-tile-title>
+            </vn@-list-tile-content>
+            <vn@-list-tile-action>
+  <!--
+              <v-icon>{{ subItem.action }}</v-icon>
+  -->
+            </vn@-list-tile-action>
+          </vn@-list-tile>
+  <!--
+            <ul v-if="$route.name === child.name && child._anchors" style="padding-left:10px;">
+              <li v-for="anchor in child._anchors" :key="anchor.id">
+                <a
+                  :href="`${child.path}/#${anchor.id}`"
+                  v-scroll-to="{
+                    element: `#${anchor.id}`,
+                    offset: -30,
+                    onDone: () => { onDoneScroll(`${child.path}/#${anchor.id}`) },
+                  }"
+                >{{anchor.label}}</a>
+              </li>
+            </ul>
+  -->
+        </vn@-list-group>
+      </template>
     </vn@-list>
   </vn@-app-drawer>
 
@@ -69,8 +84,16 @@
 import routings from '.tmp/docs-routings';
 
 
-
 const links = [];
+const level1 = routings.routes.filter(route => route._level === 1);
+level1.forEach(route => {
+  links.push({
+    name    : route.name,
+    path    : route.path,
+    children: null,
+  });
+});
+
 const level2 = routings.routes.filter(route => route._level === 2);
 level2.forEach(route => {
   let parent = links.find(link => link.name === route._parent);
@@ -99,7 +122,9 @@ export default {
       isActive: this.value,
       links: links,
       iconMap: {
+        'getting-started': 'cube',
         components: 'th-large',
+        layout    : 'th-list',
         style     : 'columns',
       },
     }

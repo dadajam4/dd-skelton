@@ -46,13 +46,23 @@ export default {
     updateAppState() {
       this.$_app.headerFixed = this.fixed;
     },
+
+    clearAppState() {
+      this.$_app.headerFixed = false;
+    },
   },
 
   created() {
+    this.$_app.uses.header = true;
     this.updateAppState();
   },
 
   beforeDestroy() {
+    this.clearAppState();
+  },
+
+  destroyed() {
+    this.$_app.uses.header = false;
   },
 }
 </script>

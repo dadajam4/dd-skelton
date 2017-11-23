@@ -23,17 +23,32 @@
   }
 }
 
+.fade {
+  $my-ammount: 30px;
+
+  &-enter-active, &-leave-active {
+    // transition: opacity 1s;
+  }
+
+  &-enter, &-leave-to {
+    position: absolute;
+    opacity: 0;
+  }
+}
+
 </style>
 
 <template>
-  <vn@-app>
-    <app-header @click-toggle-drawer="requestToggleDrawer" />
+  <vn@-app v-if="routeReady">
+    <transition name="fade">
+      <app-header v-if="hasNavigation" @click-toggle-drawer="requestToggleDrawer" />
+    </transition>
 
     <transition :name="routerTransitionName">
       <router-view class="my-router-view"></router-view>
     </transition>
 
-    <app-drawer v-model="drawer.left" ref="drawerLeft" />
+    <app-drawer v-if="hasNavigation" v-model="drawer.left" ref="drawerLeft" />
 
   </vn@-app>
 </template>
@@ -57,10 +72,23 @@ export default {
         left: false,
       },
       theme: null,
+      isTop: false,
+      routeReady: false,
     }
   },
 
+  computed: {
+    hasNavigation() { return this.routeReady && !this.isTop },
+  },
 
+
+  watch: {
+    '$route'(to, from) {
+      this.isTop = to.name === 'index';
+      this.routerTransitionName = to.name === 'index' || from.name === 'index' ? 'fade' : 'slide';
+      this.routeReady = true;
+    },
+  },
 
   methods: {
     requestToggleDrawer() {

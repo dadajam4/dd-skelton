@@ -1,0 +1,11 @@
+//
+// Color
+//
+
+@each $key, $define in $context-colors {
+  .#{$css-prefix}#{$key} {
+    $my-background-color: map-get($define, value);
+    background-color: $my-background-color;
+    @include suitable-text-color($my-background-color);
+  }
+}

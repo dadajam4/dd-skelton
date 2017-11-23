@@ -7,12 +7,14 @@ import routings  from '.tmp/docs-routings';
 
 const router = new VueRouter(Object.assign({
   scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) return savedPosition;
-
-    if (to.hash) {
+    if (savedPosition) {
+      return savedPosition;
+    } else if (to.hash) {
       return {
         selector: to.hash,
-      }
+      };
+    } else {
+      return { x: 0, y: 0 };
     }
   },
 }, routings));

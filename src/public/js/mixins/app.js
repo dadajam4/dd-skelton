@@ -2,15 +2,25 @@ const APP_COMPONENT_NAME = 'vn@-app';
 
 
 
+const appValues = {
+  headerFixed      : false,
+  leftDrawerActive : false,
+  leftDrawerStatic : false,
+  rightDrawerActive: false,
+  rightDrawerStatic: false,
+};
+
+
+
 export default {
   data() {
-    return {
-      headerFixed: false,
-      leftDrawerActive: false,
-      leftDrawerStatic: false,
-      rightDrawerActive: false,
-      rightDrawerStatic: false,
-    }
+    return Object.assign({
+      // headerFixed      : false,
+      // leftDrawerActive : false,
+      // leftDrawerStatic : false,
+      // rightDrawerActive: false,
+      // rightDrawerStatic: false,
+    }, appValues);
   },
 
   computed: {
@@ -20,6 +30,12 @@ export default {
   },
 
   methods: {
+    _initAppValues() {
+      for (let key in appValues) {
+        this[key] = this.$_app[key];
+      }
+    },
+
     _setupAppListeners() {
       this._onChangeHeaderFixed = fixed => {
         this.headerFixed = fixed;
@@ -61,6 +77,7 @@ export default {
     if (this.isApp) return;
 
     if (!this.$_app) throw new Error(`component '${this.$options.name}' needs '${APP_COMPONENT_NAME}' component.`);
+    this._initAppValues();
     this._setupAppListeners();
   },
 

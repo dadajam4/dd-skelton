@@ -8,11 +8,11 @@
 
 $space: ();
 $space: map-set($space, none, 0      );
-$space: map-set($space, xxxs, .125rem);
-$space: map-set($space, xxs , .25rem );
-$space: map-set($space, xs  , .5rem  );
-$space: map-set($space, sm  , .75rem );
-$space: map-set($space, md  , 1rem   );
-$space: map-set($space, lg  , 1.5rem );
-$space: map-set($space, xl  , 2rem   );
-$space: map-set($space, xxl , 3rem   );
+$space: map-set($space, xxxs, get-rem(.125));
+$space: map-set($space, xxs , get-rem(.25));
+$space: map-set($space, xs  , get-rem(.5));
+$space: map-set($space, sm  , get-rem(.75));
+$space: map-set($space, md  , get-rem());
+$space: map-set($space, lg  , get-rem(1.5));
+$space: map-set($space, xl  , get-rem(2));
+$space: map-set($space, xxl , get-rem(3));

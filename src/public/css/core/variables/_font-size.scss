@@ -6,6 +6,10 @@
 $html-base-font-size: 16px;
 $html-base-font-size-per: ($html-base-font-size / 16px) * 100%;
 
+@function get-rem($ammount: 1) {
+  @return $html-base-font-size * $ammount;
+}
+
 @function get-font-size($key, $unit: null) {
   $value: map-get($font-size, $key);
   @if $unit != null {
@@ -16,14 +20,14 @@ $html-base-font-size-per: ($html-base-font-size / 16px) * 100%;
 }
 
 $font-size: ();
-$font-size: map-set($font-size, base, $html-base-font-size);
-$font-size: map-set($font-size, xs, $html-base-font-size * 0.625);
-$font-size: map-set($font-size, sm, $html-base-font-size * 0.75);
-$font-size: map-set($font-size, md, $html-base-font-size);
-$font-size: map-set($font-size, lg, $html-base-font-size * 1.125);
-$font-size: map-set($font-size, xl, $html-base-font-size * 1.25);
-$font-size: map-set($font-size, xxl, $html-base-font-size * 1.5);
-$font-size: map-set($font-size, xxxl, $html-base-font-size * 2.125);
-$font-size: map-set($font-size, xxxxl, $html-base-font-size * 2.8125);
-$font-size: map-set($font-size, xxxxxl, $html-base-font-size * 3.5);
-$font-size: map-set($font-size, xxxxxxl, $html-base-font-size * 7);
+$font-size: map-set($font-size, base   , get-rem());
+$font-size: map-set($font-size, xs     , get-rem(.625));
+$font-size: map-set($font-size, sm     , get-rem(.75));
+$font-size: map-set($font-size, md     , get-rem());
+$font-size: map-set($font-size, lg     , get-rem(1.125));
+$font-size: map-set($font-size, xl     , get-rem(1.25));
+$font-size: map-set($font-size, xxl    , get-rem(1.5));
+$font-size: map-set($font-size, xxxl   , get-rem(2.125));
+$font-size: map-set($font-size, xxxxl  , get-rem(2.8125));
+$font-size: map-set($font-size, xxxxxl , get-rem(3.5));
+$font-size: map-set($font-size, xxxxxxl, get-rem(7));

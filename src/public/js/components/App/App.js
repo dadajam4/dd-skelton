@@ -17,13 +17,31 @@ export default {
 
 
   data() {
-    return {}
+    return {
+      uses: {
+        header: false,
+        leftDrawer: false,
+        rightDrawer: false,
+      },
+    }
   },
 
   computed: {
+    transitionPropNames() {
+      const names = [];
+      this.uses.header && this.headerFixed && names.push('top');
+      this.uses.leftDrawer && names.push('left');
+      this.uses.rightDrawer && names.push('right');
+      return names;
+    },
+
     classes() {
       return Object.assign({
         [this.$options.name]: true,
+        [`${this.$options.name}--has-header`]: this.uses.header,
+        [`${this.$options.name}--has-drawer-left`]: this.uses.leftDrawer,
+        [`${this.$options.name}--has-drawer-right`]: this.uses.rightDrawer,
+        [`${this.$options.name}--transition-${this.transitionPropNames.join('-')}`]: this.transitionPropNames.length,
         [`${this.$options.name}--header-fixed`]: this.headerFixed,
         [`${this.$options.name}--drawer-left-active`]: this.leftDrawerActive,
         [`${this.$options.name}--drawer-right-active`]: this.rightDrawerActive,

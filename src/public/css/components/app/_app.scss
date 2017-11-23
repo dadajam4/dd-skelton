@@ -6,8 +6,43 @@
   @include theme-color();
 
   position: relative;
-  transition: padding get-duration(slowly) get-easing(drawer);
   min-height: 100vh;
+  transition-property: none;
+  transition-duration: get-duration(slowly);
+  transition-timing-function: get-easing(drawer);
+
+  &--transition-top {
+    transition-property: padding-top;
+  }
+
+  &--transition-left {
+    transition-property: padding-left;
+  }
+
+  &--transition-right {
+    transition-property: padding-right;
+  }
+
+  &--transition-top-left {
+    transition-property: padding-top;
+    transition-property: padding-left;
+  }
+
+  &--transition-top-right {
+    transition-property: padding-top;
+    transition-property: padding-right;
+  }
+
+  &--transition-left-right {
+    transition-property: padding-left;
+    transition-property: padding-right;
+  }
+
+  &--transition-top-left-right {
+    transition-property: padding-top;
+    transition-property: padding-left;
+    transition-property: padding-right;
+  }
 
   &--header-fixed {
     padding-top: $toolbar-row-height;
