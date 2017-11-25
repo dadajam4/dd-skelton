@@ -4,12 +4,13 @@
 <template>
   <div>
     <main class="vc@page__container">
-      <h1>dd-skelton</h1>
-
-      <div>
-        <router-link to="getting-started">Getting Started</router-link>
+      <div class="vc@page__section vc@page__container">
+        <h1>DD Skelton</h1>
+        <p>Hear is sample text. hear is sample text. </p>
+        <div>
+          <vn@-btn primary to="getting-started">Getting Started</vn@-btn>
+        </div>
       </div>
-
     </main>
   </div>
 </template>

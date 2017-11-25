@@ -23,6 +23,7 @@
     position: relative;
     user-select: none;
     color: inherit;
+    @include user-drag(none);
 
     @at-root a#{&} {
       &,

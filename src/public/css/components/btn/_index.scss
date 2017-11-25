@@ -91,11 +91,17 @@
   // context color
   background: transparent;
   @each $key, $define in $context-colors {
-    &--#{$key} {
+    &#{&}--#{$key} {
       $bg-color: map-get($define, value);
       background: $bg-color;
       border-color: $bg-color;
-      @include suitable-text-color($bg-color);
+
+      &,
+      &:hover,
+      &:focus,
+      &:active {
+        @include suitable-text-color($bg-color);
+      }
     }
   }
 
@@ -137,7 +143,7 @@
     }
   }
 
-  &--disabled {
+  &#{&}--disabled {
     @include color(text-muted);
     pointer-events: none;
 
