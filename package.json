@@ -8,9 +8,8 @@
     "build": "npm run production:build",
     "dev:build:watch": "node tasks/flow -f develop --watch",
     "production:build": "NODE_ENV=production node tasks/flow -f build",
-    "start": "npm-run-all --parallel server:public server:docs",
+    "start": "npm run server:public",
     "server:public": "nodemon server -t public --watch server",
-    "server:docs": "nodemon server -t docs --watch server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "dadajam4",

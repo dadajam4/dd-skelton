@@ -4,7 +4,7 @@ const webpack             = require('webpack');
 const vueLoaderConfig     = require('./vue-loader.conf');
 const babelLoaderSettings = require('./babel-loader-settings');
 const publicSettings      = require(path.join(config.path.config.dist, 'public-settings'));
-const docsSettings        = require(path.join(config.path.config.dist, 'docs-settings'));
+// const docsSettings        = require(path.join(config.path.config.dist, 'docs-settings'));
 
 
 
@@ -23,7 +23,7 @@ module.exports = {
     ],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-    }
+    },
   },
 
   resolveLoader: {
@@ -38,7 +38,7 @@ module.exports = {
       'publicSettings.vue.nameSpace': `'${publicSettings.vue.nameSpace}'`,
       'publicSettings.css.key'      : `'${publicSettings.css.key}'`,
       'publicSettings.css.prefix'   : `'${publicSettings.css.prefix}'`,
-      'docsSettings.svgIcon.list'   : JSON.stringify(docsSettings.svgIcon.list),
+      // 'docsSettings.svgIcon.list'   : JSON.stringify(docsSettings.svgIcon.list),
     }),
   ],
 

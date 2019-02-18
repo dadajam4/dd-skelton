@@ -14,35 +14,35 @@ const settings = {
     webpack: 'webpack',
     server : 'server',
   },
+
+  assets: {
+    root: 'assets',
+  },
+
+  plugins: {
+    root: 'plugins',
+    ui: 'ui',
+  },
+
   src: {
     root: 'src',
-    constants: {
-      root: 'constants',
-      sass: 'sass',
-    },
-    public: {
-      root: 'public',
-      sprite: 'sprite',
-      svgIcon: 'svg-icon',
-      img: 'img',
-      css: 'css',
-      js: 'js',
-      html: 'html',
-      files: 'files',
-    },
-    docs: {
-      root: 'docs',
-      img: 'img',
-      css: 'css',
-      js: 'js',
-      html: 'html',
-      files: 'files',
-    },
     tmp: {
       root: '.tmp',
       sass: 'sass',
     },
+    constants: {
+      root: 'constants',
+      sass: 'sass',
+    },
+    sprite: 'sprite',
+    svgIcon: 'svg-icon',
+    img: 'img',
+    css: 'css',
+    js: 'js',
+    html: 'html',
+    files: 'files',
   },
+
   public: {
     root: 'public',
     assets: {
@@ -54,16 +54,7 @@ const settings = {
       js: 'js',
     },
   },
-  docs: {
-    root: 'docs',
-    public: 'public',
-    assets: {
-      root: 'assets',
-      img: 'img',
-      css: 'css',
-      js: 'js',
-    },
-  },
+
   tasks: {
     root: 'tasks',
   },

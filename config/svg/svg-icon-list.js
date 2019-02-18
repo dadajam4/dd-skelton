@@ -4,7 +4,7 @@ const FileUtil     = require('dd-file-util');
 
 
 
-const list = FileUtil.fileList(config.path.src.public.svgIcon).map(path => path.replace(/\.svg$/, ''));
+const list = FileUtil.fileList(config.path.src.svgIcon).map(path => path.replace(/\.svg$/, ''));
 
 
 

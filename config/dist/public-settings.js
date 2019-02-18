@@ -10,11 +10,11 @@ const myName = 'dd';
 const publicSettings = {
   js: {
     entry: {
-      dd: path.join(config.path.src.public.js, 'index.js'),
+      dd: path.join(config.path.src.js, 'index.js'),
     },
     outputPath: config.path.public.assets.js,
     modules: [
-      config.path.src.public.js,
+      config.path.src.js,
       config.path.src.root,
     ],
   },
